@@ -1,0 +1,102 @@
+import { useEffect } from 'react';
+
+export default function Schedule() {
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add('visible');
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in-up, .card-hover, .dark-card-hover').forEach(el => {
+      if (!el.classList.contains('fade-in-up')) el.classList.add('fade-in-up');
+      observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  const teaserDays = [
+    { day: "Thursday", date: "Dec 3", title: "Seminars & Activities", color: "#01C9CF" },
+    { day: "Friday", date: "Dec 4", title: "Seminars & Fun Race", color: "#EB459A" },
+    { day: "Saturday", date: "Dec 5", title: "Individual Event", color: "#EB7A4B" },
+    { day: "Sunday", date: "Dec 6", title: "Teams Event", color: "#FDFAF5" }
+  ];
+
+  return (
+    <div className="flex flex-col flex-grow bg-[#000000] animate-page-enter">
+      <section className="pt-36 pb-24 md:pb-32 relative overflow-hidden flex-grow flex flex-col justify-center border-b border-[#FDFAF5]/10 min-h-[85vh]">
+        
+        {/* Glow & background effects */}
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#01C9CF]/20 rounded-full blur-[120px] pointer-events-none -translate-y-1/2 translate-x-1/3"></div>
+        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#EB459A]/20 rounded-full blur-[120px] pointer-events-none translate-y-1/2 -translate-x-1/3"></div>
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=2000&auto=format&fit=crop')] opacity-10 mix-blend-overlay object-cover pointer-events-none"></div>
+
+        <div className="max-w-6xl mx-auto px-6 relative z-10 w-full flex flex-col items-center">
+          
+          <div className="text-center fade-in-up visible mb-16">
+            <span className="font-bebas text-[#01C9CF] text-2xl tracking-widest uppercase mb-4 block animate-pulse">
+              EVENT SCHEDULE
+            </span>
+            
+            <h1 className="text-6xl md:text-8xl text-[#FDFAF5] font-anton tracking-tighter uppercase mb-6 leading-[0.9] drop-shadow-2xl relative">
+              <span className="absolute -inset-8 blur-3xl opacity-20 bg-gradient-to-r from-[#01C9CF] via-[#EB459A] to-[#EB7A4B] animate-[pulse_4s_ease-in-out_infinite] z-[-1] rounded-full"></span>
+              Schedule <span className="text-[#EB459A]">Coming Soon</span>
+            </h1>
+            
+            <h2 className="text-2xl md:text-3xl font-bebas tracking-wide text-[#EB7A4B] uppercase mb-6 drop-shadow-md">
+              The full Guayaera in Paradise 4 schedule will be released closer to the event.
+            </h2>
+            
+            <p className="text-xl md:text-2xl text-[#FDFAF5]/70 font-medium max-w-3xl mx-auto leading-relaxed">
+              We're preparing a complete weekend lineup with seminars, activities, competition days, and community experiences. Stay tuned for official updates.
+            </p>
+          </div>
+
+          {/* Teaser Timeline */}
+          <div className="w-full max-w-5xl mb-16">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {teaserDays.map((item, idx) => (
+                <div 
+                  key={idx} 
+                  className={`bg-[#FDFAF5]/5 border border-[#FDFAF5]/10 p-6 md:p-8 rounded-2xl dark-card-hover flex flex-col items-center text-center relative overflow-hidden group fade-in-up visible stagger-${(idx % 3) + 1}`}
+                >
+                  <div className="absolute top-0 left-0 w-full h-1 transition-all duration-300 group-hover:h-2" style={{ backgroundColor: item.color }}></div>
+                  
+                  <div className="font-bebas tracking-wider text-xl text-[#FDFAF5]/50 uppercase mb-2">
+                    {item.day}
+                  </div>
+                  
+                  <div className="font-anton text-4xl text-[#FDFAF5] tracking-tight uppercase mb-4 group-hover:scale-105 transition-transform duration-300 origin-center" style={{ color: item.color }}>
+                    {item.date}
+                  </div>
+                  
+                  <div className="text-lg text-[#FDFAF5]/80 font-medium leading-snug">
+                    {item.title}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* CTAs */}
+          <div className="flex flex-col sm:flex-row justify-center items-center gap-6 w-full fade-in-up stagger-3 visible">
+            <a 
+              href="/#about" 
+              className="bg-[#000000]/50 backdrop-blur-md border-2 border-[#FDFAF5]/50 text-[#FDFAF5] font-bebas text-2xl tracking-wide uppercase px-12 py-5 hover:bg-[#FDFAF5] hover:text-[#000000] hover:scale-105 transition-all duration-300 rounded-lg shadow-lg text-center w-full sm:w-auto"
+            >
+              Back to Event Details
+            </a>
+            <a 
+              href="https://circle21.events/guayaera-in-paradise?tab=info" 
+              className="bg-[#EB459A] text-[#FDFAF5] font-bebas text-2xl tracking-wide uppercase px-12 py-5 hover:bg-[#01C9CF] hover:scale-105 transition-all duration-300 shadow-[0_0_20px_rgba(235,69,154,0.4)] hover:shadow-[0_0_30px_rgba(1,201,207,0.6)] rounded-lg text-center w-full sm:w-auto"
+            >
+              Register Now
+            </a>
+          </div>
+
+        </div>
+      </section>
+    </div>
+  );
+}
