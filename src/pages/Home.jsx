@@ -105,17 +105,24 @@ export default function Home() {
         </div>
         <div className="z-10 bg-gradient-to-t from-[#000000] via-[#000000]/60 to-transparent absolute top-0 right-0 bottom-0 left-0"></div>
 
-        <div className="flex flex-col fade-in-up text-center w-full max-w-7xl z-20 mt-12 mr-auto ml-auto pr-6 pl-6 relative items-center">
+        <div className="flex flex-col text-center w-full max-w-7xl z-20 mt-12 mr-auto ml-auto pr-6 pl-6 relative items-center">
           <h1 className="text-center mb-6 drop-shadow-2xl">
-            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/96828eb2-ec23-4a1b-92c0-735af0c8b914_1600w.png" alt="Guayaera In Paradise 4" className="w-full max-w-[85vw] md:max-w-[450px] h-auto object-contain mx-auto pt-8 pb-8 md:py-12 scale-100 md:scale-150" />
+            <img 
+              src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/96828eb2-ec23-4a1b-92c0-735af0c8b914_800w.png" 
+              alt="Guayaera In Paradise 4" 
+              loading="eager"
+              fetchPriority="high"
+              decoding="sync"
+              className="md:max-w-[450px] md:py-12 md:scale-150 w-full h-auto max-w-[85vw] object-contain mr-auto ml-auto pt-8 pb-8 scale-100" 
+            />
             <span className="sr-only">Guayaera In Paradise 4</span>
           </h1>
 
-          <p className="md:text-5xl uppercase text-3xl text-[#FDFAF5] tracking-tight font-merriweather max-w-3xl mb-12 drop-shadow-md">
+          <p className="fade-in-up md:text-5xl uppercase text-3xl text-[#FDFAF5] tracking-tight font-merriweather max-w-3xl mb-12 drop-shadow-md">
             The Island Becomes Your Arena
           </p>
 
-          <div className="flex flex-wrap items-center justify-center gap-3 md:gap-6 mb-16 font-bebas" id="countdown">
+          <div className="fade-in-up stagger-1 flex flex-wrap items-center justify-center gap-3 md:gap-6 mb-16 font-bebas" id="countdown">
             <div className="flex flex-col items-center bg-[#000000]/40 backdrop-blur-md border border-[#01C9CF]/30 p-4 md:p-6 rounded-2xl min-w-[80px] md:min-w-[130px] shadow-[0_0_15px_rgba(1,201,207,0.15)]">
               <span className="text-4xl md:text-7xl tracking-tight text-[#01C9CF]">{timeLeft.d}</span>
               <span className="text-xs md:text-lg text-[#FDFAF5]/80 uppercase tracking-widest mt-2">Days</span>
@@ -134,7 +141,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-6 w-full sm:w-auto">
+          <div className="fade-in-up stagger-2 flex flex-col sm:flex-row gap-6 w-full sm:w-auto">
             <a href="#register" className="bg-[#EB459A] text-[#FDFAF5] font-bebas text-2xl md:text-3xl tracking-wide uppercase px-12 py-5 hover:bg-[#01C9CF] hover:scale-105 transition-all duration-300 shadow-[0_0_20px_rgba(235,69,154,0.4)] hover:shadow-[0_0_30px_rgba(1,201,207,0.6)] w-full sm:w-auto text-center rounded-lg">
               Secure Your Spot
             </a>

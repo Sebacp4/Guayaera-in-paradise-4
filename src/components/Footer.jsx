@@ -11,7 +11,12 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-16 mb-16">
           <div className="md:col-span-5 flex flex-col">
-            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/96828eb2-ec23-4a1b-92c0-735af0c8b914_320w.png" alt="Guayaera In Paradise 4" className="md:h-32 self-start w-auto h-24 object-contain mb-8 ml-4" />
+            <img 
+              src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/96828eb2-ec23-4a1b-92c0-735af0c8b914_320w.png" 
+              alt="Guayaera In Paradise 4" 
+              loading="lazy"
+              className="md:h-32 self-start w-auto h-24 object-contain mb-8 ml-4" 
+            />
             <p className="text-xl text-[#FDFAF5]/60 max-w-sm mb-8 leading-relaxed font-medium">
               The premier functional fitness competition in paradise. Test your
               limits, forge new friendships, and experience the ultimate
