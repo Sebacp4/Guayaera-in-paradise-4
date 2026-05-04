@@ -41,7 +41,7 @@ export default function Header() {
             loading="eager"
             fetchPriority="high"
             decoding="sync"
-            className="md:h-16 transition-transform duration-300 group-hover:scale-105 w-20 scale-150" 
+            className="md:h-16 transition-transform duration-300 group-hover:scale-105 md:translate-y-0 w-20 translate-y-1 scale-150" 
           />
         </Link>
 

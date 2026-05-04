@@ -106,7 +106,7 @@ export default function Home() {
         <div className="z-10 bg-gradient-to-t from-[#000000] via-[#000000]/60 to-transparent absolute top-0 right-0 bottom-0 left-0"></div>
 
         <div className="flex flex-col z-20 text-center w-full max-w-7xl mt-12 mr-auto ml-auto pr-6 pl-6 relative items-center">
-          <h1 className="text-center mb-6 drop-shadow-2xl">
+          <h1 className="text-center mb-6 drop-shadow-2xl mt-12 md:mt-0">
             <img 
               src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/8760da48-b048-4b11-a66f-72e5e6a71a71_1600w.png" 
               alt="Guayaera In Paradise 4" 
@@ -629,8 +629,8 @@ export default function Home() {
                 <h4 className="uppercase text-5xl text-[#FDFAF5] tracking-tight font-bebas mb-2 drop-shadow-md">
                   Teams
                 </h4>
-                <p className="text-lg text-[#FDFAF5]/60 font-medium">
-                  Same Sex (MMM or FFF)
+                <p className="text-lg font-medium text-[#FDFAF5]/60">
+                  Mixed Sex (MM/FF) (Sunday Event)
                 </p>
                 <div className="flex flex-wrap gap-x-3 gap-y-1 mt-3 font-bebas text-sm text-[#FDFAF5]/50 tracking-wider uppercase">
                   <span>RX</span>•<span>Intermediate</span>•<span>Beginners</span>•<span>Teens</span>•<span>Masters</span>
@@ -662,7 +662,7 @@ export default function Home() {
                 <ul className="space-y-3 text-lg font-medium text-[#FDFAF5]/70">
                   <li className="flex items-start gap-3">
                     <iconify-icon icon="solar:check-circle-bold" width="20" height="20" className="text-[#EB7A4B] mt-1 shrink-0 opacity-80"></iconify-icon>
-                    <span>Same Sex Teams (MMM or FFF)</span>
+                    <span>Mixed Sex Teams (MM/FF)</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <iconify-icon icon="solar:check-circle-bold" width="20" height="20" className="text-[#EB7A4B] mt-1 shrink-0 opacity-80"></iconify-icon>
@@ -687,8 +687,8 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="overflow-hidden bg-[#FDFAF5] border-[#000000]/5 border-b pt-24 pb-24" id="sponsors">
-        <div className="max-w-7xl mx-auto px-6 fade-in-up mb-16">
+      <section className="overflow-hidden bg-[#FDFAF5] border-[#000000]/5 border-b pt-12 pb-12 md:pt-24 md:pb-24" id="sponsors">
+        <div className="max-w-7xl mx-auto px-6 fade-in-up mb-6 md:mb-16">
           <h2 className="text-center font-bebas text-4xl tracking-tight uppercase text-[#000000] mb-3">
             Supported By The Best
           </h2>
@@ -698,12 +698,12 @@ export default function Home() {
         </div>
 
         <div className="relative w-full overflow-hidden flex before:absolute before:left-0 before:top-0 before:z-10 before:h-full before:w-16 md:before:w-32 before:bg-gradient-to-r before:from-[#FDFAF5] before:to-transparent after:absolute after:right-0 after:top-0 after:z-10 after:h-full after:w-16 md:after:w-32 after:bg-gradient-to-l after:from-[#FDFAF5] after:to-transparent">
-          <div className="animate-infinite-scroll gap-16 md:gap-24 pr-16 md:pr-24 py-8 items-center">
-            <div className="flex items-center gap-16 md:gap-24 flex-nowrap">
+          <div className="animate-infinite-scroll gap-6 md:gap-24 pr-6 md:pr-24 py-4 md:py-8 items-center">
+            <div className="flex items-center gap-6 md:gap-24 flex-nowrap">
               {sponsorList.map((sponsor, idx) => (
-                <div key={idx} className="w-[200px] md:w-[260px] flex flex-col items-center justify-center shrink-0 relative">
+                <div key={idx} className="w-[150px] md:w-[260px] flex flex-col items-center justify-center shrink-0 relative">
                   {sponsor.isPremier && (
-                    <span className="absolute -top-10 text-[10px] md:text-[11px] font-bebas tracking-widest uppercase text-[#01C9CF] bg-[#01C9CF]/10 px-3 py-1 rounded-full border border-[#01C9CF]/20 whitespace-nowrap shadow-[0_0_10px_rgba(1,201,207,0.2)]">
+                    <span className="-top-10 text-[10px] md:text-[11px] uppercase whitespace-nowrap text-[#01C9CF] tracking-widest font-bebas bg-[#01C9CF]/10 border-[#01C9CF]/20 border rounded-full pt-1 pr-3 pb-1 pl-3 absolute shadow-[0_0_10px_rgba(1,201,207,0.2)] translate-y-3">
                       Premier Sponsor
                     </span>
                   )}
@@ -719,9 +719,9 @@ export default function Home() {
                 </div>
               ))}
             </div>
-            <div className="flex items-center gap-16 md:gap-24 flex-nowrap" aria-hidden="true">
+            <div className="flex items-center gap-6 md:gap-24 flex-nowrap" aria-hidden="true">
               {sponsorList.map((sponsor, idx) => (
-                <div key={`dup-${idx}`} className="w-[200px] md:w-[260px] flex flex-col items-center justify-center shrink-0 relative">
+                <div key={`dup-${idx}`} className="w-[150px] md:w-[260px] flex flex-col items-center justify-center shrink-0 relative">
                   {sponsor.isPremier && (
                     <span className="absolute -top-10 text-[10px] md:text-[11px] font-bebas tracking-widest uppercase text-[#01C9CF] bg-[#01C9CF]/10 px-3 py-1 rounded-full border border-[#01C9CF]/20 whitespace-nowrap shadow-[0_0_10px_rgba(1,201,207,0.2)]">
                       Premier Sponsor
@@ -743,7 +743,7 @@ export default function Home() {
         </div>
 
         {/* Featured Sponsor Spotlight */}
-        <div className="max-w-4xl mx-auto px-6 mt-16 md:mt-20 mb-4 fade-in-up">
+        <div className="max-w-4xl mx-auto px-6 mt-8 md:mt-20 mb-4 fade-in-up">
           <div className="bg-white border border-[#000000]/5 rounded-3xl p-8 md:p-10 flex flex-col md:flex-row items-center gap-8 justify-center shadow-lg hover:shadow-xl transition-shadow duration-500 relative overflow-hidden group">
             <div className="absolute top-0 right-0 w-64 h-64 bg-[#01C9CF]/5 rounded-full blur-[80px] pointer-events-none group-hover:bg-[#01C9CF]/10 transition-colors duration-500"></div>
             <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#EB459A]/5 rounded-full blur-[80px] pointer-events-none group-hover:bg-[#EB459A]/10 transition-colors duration-500"></div>
