@@ -69,8 +69,7 @@ export default function Footer() {
                   <iconify-icon icon="solar:map-point-bold" width="24" height="24"></iconify-icon>
                 </div>
                 <span className="leading-relaxed">
-                  200 Coco Beach Blvd. Highway, 955-I, Río Grande, 00745, Puerto
-                  Rico
+                  Hyatt Regency Grand Reserve Puerto Rico. Highway 955-I, Río Grande, PR 00745
                 </span>
               </li>
               <li className="flex items-center gap-4">

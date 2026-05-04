@@ -327,7 +327,7 @@ export default function Home() {
                   <div className="w-16 h-16 rounded-2xl bg-[#EB459A]/10 flex items-center justify-center text-[#EB459A] group-hover:bg-[#EB459A] group-hover:text-[#FDFAF5] transition-all duration-300">
                     <iconify-icon icon="solar:map-bold" width="32" height="32"></iconify-icon>
                   </div>
-                  <span className="text-[#000000]">Coco Beach PR</span>
+                  <span className="text-[#000000]">Hyatt Regency Grand Reserve</span>
                 </div>
                 <div className="flex items-center gap-4 group">
                   <div className="w-16 h-16 rounded-2xl bg-[#EB7A4B]/10 flex items-center justify-center text-[#EB7A4B] group-hover:bg-[#EB7A4B] group-hover:text-[#FDFAF5] transition-all duration-300">
@@ -335,7 +335,7 @@ export default function Home() {
                   </div>
                   <span className="text-[#000000]">Licensed Event</span>
                 </div>
-                <div className="flex items-center gap-4 group">
+                <div className="flex group gap-x-4 gap-y-4 items-center">
                   <div className="w-16 h-16 rounded-2xl bg-[#000000]/5 flex items-center justify-center text-[#000000] group-hover:bg-[#000000] group-hover:text-[#FDFAF5] transition-all duration-300">
                     <iconify-icon icon="solar:cup-first-bold" width="32" height="32"></iconify-icon>
                   </div>
