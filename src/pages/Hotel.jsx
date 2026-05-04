@@ -191,7 +191,7 @@ export default function Hotel() {
             </div>
             <div className="bg-white p-6 rounded-2xl shadow-sm border border-[#000000]/5 flex flex-col items-center text-center card-hover fade-in-up stagger-1 visible">
               <div className="flex items-center justify-center w-10 h-10 mb-4">
-                <iconify-icon icon="solar:palmtree-bold-duotone" className="text-[#01C9CF]" width="40" height="40"></iconify-icon>
+                <iconify-icon icon="mingcute:tree-4-line" className="text-[#01C9CF]" width="40" height="40"></iconify-icon>
               </div>
               <h4 className="font-bebas text-2xl tracking-wide uppercase text-[#000000]">Resort atmosphere</h4>
             </div>

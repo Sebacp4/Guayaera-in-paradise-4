@@ -105,10 +105,10 @@ export default function Home() {
         </div>
         <div className="z-10 bg-gradient-to-t from-[#000000] via-[#000000]/60 to-transparent absolute top-0 right-0 bottom-0 left-0"></div>
 
-        <div className="flex flex-col text-center w-full max-w-7xl z-20 mt-12 mr-auto ml-auto pr-6 pl-6 relative items-center">
+        <div className="flex flex-col z-20 text-center w-full max-w-7xl mt-12 mr-auto ml-auto pr-6 pl-6 relative items-center">
           <h1 className="text-center mb-6 drop-shadow-2xl">
             <img 
-              src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/96828eb2-ec23-4a1b-92c0-735af0c8b914_800w.png" 
+              src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/8760da48-b048-4b11-a66f-72e5e6a71a71_1600w.png" 
               alt="Guayaera In Paradise 4" 
               loading="eager"
               fetchPriority="high"

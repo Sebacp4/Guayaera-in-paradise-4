@@ -36,12 +36,12 @@ export default function Header() {
       <div className={`relative z-20 flex transition-all duration-500 max-w-7xl mr-auto ml-auto pr-6 pl-6 items-center justify-between ${isScrolled ? 'h-16 md:h-20' : 'h-20 md:h-24'}`} id="nav-container">
         <Link to="/" className="flex items-center gap-2 group h-full py-2 md:py-4" onClick={closeMenu}>
           <img 
-            src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/96828eb2-ec23-4a1b-92c0-735af0c8b914_320w.png" 
+            src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/8760da48-b048-4b11-a66f-72e5e6a71a71_320w.png" 
             alt="Guayaera In Paradise 4" 
             loading="eager"
             fetchPriority="high"
             decoding="sync"
-            className="md:h-16 transition-transform duration-300 group-hover:scale-105 w-auto h-12 object-contain" 
+            className="md:h-16 transition-transform duration-300 group-hover:scale-105 w-20 scale-150" 
           />
         </Link>
 
