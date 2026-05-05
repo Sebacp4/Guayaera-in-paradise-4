@@ -87,8 +87,21 @@ export default function Header() {
       {/* Mobile Menu Full Screen Overlay */}
       <div className={`fixed inset-0 h-[100dvh] w-full bg-[#FDFAF5] z-10 flex flex-col pt-28 px-8 pb-12 transition-transform duration-500 ease-in-out lg:hidden overflow-y-auto ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
         <div className="flex flex-col gap-2 mt-4 font-bebas text-4xl tracking-tight uppercase text-center w-full">
-          <a href={isHome ? "#divisions" : "/#divisions"} onClick={closeMenu} className="text-[#000000] hover:text-[#EB7A4B] transition-colors py-4 border-b border-[#000000]/5 w-full block">
-            Divisiones
+          <Link 
+            to="/" 
+            onClick={(e) => {
+              if (isHome) {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }
+              closeMenu();
+            }} 
+            className="hover:text-[#EB7A4B] transition-colors block text-[#000000] w-full border-[#000000]/5 border-b pt-4 pb-4"
+          >
+            Home
+          </Link>
+          <a href={isHome ? "#divisions" : "/#divisions"} onClick={closeMenu} className="hover:text-[#EB7A4B] transition-colors block text-[#000000] w-full border-[#000000]/5 border-b pt-4 pb-4">
+            Divisions
           </a>
           <a href={isHome ? "#sponsors" : "/#sponsors"} onClick={closeMenu} className="text-[#000000] hover:text-[#01C9CF] transition-colors py-4 border-b border-[#000000]/5 w-full block">
             Sponsors

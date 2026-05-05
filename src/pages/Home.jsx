@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 
 export default function Home() {
@@ -9,6 +9,9 @@ export default function Home() {
   const [timeLeft, setTimeLeft] = useState({
     d: '00', h: '00', m: '00', s: '00'
   });
+
+  const divisionsRef = useRef(null);
+  const [activeDivision, setActiveDivision] = useState(0);
 
   const carouselImages = [
     "https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/3bb92b79-9adc-4d0e-9ab7-c099358e4cbc_1600w.jpg",
@@ -31,6 +34,52 @@ export default function Home() {
     { src: "https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/277b7222-ca3d-46b1-9d32-ca8bb3312fda_800w.jpg", alt: "Jibaros Crossfit", extraClass: "" },
     { src: "https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/0b962302-57ae-4098-8b56-523f3bb72a44_800w.jpg", alt: "Sponsor 12", extraClass: "" },
     { src: "https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/508110e1-cfd8-4591-887f-b09e5787dd72_800w.jpg", alt: "Sponsor 13", extraClass: "" }
+  ];
+
+  const divisionsList = [
+    {
+      title: 'RX',
+      color: '#EB459A',
+      stagger: 'stagger-1',
+      desc: 'For elite competitors who can handle any movement and heavy loads as prescribed.',
+      features: ['Muscle Ups (Ring/Bar)', 'Handstand Walks', 'Heavy Olympic Lifts']
+    },
+    {
+      title: 'Intermediate',
+      color: '#EB7A4B',
+      stagger: 'stagger-2',
+      desc: 'Proficient in most movements but may struggle with high volume high-skill gymnastics.',
+      features: ['Pull-ups / T2B', 'HSPU (Kipping)', 'Moderate Loads']
+    },
+    {
+      title: 'Beginners',
+      color: '#01C9CF',
+      stagger: 'stagger-3',
+      desc: 'First time competing? This is for you. Focus on fun, effort, and simple mechanics.',
+      features: ['Ring Rows', 'Single Unders', 'Lighter Loads']
+    },
+    {
+      title: 'Scale',
+      color: '#FDFAF5',
+      stagger: 'stagger-1',
+      desc: 'Intermediate level modified for accessibility. Less complex movements, challenging weights.',
+      features: ['Modified Gymnastics', 'Light Olympic Lifts', 'Scaled Volume'],
+      btnHoverText: 'text-[#000000]'
+    },
+    {
+      title: 'Masters 39-44',
+      color: '#EB459A',
+      stagger: 'stagger-2',
+      desc: 'For experienced competitors aged 39-44 ready to bring the heat with heavy loads.',
+      features: ['Age Verified (39-44)', 'Prescribed Weights', 'Advanced Gymnastics']
+    },
+    {
+      title: 'Masters 45+',
+      color: '#EB7A4B',
+      stagger: 'stagger-3',
+      desc: 'For veteran athletes 45 and over. Scaling options available for complex movements.',
+      features: ['Age Verified (45+)', 'Modified Weights', 'Adjusted Volume']
+    }
   ];
 
   // Scroll and Intersection Observer effect
@@ -92,6 +141,27 @@ export default function Home() {
     }, 4500);
     return () => clearInterval(timer);
   }, [carouselImages.length]);
+
+  // Mobile divisions carousel handler
+  const handleDivisionScroll = () => {
+    if (!divisionsRef.current) return;
+    const container = divisionsRef.current;
+    const scrollLeft = container.scrollLeft;
+    const clientWidth = container.clientWidth;
+    let minDistance = Infinity;
+    let activeIndex = 0;
+    
+    Array.from(container.children).forEach((child, index) => {
+      const childCenter = child.offsetLeft + child.offsetWidth / 2;
+      const containerCenter = scrollLeft + clientWidth / 2;
+      const distance = Math.abs(childCenter - containerCenter);
+      if (distance < minDistance) {
+        minDistance = distance;
+        activeIndex = index;
+      }
+    });
+    setActiveDivision(activeIndex);
+  };
 
   return (
     <div className="flex flex-col w-full animate-page-enter">
@@ -382,7 +452,7 @@ export default function Home() {
 
       <section id="divisions" className="py-24 md:py-32 bg-[#000000] text-[#FDFAF5] overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-20 fade-in-up">
+          <div className="text-center mb-16 md:mb-20 fade-in-up">
             <h2 className="font-bebas text-[#EB7A4B] text-3xl tracking-tight uppercase mb-2">
               Categories
             </h2>
@@ -391,79 +461,44 @@ export default function Home() {
             </h3>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              {
-                title: 'RX',
-                color: '#EB459A',
-                stagger: 'stagger-1',
-                desc: 'For elite competitors who can handle any movement and heavy loads as prescribed.',
-                features: ['Muscle Ups (Ring/Bar)', 'Handstand Walks', 'Heavy Olympic Lifts']
-              },
-              {
-                title: 'Intermediate',
-                color: '#EB7A4B',
-                stagger: 'stagger-2',
-                desc: 'Proficient in most movements but may struggle with high volume high-skill gymnastics.',
-                features: ['Pull-ups / T2B', 'HSPU (Kipping)', 'Moderate Loads']
-              },
-              {
-                title: 'Beginners',
-                color: '#01C9CF',
-                stagger: 'stagger-3',
-                desc: 'First time competing? This is for you. Focus on fun, effort, and simple mechanics.',
-                features: ['Ring Rows', 'Single Unders', 'Lighter Loads']
-              },
-              {
-                title: 'Scale',
-                color: '#FDFAF5',
-                stagger: 'stagger-1',
-                desc: 'Intermediate level modified for accessibility. Less complex movements, challenging weights.',
-                features: ['Modified Gymnastics', 'Light Olympic Lifts', 'Scaled Volume'],
-                btnHoverText: 'text-[#000000]'
-              },
-              {
-                title: 'Masters 39-44',
-                color: '#EB459A',
-                stagger: 'stagger-2',
-                desc: 'For experienced competitors aged 39-44 ready to bring the heat with heavy loads.',
-                features: ['Age Verified (39-44)', 'Prescribed Weights', 'Advanced Gymnastics']
-              },
-              {
-                title: 'Masters 45+',
-                color: '#EB7A4B',
-                stagger: 'stagger-3',
-                desc: 'For veteran athletes 45 and over. Scaling options available for complex movements.',
-                features: ['Age Verified (45+)', 'Modified Weights', 'Adjusted Volume']
-              }
-            ].map((div, i) => (
-              <div key={i} className={`group bg-[#FDFAF5]/5 border border-[#FDFAF5]/10 p-8 flex flex-col dark-card-hover relative overflow-hidden rounded-2xl ${div.stagger} fade-in-up h-full`}>
+          <div 
+            ref={divisionsRef}
+            onScroll={handleDivisionScroll}
+            className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 overflow-x-auto md:overflow-visible snap-x snap-mandatory md:snap-none pb-4 md:pb-0 scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden -mx-6 px-6 md:mx-0 md:px-0"
+          >
+            {divisionsList.map((div, i) => (
+              <div key={i} className={`group bg-[#FDFAF5]/5 border border-[#FDFAF5]/10 p-6 md:p-8 flex flex-col dark-card-hover relative overflow-hidden rounded-2xl ${div.stagger} fade-in-up h-full shrink-0 w-[85vw] md:w-auto snap-center md:snap-align-none`}>
                 <div className={`absolute top-0 left-0 w-full h-1 transition-all duration-300 group-hover:h-2`} style={{ backgroundColor: div.color }}></div>
                 <div className={`absolute -bottom-24 -right-24 w-48 h-48 rounded-full blur-3xl transition-all duration-500 pointer-events-none`} style={{ backgroundColor: `${div.color}1A`, ...(i === 0 ? { groupHover: { backgroundColor: `${div.color}33`} } : {}) }}></div>
-                <h4 className={`font-bebas text-4xl lg:text-5xl tracking-tight uppercase mb-4 group-hover:scale-105 transition-transform origin-left`} style={{ color: div.color }}>
+                
+                <h4 className={`font-bebas text-4xl md:text-5xl lg:text-5xl tracking-tight uppercase mb-3 md:mb-4 group-hover:scale-105 transition-transform origin-left`} style={{ color: div.color }}>
                   {div.title}
                 </h4>
-                <div className={`flex flex-col mb-6 bg-[#000000]/40 p-5 rounded-xl border`} style={{ borderColor: `${div.color}33` }}>
-                  <span className={`text-sm font-bebas tracking-widest uppercase mb-2`} style={{ color: div.color }}>
+                
+                <div className={`flex flex-col mb-4 md:mb-6 bg-[#000000]/40 p-4 md:p-5 rounded-xl border`} style={{ borderColor: `${div.color}33` }}>
+                  <span className={`text-xs md:text-sm font-bebas tracking-widest uppercase mb-1 md:mb-2`} style={{ color: div.color }}>
                     Early Bird 16% Off
                   </span>
-                  <div className="flex items-end gap-3">
-                    <span className="font-anton text-5xl text-[#FDFAF5] leading-none">$189</span>
-                    <span className="text-xl text-[#FDFAF5]/50 line-through pb-0.5">$225</span>
-                    <span className="text-sm text-[#FDFAF5]/60 pb-1 ml-auto font-bebas tracking-widest uppercase">USD</span>
+                  <div className="flex items-end gap-2 md:gap-3">
+                    <span className="font-anton text-4xl md:text-5xl text-[#FDFAF5] leading-none">$189</span>
+                    <span className="text-lg md:text-xl text-[#FDFAF5]/50 line-through pb-0.5">$225</span>
+                    <span className="text-xs md:text-sm text-[#FDFAF5]/60 pb-0.5 md:pb-1 ml-auto font-bebas tracking-widest uppercase">USD</span>
                   </div>
                 </div>
-                <p className="text-lg text-[#FDFAF5]/60 mb-6">{div.desc}</p>
-                <ul className="space-y-4 text-[#FDFAF5]/80 font-medium relative z-10 mb-8 flex-grow">
+                
+                <p className="text-base md:text-lg text-[#FDFAF5]/60 mb-4 md:mb-6 leading-snug">{div.desc}</p>
+                
+                <ul className="space-y-3 md:space-y-4 text-sm md:text-base text-[#FDFAF5]/80 font-medium relative z-10 mb-6 md:mb-8 flex-grow">
                   {div.features.map((feat, j) => (
-                    <li key={j} className="flex items-center gap-4">
-                      <iconify-icon icon="solar:check-circle-bold" width="24" height="24" style={{ color: div.color }}></iconify-icon>
+                    <li key={j} className="flex items-center gap-3 md:gap-4">
+                      <iconify-icon icon="solar:check-circle-bold" width="24" height="24" style={{ color: div.color }} className="shrink-0 w-5 h-5 md:w-6 md:h-6"></iconify-icon>
                       {feat}
                     </li>
                   ))}
                 </ul>
+                
                 <button 
-                  className={`z-10 uppercase transition-all duration-300 ${div.btnHoverText || 'hover:text-[#FDFAF5]'} hover:scale-[1.02] text-xl tracking-wide font-bebas w-full border rounded-lg mt-auto pt-3.5 pr-6 pb-3.5 pl-6 relative cursor-pointer`}
+                  className={`z-10 uppercase transition-all duration-300 ${div.btnHoverText || 'hover:text-[#FDFAF5]'} hover:scale-[1.02] text-lg md:text-xl tracking-wide font-bebas w-full border rounded-lg mt-auto pt-3 md:pt-3.5 pr-4 md:pr-6 pb-3 md:pb-3.5 pl-4 md:pl-6 relative cursor-pointer`}
                   style={{ 
                     backgroundColor: `${div.color}1A`, 
                     color: div.color, 
@@ -484,6 +519,26 @@ export default function Home() {
                   More Info
                 </button>
               </div>
+            ))}
+          </div>
+
+          <div className="flex md:hidden justify-center items-center gap-2 mt-4">
+            {divisionsList.map((_, idx) => (
+              <button
+                key={idx}
+                className={`h-1.5 rounded-full transition-all duration-300 ${activeDivision === idx ? 'w-6 bg-[#01C9CF] shadow-[0_0_8px_rgba(1,201,207,0.5)]' : 'w-1.5 bg-[#FDFAF5]/20'}`}
+                onClick={() => {
+                   if(divisionsRef.current) {
+                      const container = divisionsRef.current;
+                      const child = container.children[idx];
+                      if(child) {
+                          const scrollPosition = child.offsetLeft - container.offsetLeft - (container.clientWidth / 2) + (child.offsetWidth / 2);
+                          container.scrollTo({ left: scrollPosition, behavior: 'smooth' });
+                      }
+                   }
+                }}
+                aria-label={`Go to division ${idx + 1}`}
+              />
             ))}
           </div>
         </div>
