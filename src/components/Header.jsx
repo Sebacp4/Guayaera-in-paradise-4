@@ -71,7 +71,7 @@ export default function Header() {
           </a>
           <button 
             className="lg:hidden text-[#000000] flex items-center justify-center hover:scale-110 transition-transform duration-300"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            onClick={() => setIsMobileMenuOpen((prev) => !prev)}
             aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
             aria-expanded={isMobileMenuOpen}
           >
@@ -100,6 +100,13 @@ export default function Header() {
           >
             Home
           </Link>
+          <Link 
+            to="/raffle" 
+            onClick={closeMenu} 
+            className="hover:text-[#EB459A] transition-colors block text-[#000000] w-full border-[#000000]/5 border-b pt-4 pb-4"
+          >
+            Enter the Raffle
+          </Link>
           <a href={isHome ? "#divisions" : "/#divisions"} onClick={closeMenu} className="hover:text-[#EB7A4B] transition-colors block text-[#000000] w-full border-[#000000]/5 border-b pt-4 pb-4">
             Divisions
           </a>
@@ -122,7 +129,7 @@ export default function Header() {
               onClick={closeMenu}
               className="inline-flex justify-center w-full uppercase hover:bg-[#EB459A] hover:scale-105 transition-all duration-300 hover:shadow-[#EB459A]/30 text-3xl text-[#FDFAF5] tracking-wide font-bebas bg-[#000000] rounded-xl py-5 shadow-xl"
             >
-              Register Now
+               Register Now
             </a>
           </div>
         </div>

@@ -41,7 +41,7 @@ export default function Footer() {
               <li>
                 <a href={isHome ? "#divisions" : "/#divisions"} className="hover:text-[#01C9CF] transition-colors flex items-center gap-2">
                   <iconify-icon icon="solar:alt-arrow-right-linear" width="20"></iconify-icon>
-                  Divisiones
+                  Divisions
                 </a>
               </li>
               <li>

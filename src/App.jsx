@@ -6,6 +6,9 @@ import Home from './pages/Home';
 import Gallery from './pages/Gallery';
 import Hotel from './pages/Hotel';
 import Schedule from './pages/Schedule';
+import FeaturedPartners from './pages/FeaturedPartners';
+import Raffle from './pages/Raffle';
+import RaffleValidation from './pages/RaffleValidation';
 
 // Component to handle scrolling to top on route changes
 function ScrollToTop() {
@@ -28,6 +31,9 @@ export default function App() {
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/hotel" element={<Hotel />} />
             <Route path="/schedule" element={<Schedule />} />
+            <Route path="/featured-partners" element={<FeaturedPartners />} />
+            <Route path="/raffle" element={<Raffle />} />
+            <Route path="/raffle/validate/:code" element={<RaffleValidation />} />
           </Routes>
         </main>
         <Footer />

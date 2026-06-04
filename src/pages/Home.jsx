@@ -22,7 +22,7 @@ export default function Home() {
 
   const sponsorList = [
     { src: "https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/e2a7ddad-b283-4b77-b418-f83008325f19_800w.png", alt: "Rankiao", extraClass: "" },
-    { src: "https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/a57b336c-3617-4a21-b13d-9d9cb3875d9b_800w.png", alt: "PRoud Fitwear", extraClass: "scale-150" },
+    { src: "https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/a57b336c-3617-4a21-b13d-9d9cb3875d9b_800w.png", alt: "PRoud Fitwear", extraClass: "scale-125 md:scale-150" },
     { src: "https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/5c8834b6-d152-4303-9aa5-f9a7fce58588_800w.jpg", alt: "Noid Stilss", extraClass: "" },
     { src: "https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/cc5d6d3b-0910-4d3e-828e-5fd92b5eb761_800w.jpg", alt: "Hyatt Regency Grand Reserve Puerto Rico", extraClass: "" },
     { src: "https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/76caa1a5-d868-4970-921e-10201ad45924_800w.png", alt: "Viva La Fitness", extraClass: "", isPremier: true },
@@ -33,7 +33,8 @@ export default function Home() {
     { src: "https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/ceafe787-b8dc-4dc9-bc94-c005b8df67e5_800w.png", alt: "CrossFit Puerto Rico", extraClass: "" },
     { src: "https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/277b7222-ca3d-46b1-9d32-ca8bb3312fda_800w.jpg", alt: "Jibaros Crossfit", extraClass: "" },
     { src: "https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/0b962302-57ae-4098-8b56-523f3bb72a44_800w.jpg", alt: "Sponsor 12", extraClass: "" },
-    { src: "https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/508110e1-cfd8-4591-887f-b09e5787dd72_800w.jpg", alt: "Sponsor 13", extraClass: "" }
+    { src: "https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/508110e1-cfd8-4591-887f-b09e5787dd72_800w.jpg", alt: "Sponsor 13", extraClass: "" },
+    { src: "https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/cf28394f-efd9-4b69-9ae9-1657763ed462_800w.png", alt: "VitaSport", extraClass: "" }
   ];
 
   const divisionsList = [
@@ -248,7 +249,7 @@ export default function Home() {
               <div className="flex flex-col sm:flex-row items-center sm:items-stretch gap-4 mb-10 w-full">
                 <button 
                   type="button" 
-                  onClick={() => setEventDetailsOpen(!eventDetailsOpen)}
+                 onClick={() => setEventDetailsOpen((prev) => !prev)}
                   className="group flex-1 flex items-center justify-center gap-3 bg-[#000000] text-[#FDFAF5] font-bebas text-xl md:text-2xl tracking-wide uppercase px-6 py-4 rounded-xl hover:bg-[#01C9CF] transition-all duration-300 shadow-xl hover:shadow-[0_0_20px_rgba(1,201,207,0.4)] hover:scale-[1.02] w-full"
                 >
                   View Full Event Experience
@@ -425,7 +426,7 @@ export default function Home() {
                       alt={`Event Action ${idx + 1}`} 
                       className={`carousel-img origin-center w-full h-full object-cover absolute top-0 right-0 bottom-0 left-0 ${activeSlide === idx ? 'active' : ''}`}
                     />
-                  ))}
+                 ))} 
                 </div>
               </div>
 
@@ -434,7 +435,7 @@ export default function Home() {
                   <button 
                     key={idx}
                     className={`rounded-full transition-all duration-300 carousel-dot ${activeSlide === idx ? 'bg-[#EB7A4B] w-8 h-2' : 'bg-[#000000]/20 w-2 h-2 hover:bg-[#EB7A4B]/50'}`}
-                    onClick={() => setActiveSlide(idx)}
+                 onClick={() => setActiveSlide(idx)}
                     aria-label={`Slide ${idx + 1}`}
                   ></button>
                 ))}
@@ -469,7 +470,7 @@ export default function Home() {
             {divisionsList.map((div, i) => (
               <div key={i} className={`group bg-[#FDFAF5]/5 border border-[#FDFAF5]/10 p-6 md:p-8 flex flex-col dark-card-hover relative overflow-hidden rounded-2xl ${div.stagger} fade-in-up h-full shrink-0 w-[85vw] md:w-auto snap-center md:snap-align-none`}>
                 <div className={`absolute top-0 left-0 w-full h-1 transition-all duration-300 group-hover:h-2`} style={{ backgroundColor: div.color }}></div>
-                <div className={`absolute -bottom-24 -right-24 w-48 h-48 rounded-full blur-3xl transition-all duration-500 pointer-events-none`} style={{ backgroundColor: `${div.color}1A`, ...(i === 0 ? { groupHover: { backgroundColor: `${div.color}33`} } : {}) }}></div>
+               <div className={`absolute -bottom-24 -right-24 w-48 h-48 rounded-full blur-3xl transition-all duration-500 pointer-events-none`} style={{ backgroundColor: `${div.color}1A` }}></div>
                 
                 <h4 className={`font-bebas text-4xl md:text-5xl lg:text-5xl tracking-tight uppercase mb-3 md:mb-4 group-hover:scale-105 transition-transform origin-left`} style={{ color: div.color }}>
                   {div.title}
@@ -494,7 +495,7 @@ export default function Home() {
                       <iconify-icon icon="solar:check-circle-bold" width="24" height="24" style={{ color: div.color }} className="shrink-0 w-5 h-5 md:w-6 md:h-6"></iconify-icon>
                       {feat}
                     </li>
-                  ))}
+                ))}  
                 </ul>
                 
                 <button 
@@ -566,16 +567,16 @@ export default function Home() {
                 Stay tuned. Events will be announced soon.
               </p>
             </div>
-<button
-  onClick={() =>
-    window.open(
-      "https://www.instagram.com/guayaera_in_paradise_4/",
-      "_blank",
-      "noopener,noreferrer"
-    )
-  }
-  className="fade-in-up stagger-2 z-10 relative overflow-hidden group bg-[#000000] text-[#FDFAF5] font-bebas text-2xl tracking-wide uppercase px-12 py-5 rounded-xl hover:scale-[1.05] transition-all duration-300 shadow-[0_10px_30px_rgba(0,0,0,0.2)] hover:shadow-[0_0_40px_rgba(1,201,207,0.5)]"
->
+            <button
+              onClick={() =>
+                window.open(
+                  "https://www.instagram.com/guayaera_in_paradise_4/",
+                  "_blank",
+                  "noopener,noreferrer"
+                )
+              }
+              className="fade-in-up stagger-2 z-10 relative overflow-hidden group bg-[#000000] text-[#FDFAF5] font-bebas text-2xl tracking-wide uppercase px-12 py-5 rounded-xl hover:scale-[1.05] transition-all duration-300 shadow-[0_10px_30px_rgba(0,0,0,0.2)] hover:shadow-[0_0_40px_rgba(1,201,207,0.5)]"
+            >
   <div className="group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-r from-[#EB459A] via-[#01C9CF] to-[#EB7A4B] opacity-0 absolute top-0 right-0 bottom-0 left-0"></div>
   <span className="z-10 text-[#FDFAF5] relative">Follow for updates</span>
 </button>
@@ -739,6 +740,22 @@ export default function Home() {
               </button>
             </div>
           </div>
+          
+          {/* Raffle CTA Section */}
+          <div className="mt-16 md:mt-24 text-center relative z-20 fade-in-up stagger-3 flex flex-col items-center">
+            <h4 className="font-bebas text-[#000000] text-3xl tracking-tight uppercase mb-6 drop-shadow-sm">
+              Also Happening
+            </h4>
+            <Link 
+              to="/raffle"
+              className="group relative overflow-hidden bg-[#EB459A] text-[#FDFAF5] font-bebas text-2xl md:text-3xl tracking-wide uppercase px-12 py-5 rounded-xl hover:scale-105 transition-all duration-300 shadow-[0_10px_30px_rgba(235,69,154,0.3)] hover:shadow-[0_0_40px_rgba(235,69,154,0.6)] flex items-center justify-center gap-3 w-full sm:w-auto border border-[#000000]/5"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-[#01C9CF] to-[#EB7A4B] opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0"></div>
+              <iconify-icon icon="solar:ticket-bold-duotone" width="28" height="28" className="relative z-10"></iconify-icon>
+              <span className="relative z-10">Enter the Raffle</span>
+            </Link>
+          </div>
+
         </div>
       </section>
 
@@ -756,19 +773,19 @@ export default function Home() {
           <div className="animate-infinite-scroll gap-6 md:gap-24 pr-6 md:pr-24 py-4 md:py-8 items-center">
             <div className="flex items-center gap-6 md:gap-24 flex-nowrap">
               {sponsorList.map((sponsor, idx) => (
-                <div key={idx} className="w-[150px] md:w-[260px] flex flex-col items-center justify-center shrink-0 relative">
+                <div key={idx} className="w-[150px] md:w-[260px] h-[80px] md:h-[120px] flex flex-col items-center justify-center shrink-0 relative">
                   {sponsor.isPremier && (
-                    <span className="-top-10 text-[10px] md:text-[11px] uppercase whitespace-nowrap text-[#01C9CF] tracking-widest font-bebas bg-[#01C9CF]/10 border-[#01C9CF]/20 border rounded-full pt-1 pr-3 pb-1 pl-3 absolute shadow-[0_0_10px_rgba(1,201,207,0.2)] translate-y-3">
+                    <span className="absolute -top-6 md:-top-8 text-[10px] md:text-[11px] font-bebas tracking-widest uppercase text-[#01C9CF] bg-[#01C9CF]/10 px-3 py-1 rounded-full border border-[#01C9CF]/20 whitespace-nowrap shadow-[0_0_10px_rgba(1,201,207,0.2)] z-10">
                       Premier Sponsor
                     </span>
                   )}
                   <img 
                     src={sponsor.src} 
                     alt={sponsor.alt} 
-                    className={`md:h-20 transition-all duration-500 w-full h-14 object-contain ${
+                    className={`w-[90%] md:w-[95%] h-full max-h-[85%] md:max-h-[90%] object-contain transition-all duration-500 ${
                       sponsor.isPremier 
                         ? 'grayscale-0 opacity-100 scale-[1.15] hover:scale-[1.25] drop-shadow-[0_0_20px_rgba(1,201,207,0.25)]' 
-                        : 'grayscale opacity-60 hover:grayscale-0 hover:opacity-100 hover:scale-105 hover:drop-shadow-[0_0_15px_rgba(0,0,0,0.1)]'
+                        : 'grayscale opacity-60 hover:grayscale-0 hover:opacity-100 hover:scale-[1.08] hover:drop-shadow-[0_0_15px_rgba(0,0,0,0.1)]'
                     } ${sponsor.extraClass}`} 
                   />
                 </div>
@@ -776,19 +793,19 @@ export default function Home() {
             </div>
             <div className="flex items-center gap-6 md:gap-24 flex-nowrap" aria-hidden="true">
               {sponsorList.map((sponsor, idx) => (
-                <div key={`dup-${idx}`} className="w-[150px] md:w-[260px] flex flex-col items-center justify-center shrink-0 relative">
+                <div key={`dup-${idx}`} className="w-[150px] md:w-[260px] h-[80px] md:h-[120px] flex flex-col items-center justify-center shrink-0 relative">
                   {sponsor.isPremier && (
-                    <span className="absolute -top-10 text-[10px] md:text-[11px] font-bebas tracking-widest uppercase text-[#01C9CF] bg-[#01C9CF]/10 px-3 py-1 rounded-full border border-[#01C9CF]/20 whitespace-nowrap shadow-[0_0_10px_rgba(1,201,207,0.2)]">
+                    <span className="absolute -top-6 md:-top-8 text-[10px] md:text-[11px] font-bebas tracking-widest uppercase text-[#01C9CF] bg-[#01C9CF]/10 px-3 py-1 rounded-full border border-[#01C9CF]/20 whitespace-nowrap shadow-[0_0_10px_rgba(1,201,207,0.2)] z-10">
                       Premier Sponsor
                     </span>
                   )}
                   <img 
                     src={sponsor.src} 
                     alt={sponsor.alt} 
-                    className={`md:h-20 transition-all duration-500 w-full h-14 object-contain ${
+                    className={`w-[90%] md:w-[95%] h-full max-h-[85%] md:max-h-[90%] object-contain transition-all duration-500 ${
                       sponsor.isPremier 
                         ? 'grayscale-0 opacity-100 scale-[1.15] hover:scale-[1.25] drop-shadow-[0_0_20px_rgba(1,201,207,0.25)]' 
-                        : 'grayscale opacity-60 hover:grayscale-0 hover:opacity-100 hover:scale-105 hover:drop-shadow-[0_0_15px_rgba(0,0,0,0.1)]'
+                        : 'grayscale opacity-60 hover:grayscale-0 hover:opacity-100 hover:scale-[1.08] hover:drop-shadow-[0_0_15px_rgba(0,0,0,0.1)]'
                     } ${sponsor.extraClass}`} 
                   />
                 </div>
@@ -797,9 +814,23 @@ export default function Home() {
           </div>
         </div>
 
+        {/* Meet Our Featured Partners Button */}
+        <div className="flex justify-center mt-12 md:mt-16 mb-4 fade-in-up relative z-20">
+          <Link
+            to="/featured-partners"
+            className="group relative overflow-hidden bg-[#000000] text-[#FDFAF5] font-bebas text-2xl tracking-wide uppercase px-10 py-5 rounded-xl hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-[0_0_30px_rgba(1,201,207,0.4)]"
+          >
+            <div className="absolute inset-0 bg-gradient-to-r from-[#01C9CF] to-[#EB459A] opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0"></div>
+            <span className="relative z-10 flex items-center gap-3">
+              Meet Our Featured Partners
+              <iconify-icon icon="solar:arrow-right-bold" width="24" height="24" className="group-hover:translate-x-1 transition-transform"></iconify-icon>
+            </span>
+          </Link>
+        </div>
+
         {/* Featured Sponsor Spotlight */}
-        <div className="max-w-4xl mx-auto px-6 mt-8 md:mt-20 mb-4 fade-in-up">
-          <div className="bg-white border border-[#000000]/5 rounded-3xl p-8 md:p-10 flex flex-col md:flex-row items-center gap-8 justify-center shadow-lg hover:shadow-xl transition-shadow duration-500 relative overflow-hidden group">
+        <div className="max-w-4xl mx-auto px-6 mt-12 md:mt-20 mb-4 fade-in-up relative z-10">
+          <div className="bg-white border border-[#000000]/5 rounded-3xl p-6 md:p-8 flex flex-col md:flex-row items-center gap-6 md:gap-8 justify-center shadow-lg hover:shadow-xl transition-shadow duration-500 relative overflow-hidden group">
             <div className="absolute top-0 right-0 w-64 h-64 bg-[#01C9CF]/5 rounded-full blur-[80px] pointer-events-none group-hover:bg-[#01C9CF]/10 transition-colors duration-500"></div>
             <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#EB459A]/5 rounded-full blur-[80px] pointer-events-none group-hover:bg-[#EB459A]/10 transition-colors duration-500"></div>
             
@@ -816,7 +847,7 @@ export default function Home() {
             <div className="w-px h-20 bg-gradient-to-b from-transparent via-[#000000]/10 to-transparent hidden md:block relative z-10"></div>
             
             <div className="flex-1 flex justify-center md:justify-start relative z-10 w-full md:w-auto">
-              <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/76caa1a5-d868-4970-921e-10201ad45924_800w.png" alt="Viva La Fitness" className="h-20 md:h-28 object-contain drop-shadow-md group-hover:scale-105 transition-transform duration-500 group-hover:drop-shadow-[0_10px_20px_rgba(0,0,0,0.1)]" />
+              <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/76caa1a5-d868-4970-921e-10201ad45924_800w.png" alt="Viva La Fitness" className="h-28 md:h-36 w-[95%] max-w-[300px] object-contain drop-shadow-md group-hover:scale-105 transition-transform duration-500 group-hover:drop-shadow-[0_10px_20px_rgba(0,0,0,0.1)]" />
             </div>
           </div>
         </div>
