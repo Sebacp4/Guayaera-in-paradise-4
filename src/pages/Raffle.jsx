@@ -274,19 +274,19 @@ export default function Raffle() {
                   <ul className="space-y-4 text-xl font-medium text-[#000000]/70 mb-8">
                     <li className="flex items-start gap-4">
                       <iconify-icon icon="solar:calendar-date-bold" className="text-[#EB459A] shrink-0 mt-1" width="24" height="24"></iconify-icon>
-                      <span>Del 4 al 6 de diciembre</span>
+                      <span>From 4 to 6 of december</span>
                     </li>
                     <li className="flex items-start gap-4">
                       <iconify-icon icon="solar:medal-ribbon-bold-duotone" className="text-[#01C9CF] shrink-0 mt-1" width="24" height="24"></iconify-icon>
-                      <span>Entrada VIP a todos los eventos de Guayaera</span>
+                      <span>VIP Entry to All Guayaera Events</span>
                     </li>
                     <li className="flex items-start gap-4">
-                      <iconify-icon icon="solar:parking-bold" className="text-[#EB7A4B] shrink-0 mt-1" width="24" height="24"></iconify-icon>
-                      <span>Estacionamiento gratis</span>
+                      <iconify-icon icon="icon-park-twotone:parking" className="text-[#EB7A4B] shrink-0 mt-1" width="24" height="24"></iconify-icon>
+                      <span>Free Parking</span>
                     </li>
                     <li className="flex items-start gap-4">
                       <iconify-icon icon="solar:tea-cup-bold-duotone" className="text-[#01C9CF] shrink-0 mt-1" width="24" height="24"></iconify-icon>
-                      <span>Desayunos incluidos</span>
+                      <span>Breakfast Included</span>
                     </li>
                   </ul>
                   <div className="pt-6 border-t border-[#000000]/10 flex items-center justify-between">
@@ -353,10 +353,6 @@ export default function Raffle() {
                       className="absolute top-0 right-0 bottom-0 left-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                     <div className="absolute top-0 right-0 bottom-0 left-0 bg-gradient-to-br from-[#EB7A4B]/10 via-transparent to-[#01C9CF]/10"></div>
-                    <div className="relative z-10 w-full h-full flex flex-col items-center justify-center p-6 text-center">
-                       <iconify-icon icon="solar:gallery-bold-duotone" className="text-[#EB7A4B] mb-2" width="48" height="48"></iconify-icon>
-                       <div className="font-anton text-xl text-black/20 uppercase tracking-tighter leading-none">NOIDSTILL<br />PHOTOS</div>
-                    </div>
                   </div>
                   <div className="md:w-3/5 p-6 md:p-8 flex flex-col justify-center">
                     <h4 className="font-anton text-2xl md:text-3xl text-[#000000] uppercase tracking-tighter mb-4 leading-tight">
