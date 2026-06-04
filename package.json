@@ -1,6 +1,6 @@
 {
-  "name": "guayaera-in-paradise-react",
-  "version": "0.0.0",
+  "name": "react-vite-app",
+  "version": "0.1.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -9,11 +9,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "^6.22.3",
-    "stripe": "latest",
-    "iconify-icon": "latest"
+    "@supabase/supabase-js": "^2.45.4",
+    "qrcode": "^1.5.4",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.28.0",
+    "resend": "^4.0.1",
+    "stripe": "latest"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.3.4",
