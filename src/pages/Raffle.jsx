@@ -221,35 +221,188 @@ export default function Raffle() {
         </div>
       </section>
 
-      {/* SECTION 4 — Raffle Prize */}
+      {/* SECTION 4 — Raffle Prizes Showcase */}
       <section className="py-24 md:py-32 bg-[#FDFAF5] relative overflow-hidden">
         <div className="absolute right-0 top-1/3 w-96 h-96 bg-[#EB459A]/10 rounded-full blur-[100px] pointer-events-none"></div>
+        <div className="absolute left-0 bottom-1/3 w-96 h-96 bg-[#01C9CF]/10 rounded-full blur-[100px] pointer-events-none"></div>
 
-        <div className="max-w-5xl mx-auto px-6 relative z-10">
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="text-center mb-16 fade-in-up">
-            <h2 className="font-bebas text-[#EB7A4B] text-3xl tracking-tight uppercase mb-2">
-              The Reward
+            <h2 className="font-bebas text-[#EB7A4B] text-3xl md:text-4xl tracking-tight uppercase mb-2">
+              The Rewards
             </h2>
-            <h3 className="font-anton text-5xl md:text-7xl tracking-tighter uppercase leading-[0.9] text-[#000000]">
-              Raffle <span className="text-[#EB459A]">Prize</span>
+            <h3 className="font-anton text-6xl md:text-8xl tracking-tighter uppercase leading-[0.9] text-[#000000] mb-6">
+              Raffle <span className="text-[#EB459A]">Prizes</span>
             </h3>
-            <p className="text-xl md:text-2xl text-[#000000]/70 font-medium mt-6 max-w-2xl mx-auto leading-relaxed">
-              Prize details will be announced here.
+            <p className="text-xl md:text-2xl text-[#000000]/80 font-medium mt-6 max-w-3xl mx-auto leading-relaxed">
+              One entry. Three chances to win exclusive Guayaera in Paradise experiences.
             </p>
+            <div className="mt-8">
+              <span className="inline-block bg-[#01C9CF] text-[#000000] font-anton text-2xl md:text-3xl px-8 py-3 uppercase tracking-tight rounded-xl shadow-lg border-2 border-black/5 animate-bounce-slow">
+                only $10 for entry
+              </span>
+            </div>
           </div>
 
-          {/* Placeholder area for a future prize photo or graphic */}
-          <div className="fade-in-up stagger-1 relative aspect-[16/9] rounded-3xl overflow-hidden border-2 border-dashed border-[#000000]/15 bg-[#000000]/[0.02] flex flex-col items-center justify-center text-center p-8 group hover:border-[#EB459A]/40 transition-colors duration-500">
-            <div className="absolute inset-0 bg-gradient-to-br from-[#01C9CF]/5 via-transparent to-[#EB459A]/5 pointer-events-none"></div>
-            <div className="w-20 h-20 rounded-2xl bg-[#EB459A]/10 flex items-center justify-center text-[#EB459A] mb-6 relative z-10 group-hover:scale-110 transition-transform duration-500">
-              <iconify-icon icon="solar:gift-bold-duotone" width="44" height="44"></iconify-icon>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            {/* Prize 1 - Featured (Desktop 7 cols) */}
+            <div className="lg:col-span-7 fade-in-up stagger-1">
+              <div className="bg-white rounded-3xl overflow-hidden shadow-2xl border border-[#000000]/10 flex flex-col h-full card-hover group relative">
+                <div className="absolute top-6 left-6 z-20">
+                  <span className="bg-[#EB459A] text-white font-bebas text-2xl px-6 py-2 uppercase tracking-wider rounded-lg shadow-xl border border-white/20">
+                    first price
+                  </span>
+                </div>
+                <div className="aspect-[16/9] w-full overflow-hidden relative">
+                  <img 
+                    src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/0e244631-348e-4741-a4a4-843b0890805e_1600w.jpg" 
+                    alt="Hotel Stay Image" 
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                  <div className="absolute bottom-6 left-8 right-8 text-white z-10">
+                    <div className="flex items-center gap-3 mb-2">
+                      <iconify-icon icon="solar:star-bold-duotone" className="text-[#EB7A4B]" width="32" height="32"></iconify-icon>
+                      <span className="font-bebas text-3xl uppercase tracking-wide drop-shadow-md">Vip experience</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="p-8 md:p-10">
+                  <h4 className="font-anton text-4xl md:text-5xl text-[#000000] uppercase tracking-tighter mb-6 leading-tight">
+                    Weekend stay <br className="hidden md:block" /> for 2 people
+                  </h4>
+                  <ul className="space-y-4 text-xl font-medium text-[#000000]/70 mb-8">
+                    <li className="flex items-start gap-4">
+                      <iconify-icon icon="solar:calendar-date-bold" className="text-[#EB459A] shrink-0 mt-1" width="24" height="24"></iconify-icon>
+                      <span>Del 4 al 6 de diciembre</span>
+                    </li>
+                    <li className="flex items-start gap-4">
+                      <iconify-icon icon="solar:medal-ribbon-bold-duotone" className="text-[#01C9CF] shrink-0 mt-1" width="24" height="24"></iconify-icon>
+                      <span>Entrada VIP a todos los eventos de Guayaera</span>
+                    </li>
+                    <li className="flex items-start gap-4">
+                      <iconify-icon icon="solar:parking-bold" className="text-[#EB7A4B] shrink-0 mt-1" width="24" height="24"></iconify-icon>
+                      <span>Estacionamiento gratis</span>
+                    </li>
+                    <li className="flex items-start gap-4">
+                      <iconify-icon icon="solar:tea-cup-bold-duotone" className="text-[#01C9CF] shrink-0 mt-1" width="24" height="24"></iconify-icon>
+                      <span>Desayunos incluidos</span>
+                    </li>
+                  </ul>
+                  <div className="pt-6 border-t border-[#000000]/10 flex items-center justify-between">
+                  
+                    <div className="bg-[#000000] text-white p-4 rounded-xl shadow-lg -rotate-3 border border-white/10 group-hover:rotate-0 transition-transform">
+                      <div className="font-bebas text-lg tracking-widest uppercase mb-1">VIP PASS</div>
+                      <div className="font-anton text-2xl text-[#01C9CF]">INCLUDED</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <span className="font-bebas text-3xl md:text-4xl tracking-wide uppercase text-[#000000]/40 relative z-10">
-              Prize Reveal Coming Soon
-            </span>
-            <span className="font-open text-sm text-[#000000]/30 mt-2 relative z-10">
-              Prize photo or graphic will be placed here
-            </span>
+
+            {/* Prizes 2 & 3 - Side Stack (Desktop 5 cols) */}
+            <div className="lg:col-span-5 grid grid-cols-1 gap-8 h-full">
+              {/* Prize 2 */}
+              <div className="bg-white rounded-3xl overflow-hidden shadow-xl border border-[#000000]/10 flex flex-col h-full card-hover group stagger-2 relative">
+                <div className="absolute top-4 left-4 z-20">
+                  <span className="bg-[#01C9CF] text-black font-bebas text-xl px-4 py-1 uppercase tracking-wider rounded-lg shadow-md">
+                    second price
+                  </span>
+                </div>
+                <div className="flex flex-col md:flex-row h-full">
+                  <div className="md:w-2/5 aspect-square md:aspect-auto overflow-hidden relative bg-[#000000]">
+                    <img 
+                      src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/76caa1a5-d868-4970-921e-10201ad45924_800w.png" 
+                      alt="Viva La Fitness Gift Card" 
+                      className="w-full h-full object-contain p-6 grayscale-0 group-hover:scale-110 transition-transform duration-500"
+                    />
+                    <div className="absolute bottom-4 left-1/2 -translate-x-1/2 w-max bg-[#EB459A] text-white px-3 py-1 font-bebas text-sm rounded shadow-lg uppercase tracking-widest">
+                       Official Merch
+                    </div>
+                  </div>
+                  <div className="md:w-3/5 p-6 md:p-8 flex flex-col justify-center">
+                    <h4 className="font-anton text-2xl md:text-3xl text-[#000000] uppercase tracking-tighter mb-4 leading-tight">
+                      $300 certificate <br /> from Viva La Fitness
+                    </h4>
+                    <ul className="space-y-3 text-lg font-medium text-[#000000]/70 mb-2">
+                      <li className="flex items-start gap-3">
+                        <iconify-icon icon="solar:check-circle-bold" className="text-[#01C9CF] shrink-0 mt-1" width="20" height="20"></iconify-icon>
+                        <span>Needs to be used on the event</span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <iconify-icon icon="solar:check-circle-bold" className="text-[#01C9CF] shrink-0 mt-1" width="20" height="20"></iconify-icon>
+                        <span>Includes oficial T-Shirt from the event</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Prize 3 */}
+              <div className="bg-white rounded-3xl overflow-hidden shadow-xl border border-[#000000]/10 flex flex-col h-full card-hover group stagger-3 relative">
+                <div className="absolute top-4 left-4 z-20">
+                  <span className="bg-[#EB7A4B] text-white font-bebas text-xl px-4 py-1 uppercase tracking-wider rounded-lg shadow-md">
+                    third price
+                  </span>
+                </div>
+                <div className="flex flex-col md:flex-row h-full">
+                  <div className="md:w-2/5 aspect-square md:aspect-auto overflow-hidden relative bg-[#000000]/5">
+                    <img 
+                      src="https://images.unsplash.com/photo-1502982720700-bfff97f2ecac?w=800&q=80" 
+                      alt="Recovery Weekend photo package" 
+                      className="absolute top-0 right-0 bottom-0 left-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute top-0 right-0 bottom-0 left-0 bg-gradient-to-br from-[#EB7A4B]/10 via-transparent to-[#01C9CF]/10"></div>
+                    <div className="relative z-10 w-full h-full flex flex-col items-center justify-center p-6 text-center">
+                       <iconify-icon icon="solar:gallery-bold-duotone" className="text-[#EB7A4B] mb-2" width="48" height="48"></iconify-icon>
+                       <div className="font-anton text-xl text-black/20 uppercase tracking-tighter leading-none">NOIDSTILL<br />PHOTOS</div>
+                    </div>
+                  </div>
+                  <div className="md:w-3/5 p-6 md:p-8 flex flex-col justify-center">
+                    <h4 className="font-anton text-2xl md:text-3xl text-[#000000] uppercase tracking-tighter mb-4 leading-tight">
+                      Recovery Weekend Pass + Photo Package
+                    </h4>
+                    <ul className="space-y-3 text-lg font-medium text-[#000000]/70">
+                      <li className="flex items-start gap-3">
+                        <iconify-icon icon="solar:check-circle-bold" className="text-[#EB7A4B] shrink-0 mt-1" width="20" height="20"></iconify-icon>
+                        <span>1 Recovery Pass (B-One Wellness)</span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <iconify-icon icon="solar:check-circle-bold" className="text-[#EB7A4B] shrink-0 mt-1" width="20" height="20"></iconify-icon>
+                        <span>1 Photo package (Noidstill)</span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <iconify-icon icon="solar:check-circle-bold" className="text-[#EB7A4B] shrink-0 mt-1" width="20" height="20"></iconify-icon>
+                        <span>Photos at the hotel facilities</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-16 text-center fade-in-up stagger-3">
+            <p className="text-xl md:text-2xl font-bebas tracking-wide uppercase text-[#000000]/60 mb-8 italic">
+              * Raffle ends august 30.
+            </p>
+            <button
+              type="button"
+              onClick={handleCheckout}
+              disabled={isCheckoutLoading}
+              className="inline-flex items-center justify-center gap-4 bg-[#000000] text-[#FDFAF5] font-anton text-3xl md:text-5xl tracking-tighter uppercase px-16 py-8 hover:bg-[#EB459A] hover:scale-105 transition-all duration-500 shadow-2xl rounded-2xl relative group overflow-hidden"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-[#01C9CF] via-[#EB459A] to-[#EB7A4B] opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0"></div>
+              <span className="relative z-10 flex items-center gap-4">
+                <iconify-icon icon="solar:ticket-bold-duotone" width="48" height="48"></iconify-icon>
+                {isCheckoutLoading ? 'Redirecting...' : 'Buy Raffle Ticket'}
+              </span>
+            </button>
+            {checkoutError && (
+              <p className="mt-6 text-xl text-red-600 font-medium" role="alert">
+                {checkoutError}
+              </p>
+            )}
           </div>
         </div>
       </section>
