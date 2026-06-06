@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 export default function RaffleValidation() {
   const { code } = useParams();
+  const { t, i18n } = useTranslation();
 
   const [entry, setEntry] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -11,14 +13,14 @@ export default function RaffleValidation() {
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) e.target.classList.add('visible');
+      entries.forEach((entryItem) => {
+        if (entryItem.isIntersecting) entryItem.target.classList.add('visible');
       });
     }, { threshold: 0.1 });
 
-    document.querySelectorAll('.fade-in-up').forEach(el => {
-      if (!el.classList.contains('fade-in-up')) el.classList.add('fade-in-up');
-      observer.observe(el);
+    document.querySelectorAll('.fade-in-up').forEach((element) => {
+      if (!element.classList.contains('fade-in-up')) element.classList.add('fade-in-up');
+      observer.observe(element);
     });
 
     return () => observer.disconnect();
@@ -49,23 +51,23 @@ export default function RaffleValidation() {
         setEntry(data);
       } catch (error) {
         console.error('Error loading raffle validation:', error);
-        setErrorMessage('We could not validate this raffle entry right now. Please try again later.');
+        setErrorMessage(t('raffleValidation.errorMessage'));
       } finally {
         setLoading(false);
       }
     }
 
     validateEntry();
-  }, [code]);
+  }, [code, t]);
 
   const status = entry?.status || '';
   const normalizedStatus = status.toLowerCase();
-
-  const isValid = entry?.valid && normalizedStatus === 'valid';
   const isRefunded = normalizedStatus === 'refunded' || normalizedStatus === 'cancelled' || normalizedStatus === 'canceled';
+  const titleState = loading ? 'loading' : notFound ? 'invalid' : isRefunded ? 'cancelled' : 'valid';
+  const badgeColor = notFound || isRefunded ? '#EB459A' : '#01C9CF';
 
   const formattedDate = entry?.created_at
-    ? new Date(entry.created_at).toLocaleDateString('en-US', {
+    ? new Date(entry.created_at).toLocaleDateString(i18n.language === 'es' ? 'es-PR' : 'en-US', {
         month: 'short',
         day: 'numeric',
         year: 'numeric',
@@ -74,57 +76,21 @@ export default function RaffleValidation() {
 
   const displayCode = entry?.validation_code || code || '—';
 
-  const pageTitle = loading
-    ? 'Validating Entry'
-    : notFound
-      ? 'Invalid Raffle Entry'
-      : isRefunded
-        ? 'Entry Cancelled'
-        : 'Valid Raffle Entry';
-
-  const badgeText = loading
-    ? 'Checking'
-    : notFound
-      ? 'Invalid Entry'
-      : isRefunded
-        ? 'Cancelled'
-        : 'Valid Entry';
-
-  const badgeColor = notFound || isRefunded ? '#EB459A' : '#01C9CF';
-
   return (
     <div className="flex flex-col flex-grow bg-[#000000] animate-page-enter relative">
       <section className="pt-36 pb-24 md:pt-48 md:pb-32 relative overflow-hidden flex-grow flex flex-col items-center justify-center min-h-[75vh]">
-
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#01C9CF]/15 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
         <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#EB459A]/15 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/3 pointer-events-none"></div>
 
         <div className="max-w-3xl mx-auto px-6 relative z-10 w-full">
           <div className="flex flex-col items-center text-center">
-
             <div className="fade-in-up mb-10">
               <span className="font-bebas text-[#01C9CF] text-2xl tracking-widest uppercase mb-4 block drop-shadow-md">
-                RAFFLE VALIDATION
+                {t('raffleValidation.eyebrow')}
               </span>
 
               <h1 className="text-5xl md:text-7xl text-[#FDFAF5] font-anton tracking-tighter uppercase mb-6 leading-[0.9]">
-                {pageTitle.includes('Valid') ? (
-                  <>
-                    Valid Raffle <span className="text-[#01C9CF]">Entry</span>
-                  </>
-                ) : pageTitle.includes('Cancelled') ? (
-                  <>
-                    Entry <span className="text-[#EB459A]">Cancelled</span>
-                  </>
-                ) : pageTitle.includes('Validating') ? (
-                  <>
-                    Validating <span className="text-[#01C9CF]">Entry</span>
-                  </>
-                ) : (
-                  <>
-                    Invalid Raffle <span className="text-[#EB459A]">Entry</span>
-                  </>
-                )}
+                {t(`raffleValidation.titleStates.${titleState}.prefix`)} <span className={titleState === 'cancelled' || titleState === 'invalid' ? 'text-[#EB459A]' : 'text-[#01C9CF]'}>{t(`raffleValidation.titleStates.${titleState}.highlight`)}</span>
               </h1>
 
               <div
@@ -136,11 +102,11 @@ export default function RaffleValidation() {
                 }}
               >
                 <iconify-icon
-                  icon={isValid ? 'solar:verified-check-bold' : 'solar:close-circle-bold'}
+                  icon={titleState === 'valid' ? 'solar:verified-check-bold' : 'solar:close-circle-bold'}
                   width="28"
                   height="28"
                 ></iconify-icon>
-                {badgeText}
+                {t(`raffleValidation.badgeStates.${titleState}`)}
               </div>
             </div>
 
@@ -153,16 +119,16 @@ export default function RaffleValidation() {
                 {loading ? (
                   <div className="text-center py-10">
                     <div className="font-bebas text-3xl tracking-wide uppercase text-[#000000] mb-3">
-                      Checking validation...
+                      {t('raffleValidation.loadingTitle')}
                     </div>
                     <p className="text-[#000000]/60 font-medium">
-                      Please wait while we verify this raffle entry.
+                      {t('raffleValidation.loadingDescription')}
                     </p>
                   </div>
                 ) : errorMessage ? (
                   <div className="text-center py-10">
                     <div className="font-bebas text-3xl tracking-wide uppercase text-[#EB459A] mb-3">
-                      Validation Error
+                      {t('raffleValidation.errorTitle')}
                     </div>
                     <p className="text-[#000000]/60 font-medium">
                       {errorMessage}
@@ -171,10 +137,10 @@ export default function RaffleValidation() {
                 ) : notFound ? (
                   <div className="text-center py-10">
                     <div className="font-bebas text-3xl tracking-wide uppercase text-[#EB459A] mb-3">
-                      Entry Not Found
+                      {t('raffleValidation.notFoundTitle')}
                     </div>
                     <p className="text-[#000000]/60 font-medium leading-relaxed">
-                      This raffle entry could not be found in the Guayaera in Paradise validation system.
+                      {t('raffleValidation.notFoundDescription')}
                     </p>
                   </div>
                 ) : (
@@ -182,7 +148,7 @@ export default function RaffleValidation() {
                     <div className="flex flex-col md:flex-row md:items-center justify-between border-b border-[#000000]/10 pb-6 mb-6 gap-4">
                       <div>
                         <div className="font-bebas text-sm tracking-widest uppercase text-[#000000]/50 mb-1">
-                          Reservation Number
+                          {t('raffleValidation.reservationLabel')}
                         </div>
                         <div className="font-anton text-4xl md:text-5xl tracking-tighter text-[#000000] leading-none">
                           {entry.reservation_number}
@@ -194,24 +160,24 @@ export default function RaffleValidation() {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-8">
                       <div>
                         <div className="font-bebas text-sm tracking-widest uppercase text-[#000000]/50 mb-1">
-                          Status
+                          {t('raffleValidation.statusLabel')}
                         </div>
                         <div
                           className="flex items-center gap-2 font-bebas text-2xl tracking-wide uppercase"
                           style={{ color: badgeColor }}
                         >
                           <iconify-icon
-                            icon={isValid ? 'solar:verified-check-bold' : 'solar:close-circle-bold'}
+                            icon={titleState === 'valid' ? 'solar:verified-check-bold' : 'solar:close-circle-bold'}
                             width="24"
                             height="24"
                           ></iconify-icon>
-                          {isRefunded ? 'Cancelled Entry' : 'Valid Entry'}
+                          {isRefunded ? t('raffleValidation.cancelledEntry') : t('raffleValidation.validEntry')}
                         </div>
                       </div>
 
                       <div>
                         <div className="font-bebas text-sm tracking-widest uppercase text-[#000000]/50 mb-1">
-                          Purchase Date
+                          {t('raffleValidation.purchaseDateLabel')}
                         </div>
                         <div className="text-[#000000]/80 font-bebas text-2xl tracking-wide uppercase">
                           {formattedDate}
@@ -221,7 +187,7 @@ export default function RaffleValidation() {
 
                     <div className="bg-[#000000]/5 p-4 md:p-5 rounded-xl border border-[#000000]/10 flex flex-col md:flex-row md:items-center justify-between gap-3 md:gap-4">
                       <div className="font-bebas text-sm tracking-widest uppercase text-[#000000]/50 shrink-0">
-                        Validation Code
+                        {t('raffleValidation.validationCodeLabel')}
                       </div>
                       <div className="font-mono font-medium text-[#000000]/80 bg-white px-3 py-1.5 rounded border border-[#000000]/10 break-all text-sm md:text-base w-full md:w-auto text-center md:text-left">
                         {displayCode}
@@ -234,7 +200,7 @@ export default function RaffleValidation() {
 
             <div className="fade-in-up stagger-2 space-y-4 max-w-2xl text-center mb-12">
               <p className="text-lg text-[#FDFAF5]/60 font-medium leading-relaxed">
-                This page confirms whether this raffle entry exists in the Guayaera in Paradise validation system.
+                {t('raffleValidation.pageDescription')}
               </p>
             </div>
 
@@ -244,10 +210,9 @@ export default function RaffleValidation() {
                 className="inline-flex items-center justify-center gap-3 bg-transparent border-2 border-[#FDFAF5]/20 text-[#FDFAF5] font-bebas text-xl md:text-2xl tracking-wide uppercase px-10 py-4 hover:border-[#01C9CF] hover:text-[#01C9CF] hover:bg-[#01C9CF]/5 hover:scale-105 transition-all duration-300 rounded-xl"
               >
                 <iconify-icon icon="solar:arrow-left-bold" width="24" height="24"></iconify-icon>
-                Back to Raffle
+                {t('raffleValidation.backCta')}
               </Link>
             </div>
-
           </div>
         </div>
       </section>
