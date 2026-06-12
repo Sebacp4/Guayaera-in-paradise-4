@@ -145,7 +145,19 @@ export default async function handler(req, res) {
 
   try {
     const session = event.data.object;
+    
+    const isRaffleCheckout =
+      session.metadata?.product_type === 'guayaera_raffle' ||
+      session.metadata?.raffle === 'true';
 
+    if (!isRaffleCheckout) {
+      console.log('Ignoring non-raffle checkout session:', session.id);
+      return res.status(200).json({
+        received: true,
+        ignored: true,
+        reason: 'Not a Guayaera raffle checkout session',
+      });
+    }
     const { data: existing } = await supabase
       .from('raffle_entries')
       .select('id')
