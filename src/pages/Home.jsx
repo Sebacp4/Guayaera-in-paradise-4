@@ -41,9 +41,9 @@ export default function Home() {
 
   const divisionMeta = [
     { key: 'rx', color: '#EB459A', stagger: 'stagger-1' },
-    { key: 'intermediate', color: '#EB7A4B', stagger: 'stagger-2' },
-    { key: 'beginners', color: '#01C9CF', stagger: 'stagger-3' },
-    { key: 'scale', color: '#FDFAF5', stagger: 'stagger-1', btnHoverText: 'text-[#000000]' },
+    { key: 'intermediate', color: '#EB7A4B', stagger: 'stagger-2', isSoldOut: true },
+    { key: 'beginners', color: '#01C9CF', stagger: 'stagger-3', isSoldOut: true },
+    { key: 'scale', color: '#FDFAF5', stagger: 'stagger-1', btnHoverText: 'text-[#000000]', isSoldOut: true },
     { key: 'masters3944', color: '#EB459A', stagger: 'stagger-2' },
     { key: 'masters45plus', color: '#EB7A4B', stagger: 'stagger-3' }
   ];
@@ -422,12 +422,13 @@ export default function Home() {
                 </h4>
 
                 <div className="flex flex-col mb-4 md:mb-6 bg-[#000000]/40 p-4 md:p-5 rounded-xl border" style={{ borderColor: `${div.color}33` }}>
-                  <span className="text-xs md:text-sm font-bebas tracking-widest uppercase mb-1 md:mb-2" style={{ color: div.color }}>
-                    {t('home.divisions.earlyBirdBadge')}
-                  </span>
+                  {div.isSoldOut && (
+                    <span className="text-xs md:text-sm font-bebas tracking-widest uppercase mb-1 md:mb-2 text-[#EB459A] bg-[#EB459A]/10 px-2 py-0.5 rounded inline-block w-max">
+                      SOLD OUT
+                    </span>
+                  )}
                   <div className="flex items-end gap-2 md:gap-3">
-                    <span className="font-anton text-4xl md:text-5xl text-[#FDFAF5] leading-none">$189</span>
-                    <span className="text-lg md:text-xl text-[#FDFAF5]/50 line-through pb-0.5">$225</span>
+                    <span className="font-anton text-4xl md:text-5xl text-[#FDFAF5] leading-none">$225</span>
                     <span className="text-xs md:text-sm text-[#FDFAF5]/60 pb-0.5 md:pb-1 ml-auto font-bebas tracking-widest uppercase">{t('home.common.currency')}</span>
                   </div>
                 </div>
@@ -444,25 +445,32 @@ export default function Home() {
                 </ul>
 
                 <button
-                  className={`z-10 uppercase transition-all duration-300 ${div.btnHoverText || 'hover:text-[#FDFAF5]'} hover:scale-[1.02] text-lg md:text-xl tracking-wide font-bebas w-full border rounded-lg mt-auto pt-3 md:pt-3.5 pr-4 md:pr-6 pb-3 md:pb-3.5 pl-4 md:pl-6 relative cursor-pointer`}
+                  disabled={div.isSoldOut}
+                  className={`z-10 uppercase transition-all duration-300 ${div.isSoldOut ? 'opacity-50 cursor-not-allowed' : (div.btnHoverText || 'hover:text-[#FDFAF5]') + ' hover:scale-[1.02] cursor-pointer'} text-lg md:text-xl tracking-wide font-bebas w-full border rounded-lg mt-auto pt-3 md:pt-3.5 pr-4 md:pr-6 pb-3 md:pb-3.5 pl-4 md:pl-6 relative`}
                   style={{
                     backgroundColor: `${div.color}1A`,
                     color: div.color,
                     borderColor: `${div.color}4D`,
                   }}
                   onMouseEnter={(e) => {
+                    if (div.isSoldOut) return;
                     e.currentTarget.style.backgroundColor = div.color;
                     e.currentTarget.style.color = div.key === 'scale' || div.key === 'beginners' ? '#000000' : '#FDFAF5';
                     e.currentTarget.style.boxShadow = `0 0 20px ${div.color}66`;
                   }}
                   onMouseLeave={(e) => {
+                    if (div.isSoldOut) return;
                     e.currentTarget.style.backgroundColor = `${div.color}1A`;
                     e.currentTarget.style.color = div.color;
                     e.currentTarget.style.boxShadow = 'none';
                   }}
-                  onClick={() => window.location.href='https://circle21.events/guayaera-in-paradise?tab=divisions'}
+                  onClick={() => {
+                    if (!div.isSoldOut) {
+                      window.location.href='https://circle21.events/guayaera-in-paradise?tab=divisions';
+                    }
+                  }}
                 >
-                  {t('home.divisions.moreInfo')}
+                  {div.isSoldOut ? 'SOLD OUT' : t('home.divisions.moreInfo')}
                 </button>
               </div>
             ))}
@@ -548,9 +556,6 @@ export default function Home() {
               <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-bl from-[#000000]/5 to-transparent rounded-bl-full group-hover:scale-110 transition-transform duration-500"></div>
               <div className="mb-6 relative z-10">
                 <div className="flex flex-col gap-2 mb-2">
-                  <span className="bg-[#EB459A]/10 text-[#EB459A] font-bebas text-sm px-4 py-1 uppercase tracking-widest rounded-full border border-[#EB459A]/20 w-max">
-                    {t('home.register.individual.badge')}
-                  </span>
                   <h4 className="font-bebas text-5xl tracking-tight uppercase text-[#000000]">
                     {t('home.register.individual.title')}
                   </h4>
@@ -559,20 +564,23 @@ export default function Home() {
                   {t('home.register.individual.subtitle')}
                 </p>
                 <div className="flex flex-wrap gap-x-3 gap-y-1 mt-3 font-bebas text-sm text-[#000000]/50 tracking-wider uppercase">
-                  {registerIndividualDivisions.map((label, index) => (
-                    <span key={`${label}-${index}`}>{index > 0 ? `• ${label}` : label}</span>
-                  ))}
+                  {registerIndividualDivisions.map((label, index) => {
+                    const isSoldOut = index === 1 || index === 2 || index === 3;
+                    return (
+                      <span key={`${label}-${index}`}>
+                        {index > 0 ? `• ` : ''}
+                        <span className={isSoldOut ? 'line-through opacity-60' : ''}>{label}</span>
+                        {isSoldOut && <span className="ml-1 text-[#EB459A] text-xs">SOLD OUT</span>}
+                      </span>
+                    );
+                  })}
                 </div>
               </div>
 
               <div className="mb-8 flex flex-col gap-1 relative z-10 border-t border-b border-[#000000]/5 py-6 bg-[#000000]/[0.02] -mx-8 md:-mx-12 px-8 md:px-12">
                 <div className="flex items-end gap-3">
-                  <span className="font-anton text-7xl tracking-tighter text-[#000000] leading-none">$189</span>
+                  <span className="font-anton text-7xl tracking-tighter text-[#000000] leading-none">$225</span>
                   <span className="text-xl text-[#000000]/60 pb-1 font-bebas uppercase tracking-widest">{t('home.common.currency')}</span>
-                </div>
-                <div className="flex items-center gap-3 text-[#000000]/50 font-medium">
-                  <span className="line-through text-lg decoration-[#EB459A] decoration-2">$225</span>
-                  <span className="text-sm uppercase tracking-wide">{t('home.common.originalPrice')}</span>
                 </div>
               </div>
 
@@ -618,26 +626,26 @@ export default function Home() {
                   {t('home.register.team.subtitle')}
                 </p>
                 <div className="flex flex-wrap gap-x-3 gap-y-1 mt-3 font-bebas text-sm text-[#FDFAF5]/50 tracking-wider uppercase">
-                  {registerTeamDivisions.map((label, index) => (
-                    <span key={`${label}-${index}`}>{index > 0 ? `• ${label}` : label}</span>
-                  ))}
+                  {registerTeamDivisions.map((label, index) => {
+                    const isSoldOut = index === 1 || index === 2;
+                    return (
+                      <span key={`${label}-${index}`}>
+                        {index > 0 ? `• ` : ''}
+                        <span className={isSoldOut ? 'line-through opacity-60' : ''}>{label}</span>
+                        {isSoldOut && <span className="ml-1 text-[#EB7A4B] text-xs">SOLD OUT</span>}
+                      </span>
+                    );
+                  })}
                 </div>
               </div>
 
               <div className="mb-8 flex flex-col items-center text-center relative z-10 border-t border-b border-[#EB7A4B]/20 py-10 -mx-8 md:-mx-12 px-8 md:px-12 bg-gradient-to-b from-[#FDFAF5]/[0.02] to-[#EB7A4B]/10 shadow-[inset_0_0_30px_rgba(235,122,75,0.1)]">
-                <div className="bg-[#EB7A4B]/20 text-[#EB7A4B] font-bebas text-sm px-4 py-1.5 uppercase tracking-widest rounded-full border border-[#EB7A4B]/30 shadow-[0_0_15px_rgba(235,122,75,0.3)] mb-4">
-                  {t('home.register.team.badge')}
-                </div>
                 <span className="text-[#FDFAF5] font-bebas text-2xl tracking-wider uppercase mb-2">
                   {t('home.register.team.paymentLabel')}
                 </span>
                 <div className="flex items-end justify-center gap-3">
-                  <span className="font-anton text-7xl tracking-tighter leading-none text-[#EB7A4B] drop-shadow-[0_0_20px_rgba(235,122,75,0.4)]">$375</span>
+                  <span className="font-anton text-7xl tracking-tighter leading-none text-[#EB7A4B] drop-shadow-[0_0_20px_rgba(235,122,75,0.4)]">$600</span>
                   <span className="text-xl text-[#FDFAF5]/60 pb-1.5 font-bebas uppercase tracking-widest">{t('home.common.currency')}</span>
-                </div>
-                <div className="flex items-center justify-center gap-3 mt-4 text-[#FDFAF5]/60 font-medium">
-                  <span className="line-through decoration-[#EB7A4B] decoration-2 text-xl">$600</span>
-                  <span className="text-sm uppercase tracking-wider">{t('home.common.originalPrice')}</span>
                 </div>
               </div>
 
