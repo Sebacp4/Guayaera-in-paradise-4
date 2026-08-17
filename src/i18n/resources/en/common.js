@@ -237,9 +237,9 @@ const enCommon = {
       titleHighlight: 'Premier',
       titleSuffix: 'Brand Partners',
       subtitle:
-        'A closer look at two featured brands helping elevate the Guayaera in Paradise 4 experience.',
+        'A closer look at selected featured brands helping elevate the Guayaera in Paradise 4 experience.',
       description:
-        'Guayaera in Paradise is supported by a strong community of sponsors and partners. This page highlights two featured brands with a deeper look into their story, presence, and connection to the event.',
+        'Guayaera in Paradise is supported by a strong community of sponsors and partners. This page highlights a deeper look into our featured brand partners, their story, presence, and connection to the event.',
     },
     common: {
       visitWebsite: 'Visit Website',
@@ -256,6 +256,12 @@ const enCommon = {
       titleHighlight: 'Sport',
       description:
         'A premier partner supporting the athletes, spectators, and lifestyle experience behind Guayaera in Paradise 4.',
+    },
+    hyundai: {
+      titlePrefix: 'Hyundai de',
+      titleHighlight: 'Guaynabo',
+      description:
+        'Official automotive partner supporting the Guayaera in Paradise 4 experience. Hyundai de Guaynabo joins Guayaera in Paradise 4 as a featured partner, supporting the event experience and the community behind one of Puerto Rico’s most exciting fitness competitions.',
     },
     closing: {
       title: 'Thank You to Our Partners',

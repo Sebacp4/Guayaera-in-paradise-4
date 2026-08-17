@@ -237,9 +237,9 @@ const esCommon = {
       titleHighlight: 'principales',
       titleSuffix: 'aliadas',
       subtitle:
-        'Un vistazo más cercano a dos marcas destacadas que ayudan a elevar la experiencia de Guayaera in Paradise 4.',
+        'Un vistazo más cercano a marcas destacadas seleccionadas que ayudan a elevar la experiencia de Guayaera in Paradise 4.',
       description:
-        'Guayaera in Paradise cuenta con el respaldo de una sólida comunidad de auspiciadores y aliados. Esta página destaca dos marcas aliadas con una mirada más profunda a su historia, presencia y conexión con el evento.',
+        'Guayaera in Paradise cuenta con el respaldo de una sólida comunidad de auspiciadores y aliados. Esta página destaca una mirada más profunda a nuestras marcas aliadas destacadas, su historia, presencia y conexión con el evento.',
     },
     common: {
       visitWebsite: 'Visitar sitio web',
@@ -256,6 +256,12 @@ const esCommon = {
       titleHighlight: 'Sport',
       description:
         'Un aliado principal que apoya a los atletas, espectadores y la experiencia de estilo de vida detrás de Guayaera in Paradise 4.',
+    },
+    hyundai: {
+      titlePrefix: 'Hyundai de',
+      titleHighlight: 'Guaynabo',
+      description:
+        'Socio automotriz oficial que apoya la experiencia Guayaera in Paradise 4. Hyundai de Guaynabo se une a Guayaera in Paradise 4 como socio destacado, apoyando la experiencia del evento y la comunidad detrás de una de las competencias de fitness más emocionantes de Puerto Rico.',
     },
     closing: {
       title: 'Gracias a nuestros aliados',

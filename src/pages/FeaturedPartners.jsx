@@ -190,6 +190,72 @@ export default function FeaturedPartners() {
         </div>
       </section>
 
+      <section className="py-24 md:py-32 bg-[#FDFAF5] relative overflow-hidden border-t border-[#000000]/10">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            <div className="flex flex-col fade-in-up stagger-1">
+              <div className="mb-8 p-4 md:p-5 bg-white rounded-3xl shadow-[0_10px_30px_rgba(0,0,0,0.05)] border border-[#000000]/5 w-max">
+                <img
+                  src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/ebc4e659-0bd0-4e9c-9a20-85bb3612c1a6_800w.png"
+                  alt="Hyundai de Guaynabo"
+                  className="h-28 md:h-36 max-w-[280px] object-contain"
+                />
+              </div>
+              <h3 className="font-anton text-5xl md:text-7xl text-[#000000] uppercase tracking-tighter mb-6 leading-none">
+                {t('featuredPartners.hyundai.titlePrefix')} <span className="text-[#01C9CF]">{t('featuredPartners.hyundai.titleHighlight')}</span>
+              </h3>
+              <p className="text-xl text-[#000000]/70 font-medium mb-10 leading-relaxed max-w-lg">
+                {t('featuredPartners.hyundai.description')}
+              </p>
+
+              <div className="flex flex-wrap gap-4">
+                <a
+                  href="https://www.hyundaiguaynabo.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-3 bg-[#01C9CF] text-[#000000] font-bebas text-2xl tracking-wide uppercase px-8 py-4 hover:scale-105 transition-transform duration-300 rounded-xl shadow-[0_0_20px_rgba(1,201,207,0.3)] hover:shadow-[0_0_30px_rgba(1,201,207,0.5)]"
+                >
+                  <iconify-icon icon="solar:global-bold-duotone" width="24" height="24"></iconify-icon>
+                  {t('featuredPartners.common.visitWebsite')}
+                </a>
+                <a
+                  href="https://www.instagram.com/hyundaideguaynabo/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-3 bg-transparent border-2 border-[#000000]/20 text-[#000000] font-bebas text-2xl tracking-wide uppercase px-8 py-4 hover:border-[#01C9CF] hover:text-[#01C9CF] hover:scale-105 transition-all duration-300 rounded-xl"
+                >
+                  <iconify-icon icon="mdi:instagram" width="24" height="24"></iconify-icon>
+                  {t('featuredPartners.common.follow')}
+                </a>
+              </div>
+            </div>
+
+            <div className="relative fade-in-up stagger-2 flex flex-col gap-6 z-10 w-full max-w-[500px] mx-auto lg:ml-auto lg:mr-0">
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-[#01C9CF]/20 blur-[100px] rounded-full pointer-events-none z-0"></div>
+
+              {/* Horizontal / Landscape Card (Top) */}
+              <div className="rounded-3xl overflow-hidden relative group shadow-[0_10px_30px_rgba(0,0,0,0.08)] z-10 w-full aspect-[16/9] shrink-0 border border-[#000000]/10 bg-white flex items-center justify-center">
+                <img
+                  src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/c8342dcf-8750-4370-991c-4a0690a1943d_1600w.png"
+                  alt="Hyundai Dealership Exterior and Service Center"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+              </div>
+
+              {/* Vertical / Portrait Card (Bottom) */}
+              <div className="rounded-3xl overflow-hidden relative group shadow-[0_10px_30px_rgba(0,0,0,0.08)] z-10 w-full aspect-[4/5] md:aspect-[3/4] border border-[#000000]/10 bg-white">
+                <img
+                  src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/248b99c2-0474-4915-9a1b-741599cae869_1600w.png"
+                  alt="Hyundai Performance"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="py-24 md:py-32 bg-[#01C9CF] relative overflow-hidden text-center">
         <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[#FDFAF5]/20 rounded-full blur-[80px] pointer-events-none -translate-y-1/2 translate-x-1/2"></div>
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#EB459A]/20 rounded-full blur-[80px] pointer-events-none translate-y-1/2 -translate-x-1/2"></div>

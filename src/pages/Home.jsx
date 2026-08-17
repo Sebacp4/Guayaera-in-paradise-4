@@ -23,8 +23,9 @@ export default function Home() {
   ];
 
   const sponsorList = [
+    { src: 'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/546cdd7f-e89a-4fcb-bff8-30f6094b3182_1600w.png', alt: 'Hyundai de Guaynabo', extraClass: 'scale-125 md:scale-150' },
     { src: 'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/e2a7ddad-b283-4b77-b418-f83008325f19_800w.png', alt: 'Rankiao', extraClass: '' },
-    { src: 'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/a57b336c-3617-4a21-b13d-9d9cb3875d9b_800w.png', alt: 'PRoud Fitwear', extraClass: 'scale-125 md:scale-150' },
+    { src: 'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/a57b336c-3617-4a21-b13d-9d9cb3875d9b_800w.png', alt: 'PRoud Fitwear', extraClass: '' },
     { src: 'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/5c8834b6-d152-4303-9aa5-f9a7fce58588_800w.jpg', alt: 'Noid Stilss', extraClass: '' },
     { src: 'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/cc5d6d3b-0910-4d3e-828e-5fd92b5eb761_800w.jpg', alt: 'Hyatt Regency Grand Reserve Puerto Rico', extraClass: '' },
     { src: 'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/76caa1a5-d868-4970-921e-10201ad45924_800w.png', alt: 'Viva La Fitness', extraClass: '', isPremier: true },
@@ -36,7 +37,12 @@ export default function Home() {
     { src: 'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/277b7222-ca3d-46b1-9d32-ca8bb3312fda_800w.jpg', alt: 'Jibaros Crossfit', extraClass: '' },
     { src: 'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/0b962302-57ae-4098-8b56-523f3bb72a44_800w.jpg', alt: 'Sponsor 12', extraClass: '' },
     { src: 'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/508110e1-cfd8-4591-887f-b09e5787dd72_800w.jpg', alt: 'Sponsor 13', extraClass: '' },
-    { src: 'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/cf28394f-efd9-4b69-9ae9-1657763ed462_800w.png', alt: 'VitaSport', extraClass: '' }
+    { src: 'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/cf28394f-efd9-4b69-9ae9-1657763ed462_800w.png', alt: 'VitaSport', extraClass: '' },
+    { src: 'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/26746a6e-3233-4602-9b6a-1711924783c4_1600w.png', alt: 'FE Ropa Deportiva', extraClass: 'scale-125 md:scale-150' },
+    { src: 'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/c8db568f-0b66-4f94-b8d6-c7a82e82b8a4_1600w.jpg', alt: 'Glow Station Glitter Bar', extraClass: 'scale-125 md:scale-150' },
+    { src: 'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/30310331-9808-4d5e-b49e-76a912aa5a01_1600w.png', alt: 'Wing Stop', extraClass: 'scale-125 md:scale-150' },
+    { src: 'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/750b1c06-a9ce-439d-8330-8622591c053a_1600w.png', alt: 'More Amor', extraClass: 'scale-125 md:scale-150' },
+    { src: 'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/c30b9daf-f8fa-416a-bfde-2172abe1494f_1600w.png', alt: 'Cuidado y Vitalidad', extraClass: 'scale-125 md:scale-150' }
   ];
 
   const divisionMeta = [
