@@ -143,14 +143,27 @@ export default async function handler(req, res) {
     return res.status(200).json({ received: true });
   }
 
-  try {
-    const session = event.data.object;
+try {
+  const session = event.data.object;
 
-    const { data: existing } = await supabase
-      .from('raffle_entries')
-      .select('id')
-      .eq('stripe_session_id', session.id)
-      .limit(1);
+  const isRaffle =
+    session.metadata?.product_type === 'guayaera_raffle' ||
+    session.metadata?.raffle === 'true';
+
+  if (!isRaffle) {
+    console.log('Ignoring non-raffle checkout session:', session.id);
+    return res.status(200).json({
+      received: true,
+      ignored: true,
+      reason: 'not_a_raffle_purchase',
+    });
+  }
+
+  const { data: existing } = await supabase
+    .from('raffle_entries')
+    .select('id')
+    .eq('stripe_session_id', session.id)
+    .limit(1);
 
     if (existing && existing.length > 0) {
       return res.status(200).json({ received: true, duplicate: true });
@@ -178,7 +191,7 @@ export default async function handler(req, res) {
       customer_email: customerEmail,
       stripe_session_id: session.id,
       stripe_payment_intent: session.payment_intent || null,
-      amount_paid: session.amount_total != null ? session.amount_total / 100 : null,
+      amount_paid: 10,
       currency: session.currency || null,
       status: 'valid',
       email_sent: false,
