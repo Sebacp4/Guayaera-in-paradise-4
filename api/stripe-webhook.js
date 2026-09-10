@@ -146,6 +146,36 @@ export default async function handler(req, res) {
   try {
     const session = event.data.object;
 
+      try {
+    const session = event.data.object;
+
+    // Only process checkout sessions that include the raffle ticket price.
+    // This prevents regular event registrations or other Stripe payments
+    // from being saved as raffle entries.
+    const lineItems = await stripe.checkout.sessions.listLineItems(session.id, {
+      limit: 10,
+      expand: ['data.price'],
+    });
+
+    const isRaffleCheckout = lineItems.data.some((item) => {
+      return item.price && item.price.id === process.env.STRIPE_RAFFLE_PRICE_ID;
+    });
+
+    if (!isRaffleCheckout) {
+      console.log('Ignoring non-raffle checkout session:', session.id);
+      return res.status(200).json({
+        received: true,
+        ignored: true,
+        reason: 'Not a raffle checkout session',
+      });
+    }
+
+    const { data: existing } = await supabase
+      .from('raffle_entries')
+      .select('id')
+      .eq('stripe_session_id', session.id)
+      .limit(1);
+
     const { data: existing } = await supabase
       .from('raffle_entries')
       .select('id')
