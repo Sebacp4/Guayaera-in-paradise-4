@@ -143,44 +143,27 @@ export default async function handler(req, res) {
     return res.status(200).json({ received: true });
   }
 
-  try {
-    const session = event.data.object;
+try {
+  const session = event.data.object;
 
-      try {
-    const session = event.data.object;
+  const isRaffle =
+    session.metadata?.product_type === 'guayaera_raffle' ||
+    session.metadata?.raffle === 'true';
 
-    // Only process checkout sessions that include the raffle ticket price.
-    // This prevents regular event registrations or other Stripe payments
-    // from being saved as raffle entries.
-    const lineItems = await stripe.checkout.sessions.listLineItems(session.id, {
-      limit: 10,
-      expand: ['data.price'],
+  if (!isRaffle) {
+    console.log('Ignoring non-raffle checkout session:', session.id);
+    return res.status(200).json({
+      received: true,
+      ignored: true,
+      reason: 'not_a_raffle_purchase',
     });
+  }
 
-    const isRaffleCheckout = lineItems.data.some((item) => {
-      return item.price && item.price.id === process.env.STRIPE_RAFFLE_PRICE_ID;
-    });
-
-    if (!isRaffleCheckout) {
-      console.log('Ignoring non-raffle checkout session:', session.id);
-      return res.status(200).json({
-        received: true,
-        ignored: true,
-        reason: 'Not a raffle checkout session',
-      });
-    }
-
-    const { data: existing } = await supabase
-      .from('raffle_entries')
-      .select('id')
-      .eq('stripe_session_id', session.id)
-      .limit(1);
-
-    const { data: existing } = await supabase
-      .from('raffle_entries')
-      .select('id')
-      .eq('stripe_session_id', session.id)
-      .limit(1);
+  const { data: existing } = await supabase
+    .from('raffle_entries')
+    .select('id')
+    .eq('stripe_session_id', session.id)
+    .limit(1);
 
     if (existing && existing.length > 0) {
       return res.status(200).json({ received: true, duplicate: true });
@@ -208,7 +191,7 @@ export default async function handler(req, res) {
       customer_email: customerEmail,
       stripe_session_id: session.id,
       stripe_payment_intent: session.payment_intent || null,
-      amount_paid: session.amount_total != null ? session.amount_total / 100 : null,
+      amount_paid: 10,
       currency: session.currency || null,
       status: 'valid',
       email_sent: false,

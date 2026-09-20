@@ -3,7 +3,31 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 export default function FeaturedPartners() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const isEs = i18n.language === 'es';
+
+  const zalutContent = {
+    en: {
+      eyebrow: "FEATURED PARTNER",
+      headline: "SOMETHING NEW IS COMING.",
+      subheadline: "YOUR BODY SPEAKS. TAKE CONTROL.",
+      p1: "ZALUT is bringing a new perspective to fitness, balance, and everyday performance. Built around understanding your body, creating better habits, and living with greater intention, the brand is preparing to introduce something new to the Guayaera community.",
+      p2: "For now, the details remain under wraps.",
+      p3: "Follow the journey. The reveal is coming.",
+      mantra: "TRACK. BALANCE. LIVE.",
+      button: "FOLLOW ZALUT"
+    },
+    es: {
+      eyebrow: "ALIADO DESTACADO",
+      headline: "ALGO NUEVO ESTÁ POR LLEGAR.",
+      subheadline: "TU CUERPO HABLA. PONTE EN CONTROL.",
+      p1: "ZALUT trae una nueva perspectiva al fitness, el balance y el rendimiento diario. Una marca construida alrededor de entender mejor tu cuerpo, crear mejores hábitos y vivir con mayor intención, que se prepara para presentar algo nuevo a la comunidad de Guayaera.",
+      p2: "Por ahora, los detalles permanecen en secreto.",
+      p3: "Sigue el camino. La revelación se acerca.",
+      mantra: "TRACK. BALANCE. LIVE.",
+      button: "SIGUE A ZALUT"
+    }
+  };
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -252,6 +276,73 @@ export default function FeaturedPartners() {
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300"></div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ZALUT Section */}
+      <section className="py-24 md:py-32 bg-[#000000] relative overflow-hidden border-t border-[#333333]">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            
+            {/* Content Column */}
+            <div className="flex flex-col fade-in-up stagger-1 text-center lg:text-left items-center lg:items-start w-full">
+              {/* Eyebrow */}
+              <span className="font-bebas text-[#A0A0A0] text-xl md:text-2xl tracking-[0.2em] uppercase mb-6 block">
+                {isEs ? zalutContent.es.eyebrow : zalutContent.en.eyebrow}
+              </span>
+              
+              {/* ZALUT Logo */}
+              <div className="mb-10 w-48 md:w-64 max-w-full">
+                <img 
+                  src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/19868f28-402d-40bf-81cf-eb39ad0097a5_1600w.jpg" 
+                  alt="ZALUT" 
+                  className="w-full h-auto object-contain invert mix-blend-screen" 
+                />
+              </div>
+
+              {/* Primary Headline */}
+              <h3 className="font-anton text-4xl md:text-6xl text-[#FFFFFF] uppercase tracking-tighter mb-4 leading-none">
+                {isEs ? zalutContent.es.headline : zalutContent.en.headline}
+              </h3>
+              
+              {/* Secondary Headline */}
+              <h4 className="font-bebas text-2xl md:text-3xl text-[#A0A0A0] uppercase tracking-wide mb-8">
+                {isEs ? zalutContent.es.subheadline : zalutContent.en.subheadline}
+              </h4>
+              
+              {/* Body Copy */}
+              <div className="text-lg md:text-xl text-[#FFFFFF]/80 font-medium mb-8 space-y-6 max-w-lg leading-[1.6]">
+                <p>{isEs ? zalutContent.es.p1 : zalutContent.en.p1}</p>
+                <p>{isEs ? zalutContent.es.p2 : zalutContent.en.p2}</p>
+                <p>{isEs ? zalutContent.es.p3 : zalutContent.en.p3}</p>
+              </div>
+
+              {/* Mantra */}
+              <div className="font-bebas text-xl md:text-2xl text-[#FFFFFF] tracking-[0.15em] mb-10">
+                {isEs ? zalutContent.es.mantra : zalutContent.en.mantra}
+              </div>
+
+              {/* CTA Button */}
+              <a 
+                href="https://www.instagram.com/zalutlife/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center bg-transparent border-2 border-[#FFFFFF] text-[#FFFFFF] font-bebas text-2xl tracking-wide uppercase px-10 py-4 hover:bg-[#FFFFFF] hover:text-[#000000] transition-colors duration-300 rounded-xl"
+              >
+                {isEs ? zalutContent.es.button : zalutContent.en.button}
+              </a>
+            </div>
+
+            {/* Image Column */}
+            <div className="relative fade-in-up stagger-2 w-full h-[500px] md:h-[700px] rounded-3xl overflow-hidden shadow-[0_0_40px_rgba(255,255,255,0.05)] border border-[#333333]">
+              <img 
+                src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/a25cc52f-7cdb-4f65-892a-555a83353bf5_1600w.png" 
+                alt="ZALUT Campaign" 
+                className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+              />
+            </div>
+            
           </div>
         </div>
       </section>

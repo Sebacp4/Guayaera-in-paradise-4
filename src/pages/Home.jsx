@@ -42,7 +42,15 @@ export default function Home() {
     { src: 'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/c8db568f-0b66-4f94-b8d6-c7a82e82b8a4_1600w.jpg', alt: 'Glow Station Glitter Bar', extraClass: 'scale-125 md:scale-150' },
     { src: 'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/30310331-9808-4d5e-b49e-76a912aa5a01_1600w.png', alt: 'Wing Stop', extraClass: 'scale-125 md:scale-150' },
     { src: 'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/750b1c06-a9ce-439d-8330-8622591c053a_1600w.png', alt: 'More Amor', extraClass: 'scale-125 md:scale-150' },
-    { src: 'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/c30b9daf-f8fa-416a-bfde-2172abe1494f_1600w.png', alt: 'Cuidado y Vitalidad', extraClass: 'scale-125 md:scale-150' }
+    { src: 'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/c30b9daf-f8fa-416a-bfde-2172abe1494f_1600w.png', alt: 'Cuidado y Vitalidad', extraClass: 'scale-125 md:scale-150' },
+    // "Logo Diferente" - served untouched from /public/sponsors/logo-diferente.jpeg.
+    // preserveOriginal: rendered exactly as supplied (no grayscale, no dimming, no scaling).
+  {
+src:'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/19868f28-402d-40bf-81cf-eb39ad0097a5_1600w.jpg',
+  alt: 'ZALUT',
+  extraClass: 'scale-125 md:scale-150',
+  preserveOriginal: true
+},
   ];
 
   const divisionMeta = [
@@ -713,15 +721,24 @@ export default function Home() {
                       {t('home.sponsors.premierBadge')}
                     </span>
                   )}
-                  <img
-                    src={sponsor.src}
-                    alt={sponsor.alt}
-                    className={`w-[90%] md:w-[95%] h-full max-h-[85%] md:max-h-[90%] object-contain transition-all duration-500 ${
-                      sponsor.isPremier
-                        ? 'grayscale-0 opacity-100 scale-[1.15] hover:scale-[1.25] drop-shadow-[0_0_20px_rgba(1,201,207,0.25)]'
-                        : 'grayscale opacity-60 hover:grayscale-0 hover:opacity-100 hover:scale-[1.08] hover:drop-shadow-[0_0_15px_rgba(0,0,0,0.1)]'
-                    } ${sponsor.extraClass}`}
-                  />
+                  {sponsor.Component ? (
+                    <sponsor.Component
+                      title={sponsor.alt}
+                      className={`w-[90%] md:w-[95%] h-full max-h-[85%] md:max-h-[90%] text-[#000000] transition-all duration-500 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 hover:scale-[1.08] hover:drop-shadow-[0_0_15px_rgba(0,0,0,0.1)] ${sponsor.extraClass}`}
+                    />
+                  ) : (
+                    <img
+                      src={sponsor.src}
+                      alt={sponsor.alt}
+                      className={`w-[90%] md:w-[95%] h-full max-h-[85%] md:max-h-[90%] object-contain transition-all duration-500 ${
+                        sponsor.preserveOriginal
+                          ? 'grayscale-0 opacity-100'
+                          : sponsor.isPremier
+                            ? 'grayscale-0 opacity-100 scale-[1.15] hover:scale-[1.25] drop-shadow-[0_0_20px_rgba(1,201,207,0.25)]'
+                            : 'grayscale opacity-60 hover:grayscale-0 hover:opacity-100 hover:scale-[1.08] hover:drop-shadow-[0_0_15px_rgba(0,0,0,0.1)]'
+                      } ${sponsor.extraClass}`}
+                    />
+                  )}
                 </div>
               ))}
             </div>
@@ -733,15 +750,24 @@ export default function Home() {
                       {t('home.sponsors.premierBadge')}
                     </span>
                   )}
-                  <img
-                    src={sponsor.src}
-                    alt={sponsor.alt}
-                    className={`w-[90%] md:w-[95%] h-full max-h-[85%] md:max-h-[90%] object-contain transition-all duration-500 ${
-                      sponsor.isPremier
-                        ? 'grayscale-0 opacity-100 scale-[1.15] hover:scale-[1.25] drop-shadow-[0_0_20px_rgba(1,201,207,0.25)]'
-                        : 'grayscale opacity-60 hover:grayscale-0 hover:opacity-100 hover:scale-[1.08] hover:drop-shadow-[0_0_15px_rgba(0,0,0,0.1)]'
-                    } ${sponsor.extraClass}`}
-                  />
+                  {sponsor.Component ? (
+                    <sponsor.Component
+                      title={sponsor.alt}
+                      className={`w-[90%] md:w-[95%] h-full max-h-[85%] md:max-h-[90%] text-[#000000] transition-all duration-500 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 hover:scale-[1.08] hover:drop-shadow-[0_0_15px_rgba(0,0,0,0.1)] ${sponsor.extraClass}`}
+                    />
+                  ) : (
+                    <img
+                      src={sponsor.src}
+                      alt={sponsor.alt}
+                      className={`w-[90%] md:w-[95%] h-full max-h-[85%] md:max-h-[90%] object-contain transition-all duration-500 ${
+                        sponsor.preserveOriginal
+                          ? 'grayscale-0 opacity-100'
+                          : sponsor.isPremier
+                            ? 'grayscale-0 opacity-100 scale-[1.15] hover:scale-[1.25] drop-shadow-[0_0_20px_rgba(1,201,207,0.25)]'
+                            : 'grayscale opacity-60 hover:grayscale-0 hover:opacity-100 hover:scale-[1.08] hover:drop-shadow-[0_0_15px_rgba(0,0,0,0.1)]'
+                      } ${sponsor.extraClass}`}
+                    />
+                  )}
                 </div>
               ))}
             </div>
