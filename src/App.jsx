@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import { useEffect } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import Gallery from './pages/Gallery';
 import Hotel from './pages/Hotel';
 import Schedule from './pages/Schedule';
+import Workouts from './pages/Workouts';
 import FeaturedPartners from './pages/FeaturedPartners';
 import Raffle from './pages/Raffle';
 import RaffleValidation from './pages/RaffleValidation';
@@ -31,10 +32,12 @@ export default function App() {
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/hotel" element={<Hotel />} />
             <Route path="/schedule" element={<Schedule />} />
+            <Route path="/workouts" element={<Workouts />} />
             <Route path="/featured-partners" element={<FeaturedPartners />} />
             <Route path="/raffle" element={<Raffle />} />
             <Route path="/raffle/validate/:code" element={<RaffleValidation />} />
-          </Routes>
+            <Route path="/work" element={<Workouts />} />
+      </Routes>
         </main>
         <Footer />
       </div>

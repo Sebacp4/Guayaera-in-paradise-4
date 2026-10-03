@@ -528,25 +528,20 @@ src:'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/as
                 <span className="text-[#01C9CF] drop-shadow-[0_0_30px_rgba(1,201,207,0.4)]">
                   {t('home.workouts.comingSoon')}
                 </span>
-                <span className="text-[#01C9CF] animate-[pulse_1.5s_ease-in-out_infinite]">...</span>
+                <span className="text-[#01C9CF]">.</span>
               </h3>
               <p className="text-2xl text-[#000000]/70 mt-8 font-bebas tracking-wide fade-in-up stagger-1">
                 {t('home.workouts.description')}
               </p>
             </div>
-            <button
-              onClick={() =>
-                window.open(
-                  'https://www.instagram.com/guayaera_in_paradise_4/',
-                  '_blank',
-                  'noopener,noreferrer'
-                )
-              }
-              className="fade-in-up stagger-2 z-10 relative overflow-hidden group bg-[#000000] text-[#FDFAF5] font-bebas text-2xl tracking-wide uppercase px-12 py-5 rounded-xl hover:scale-[1.05] transition-all duration-300 shadow-[0_10px_30px_rgba(0,0,0,0.2)] hover:shadow-[0_0_40px_rgba(1,201,207,0.5)]"
+            <Link
+              to="/workouts"
+              className="fade-in-up stagger-2 z-10 relative overflow-hidden group bg-[#000000] text-[#FDFAF5] font-bebas text-2xl tracking-wide uppercase px-12 py-5 rounded-xl hover:scale-[1.05] transition-all duration-300 shadow-[0_10px_30px_rgba(0,0,0,0.2)] hover:shadow-[0_0_40px_rgba(1,201,207,0.5)] inline-flex items-center justify-center gap-3"
             >
               <div className="group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-r from-[#EB459A] via-[#01C9CF] to-[#EB7A4B] opacity-0 absolute top-0 right-0 bottom-0 left-0"></div>
               <span className="z-10 text-[#FDFAF5] relative">{t('home.workouts.cta')}</span>
-            </button>
+              <iconify-icon icon="solar:arrow-right-bold" width="24" height="24" className="relative z-10 group-hover:translate-x-1 transition-transform"></iconify-icon>
+            </Link>
           </div>
         </div>
       </section>

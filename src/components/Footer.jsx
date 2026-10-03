@@ -1,4 +1,4 @@
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 export default function Footer() {
@@ -47,10 +47,10 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href={isHome ? '#workouts' : '/#workouts'} className="hover:text-[#01C9CF] transition-colors flex items-center gap-2">
+                <Link to="/workouts" className="hover:text-[#01C9CF] transition-colors flex items-center gap-2">
                   <iconify-icon icon="solar:alt-arrow-right-linear" width="20"></iconify-icon>
                   {t('footer.workouts')}
-                </a>
+                </Link>
               </li>
               <li>
                 <a href={isHome ? '#sponsors' : '/#sponsors'} className="hover:text-[#01C9CF] transition-colors flex items-center gap-2">
