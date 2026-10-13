@@ -105,3 +105,16 @@
     animation: page-enter 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     will-change: transform, opacity, filter;
 }
+
+/* Reduced motion: keep content visible and skip entrance motion */
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .fade-in-up {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+    .animate-page-enter {
+        animation: none;
+    }
+}

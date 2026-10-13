@@ -146,9 +146,10 @@ const enCommon = {
     workouts: {
       eyebrow: 'The Tests',
       title: 'Workouts',
-      comingSoon: 'Coming Soon',
-      description: 'Stay tuned. Events will be announced soon.',
-      cta: 'Follow for updates',
+      comingSoon: 'Are Here',
+      description:
+        'Official events, scoring and standards are now published. Study the workouts and prepare.',
+      cta: 'View Official Workouts',
     },
     register: {
       eyebrow: 'Registration Open',
@@ -199,6 +200,353 @@ const enCommon = {
       spotlightTitle: 'Premier Sponsor',
       spotlightDescription:
         'Recognized as a leading sponsor of Guayaera in Paradise 4.',
+    },
+  },
+  workouts: {
+    hero: {
+      eyebrow: 'Official Workouts',
+      title: 'The Workouts Are Here.',
+      description:
+        'Official events, scoring, standards and competition details for Guayaera in Paradise 4.',
+      line: 'EVENT RULES • STANDARDS • SCORING',
+    },
+    quickLinks: {
+      label: 'Jump to',
+      event1: 'Event 01',
+      event2: 'Event 02',
+      event3: 'Me, Echo and Fran',
+    },
+    labels: {
+      event: 'Event',
+      location: 'Location',
+      timeCap: 'Time Cap',
+      scoring: 'Scoring',
+      format: 'Format',
+      score: 'Score',
+      standards: 'Movement Standards',
+      showStandards: 'View standards',
+      hideStandards: 'Hide standards',
+      tieBreakers: 'Tie-Breakers',
+      weightsTitle: 'Loads by Division',
+      weightsNote:
+        'Loads are listed exactly as published. No units or sex assignments are stated for the pairs.',
+      division: 'Division',
+      load: 'Load',
+      flow: 'Event Flow',
+      partialNote:
+        'This event reflects the complete official document (pages 1 and 2): format, yoke loads, movement standards, team rules and scoring. Any official updates will be published here.',
+      minutes: 'min',
+    },
+    event1: {
+      number: '01',
+      name: 'A HEAVY PUSH WALK',
+      location: 'El Yunque Salón',
+      timeCap: 'Total cap 8 minutes',
+      scoring: 'Double scoring',
+      summary:
+        'Two scored parts in one 8-minute window: a heavy bench press for 2 unbroken reps, then a yoke carry for max distance.',
+      partA: {
+        label: 'Part A',
+        title: 'Bench Press',
+        duration: '4 min',
+        description:
+          'At GO, perform 2 unbroken reps with the heaviest possible load.',
+        score:
+          'Heaviest successful load for 2 unbroken reps within 4 minutes.',
+        standards: [
+          'Athlete chooses the starting weight.',
+          'Feet stay on the floor at all times, never on the bench or in the air.',
+          'The bar touches the chest, then reaches full elbow extension on each rep.',
+          'Glutes and shoulder blades stay in contact with the bench.',
+          'No excessive powerlifting arch.',
+          'No assistance. A spotter touching the bar invalidates the attempt.',
+        ],
+      },
+      transition: {
+        label: 'Transition',
+        duration: '2 min',
+        description:
+          'At minute 4, unload and remove the bar from the rack, adjust the yoke crossbar to shoulder height or preference, and be ready for Part B at minute 6.',
+      },
+      partB: {
+        label: 'Part B',
+        title: 'Yoke Carry',
+        duration: '2 min',
+        description:
+          'Carry the yoke on the shoulders, or in the assigned position for your division, in 25-ft shuttles.',
+        score: 'Greatest distance covered in 2 minutes.',
+        standards: [
+          'No dragging, pushing or uncontrolled dropping of the yoke.',
+          'The front of the yoke determines whether the 25-ft line has been reached.',
+          'A full 25-ft segment must be completed to receive credit.',
+        ],
+      },
+      tieBreakers: [
+        'Part A ties are broken by the Part B result.',
+        'Part B ties are broken by the Part A result.',
+      ],
+      weights: [
+        { division: 'Beginners', load: '250 / 190' },
+        { division: 'Scale', load: '310 / 250' },
+        { division: 'Intermedio', load: '370 / 290' },
+        { division: '38–44 Master', load: '370 / 290' },
+        { division: '45+ Master', load: '310 / 250' },
+        { division: 'RX', load: '250 / 150' },
+      ],
+      rxNote: 'RX must perform the carry overhead, above the head.',
+    },
+    event2: {
+      number: '02',
+      name: 'A HEAVY WALK BETWEEN FRIENDS',
+      badge: 'Sunday Teams Event',
+      format: '4 athletes (MM/FF)',
+      timeCap: '15 min',
+      scoring: '2 scores',
+      summary:
+        'Same-sex pairs split the work: one pair accumulates calories on the Echo Bike while the other moves through double unders and Zercher yoke carries, swapping every round.',
+      partA: {
+        label: 'Part A',
+        title: 'Echo Bike',
+        duration: '15 min',
+        description:
+          'Same-sex pairs: one MM pair and one FF pair. The MM pair starts on the bike to maximize total calories. Once the FF pair completes its DU / Zercher carry round, the pairs swap.',
+        score:
+          'Total calories accumulated on the Echo Bike during the 15-minute event.',
+      },
+      partB: {
+        label: 'Part B',
+        title: '6 Rounds For Time',
+        duration: 'FF starts',
+        description:
+          'Each round, in order: 100 Double Unders (DU) or 200 Single Unders (SU), then four 25-ft Zercher yoke carry segments (100 ft per round). MM and FF alternate through all 6 rounds.',
+        score:
+          'Time to complete all 6 rounds; if the team does not finish, score the total repetitions completed.',
+        rounds: [
+          { label: 'Each round', value: '100 DU or 200 SU' },
+          { label: 'Then', value: '4 × 25-ft Zercher yoke carry (100 ft)' },
+        ],
+      },
+      flow: [
+        'FF pair starts Part B while the MM pair is on the bike.',
+        'Pairs swap after each completed round.',
+        'FF completes rounds 1, 3 and 5. MM completes rounds 2, 4 and 6.',
+        'After finishing Part B, that pair may join the bike until minute 15.',
+      ],
+      tieBreakers: [
+        'Part A ties are broken by the Part B result.',
+        'Part B ties are broken by the Part A result.',
+      ],
+      fullRules: {
+        eyebrow: 'Official Document · Page 2',
+        showLabel: 'View Full Standards & Rules',
+        hideLabel: 'Hide Full Standards & Rules',
+        showShort: 'Expand',
+        hideShort: 'Collapse',
+        intro:
+          'Yoke loads, movement standards, team rules and the official scoring summary for A Heavy Walk Between Friends.',
+        sections: {
+          weights: 'Yoke Weights',
+          yoke: 'Zercher Yoke Carry Standard',
+          jumps: 'Double-Unders / Single-Unders Standard',
+          rules: 'Team WOD Rules',
+          scoring: 'Scoring Summary',
+        },
+        weights: {
+          title: 'Yoke Weights by Division',
+          division: 'Division',
+          male: 'Masc.',
+          female: 'Fem.',
+          rows: [
+            { division: 'Beginner', male: '250', female: '190' },
+            { division: 'Scale', male: '310', female: '250' },
+            { division: 'Intermedio', male: '370', female: '290' },
+            { division: 'Master 40+', male: '310', female: '250' },
+            { division: 'RX', male: '400', female: '310' },
+          ],
+        },
+        yokeStandard: {
+          title: 'Zercher Yoke Carry',
+          subtitle: 'Standard',
+          items: [
+            'The yoke may only be carried in the Zercher position.',
+            'Athletes are responsible for setting the crossbar to their preferred height before the workout begins.',
+            'Each segment is 25 feet. One round requires 4 segments, for a total of 100 feet.',
+            'The front of the yoke will be used as the reference point and must completely cross the line for each 25-foot segment to count.',
+          ],
+        },
+        jumpsStandard: {
+          title: 'Double-Unders / Single-Unders',
+          subtitle: 'Standard',
+          items: [
+            'The jumps must be performed inside the marked floor area corresponding to the current round: RD1, RD2, RD3, RD4, RD5 or RD6.',
+            'Both athletes in the pair may divide the double-unders or single-unders however they choose and may use their preferred strategy.',
+          ],
+        },
+        teamRules: {
+          title: 'Team WOD Rules',
+          items: [
+            'On the Echo Bike, athletes may switch as often as they choose and use their preferred strategy.',
+            'Athletes may not touch the bike monitor at any time.',
+            'Pairs may only switch stations after the pair working on the DU/SU and Zercher Yoke Carry has completed its round.',
+            'When switching stations, the team is responsible for removing or adding the necessary weight for the pair entering the yoke station.',
+            'Part B is won by completing all 6 rounds in the shortest time. If no team finishes, ranking is determined by the greatest number of repetitions completed within the 15-minute time cap.',
+            'The FF pair begins the workout in Part B. The pairs must alternate every round throughout all 6 rounds.',
+            'If the team completes the sixth round before the time cap, the pair that finished Part B may join the pair on the Echo Bike and continue using any strategy they choose until minute 15.',
+          ],
+        },
+        scoringSummary: {
+          title: 'Official Scoring Summary',
+          partA: {
+            label: 'Part A',
+            text: 'Total calories accumulated on the Echo Bike during the 15-minute event.',
+          },
+          partB: {
+            label: 'Part B',
+            text: 'Time to complete all 6 rounds; if the team does not finish, score the total repetitions completed.',
+          },
+        },
+      },
+    },
+    event3: {
+      number: '03',
+      eyebrow: 'Workout 03',
+      name: 'ME, ECHO AND FRAN',
+      badge: 'Official Workout',
+      summary:
+        '15-12-9 thrusters and the gymnastics movement assigned to each division, then the Echo Bike. For time.',
+      stats: {
+        modality: { label: 'Modality', value: 'Individual' },
+        format: { label: 'Format', value: 'For Time' },
+        scheme: { label: 'Scheme', value: '15-12-9 + Echo Bike' },
+      },
+      page1: {
+        eyebrow: 'Official Document · Page 1',
+        title: 'Workout Description',
+        paragraphs: [
+          'On the signal of 3, 2, 1... GO, the athlete will move to the barbell and complete 15 thrusters. Upon finishing, the athlete must move the barbell from the space marked 15 to the space marked 12. The athlete will then move on to the gymnastics movement corresponding to their division to complete 15 repetitions.',
+          'The same procedure will be repeated in the rounds of 12 and 9 repetitions: first the thrusters, then the assigned gymnastics. After completing the entire 15-12-9 scheme, the athlete will advance to the Echo Bike.',
+        ],
+        flow: {
+          title: 'Flow',
+          steps: [
+            { reps: '15', value: '15 thrusters + gymnastics' },
+            { reps: '12', value: '12 thrusters + gymnastics' },
+            { reps: '9', value: '9 thrusters + gymnastics' },
+            { reps: 'Echo', value: '30 / 20 calories Echo Bike (Male / Female)' },
+          ],
+          beginnersNote:
+            'Beginners: in place of the gymnastics repetitions, complete barbell rows following a 30-24-18 scheme.',
+        },
+        rules: {
+          title: 'Course Rules',
+          items: [
+            'Each block is completed in the indicated order: thrusters first and gymnastics after.',
+            'The barbell must be moved to the corresponding space upon finishing each block of thrusters.',
+            'After completing 15-12-9, the athlete will move immediately to the Echo Bike.',
+            'Male: 30 calories. Female: 20 calories.',
+          ],
+        },
+        scoring: {
+          label: 'Scoring',
+          text: 'The result will be the fastest total time to complete the event.',
+        },
+        tieBreak: {
+          label: 'Tie-Break',
+          text: 'The time will be recorded upon finishing the thrusters and the gymnastics of the 15-repetition round.',
+        },
+      },
+      weights: {
+        title: 'Weights & Movements',
+        division: 'Division',
+        weight: 'Weight M/F',
+        gymnastics: 'Gymnastics',
+        rows: [
+          { division: 'RX', weight: '135/105', gymnastics: 'Muscle-up' },
+          { division: 'Intermedio / Master 38-44', weight: '115/90', gymnastics: 'M: Muscle-up; F: Chest-to-bar' },
+          { division: 'Scale / Master 45+', weight: '95/75', gymnastics: 'Pull-up' },
+          { division: 'Beginners', weight: '75/55', gymnastics: 'Barbell row 30-24-18' },
+        ],
+        legend: 'M/F = Male/Female',
+        beginnersNoteLabel: 'Beginners note',
+        beginnersNote:
+          'Barbell row repetitions are (30-24-18). Halfway through each set, the athlete must stop and move the barbell to the corresponding space before continuing.',
+      },
+      standards: {
+        eyebrow: 'Official Document · Page 2',
+        title: 'Movement Standards',
+        subtitle: 'Six official standards for this workout',
+        show: 'View',
+        hide: 'Hide',
+        items: [
+          {
+            title: 'Thruster',
+            items: [
+              'Movement: The athlete performs a front squat and, in one single fluid movement, continues pushing the barbell overhead.',
+              'Start of the repetition: Starts from the bottom of a squat, with the barbell in front of the torso and held by the hands.',
+              'End of the repetition: Elbows, hips and knees extended and barbell overhead.',
+              'Requirements: The barbell moves in one single fluid movement from the bottom of the squat to the overhead position. The knees and hips must remain extended from the moment the barbell leaves the front rack until it is held overhead with the elbows locked out.',
+              'Cycle and after the repetition: The barbell may return to the starting position in any controlled manner.',
+              'A squat clean will NOT be allowed as the start of the movement.',
+            ],
+          },
+          {
+            title: 'Muscle-Up',
+            subtitle: 'RX',
+            items: [
+              'Movement: The athlete, hanging from a horizontal bar, rises above it and continues pushing until finishing in a support position on the bar.',
+              'Start of the repetition: Vertical hang from the horizontal bar.',
+              'End of the repetition: Vertical support on the bar.',
+              'Requirements: No part of the body below the thighs may pass above the highest horizontal plane of the bar. The athlete must pass through part of the dip movement.',
+              'Cycle and after the repetition: The athlete may only rest on the bar in vertical support without releasing the hands. If resting in any other way, the athlete must come down to the floor before starting a new repetition.',
+            ],
+          },
+          {
+            title: 'Chest-to-Bar',
+            items: [
+              'Movement: The athlete, hanging from a horizontal bar, rises until the chest makes contact with the bar.',
+              'Start of the repetition: Vertical hang from the horizontal bar.',
+              'End of the repetition: The chest is in contact with the horizontal bar.',
+              'Requirements: During the movement, only the hands and the chest or the parts of the body above the chest may touch the bar.',
+              'Cycle and after the repetition: The athlete may return to the starting position in any controlled manner.',
+            ],
+          },
+          {
+            title: 'Pull-Up',
+            items: [
+              'Movement: The athlete, hanging from a horizontal bar, rises until the chin is above the bar.',
+              'Start of the repetition: Vertical hang from the horizontal bar.',
+              'End of the repetition: The lower plane of the chin passes the highest horizontal plane of the bar.',
+              'Requirements: During the movement, only the hands and the chest or the parts of the body above the chest may touch the bar.',
+              'Cycle and after the repetition: The athlete may return to the starting position in any controlled manner.',
+            ],
+          },
+          {
+            title: 'Echo Bike',
+            items: [
+              'The athlete may begin pedaling only after completing the 15-12-9 scheme of thrusters and gymnastics.',
+              'The event ends when the monitor reads 30 calories for male or 20 calories for female.',
+            ],
+          },
+          {
+            title: 'Barbell Row',
+            subtitle: 'Beginners',
+            items: [
+              'Start: The barbell is lifted from the floor. The athlete performs a hip hinge, leans the torso forward, keeps the back neutral and slightly bends the knees.',
+              'Bottom position: The arms must be fully extended before beginning each repetition.',
+              'Contact: At the top, the barbell must clearly touch the torso, at the height of the lower chest or the abdomen.',
+              'End: The barbell returns down until the arms are fully extended, maintaining the same back angle.',
+              'The repetitions are: 30-24-18. Halfway through each set, the athlete must stop and move the barbell before continuing.',
+            ],
+          },
+        ],
+      },
+    },
+    footer: {
+      title: 'Ready to compete?',
+      description:
+        'Secure your spot and start preparing for the official Guayaera in Paradise 4 events.',
+      registerCta: 'Register Now',
+      scheduleCta: 'View Schedule',
     },
   },
   gallery: {

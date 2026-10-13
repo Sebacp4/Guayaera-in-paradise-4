@@ -112,9 +112,9 @@ export default function Header() {
           <Link to="/schedule" className="text-[#000000]/70 hover:text-[#01C9CF] transition-colors">
             {t('header.schedule')}
           </Link>
-          <a href={isHome ? '#workouts' : '/#workouts'} className="text-[#000000]/70 hover:text-[#EB459A] transition-colors">
+          <Link to="/workouts" className="text-[#000000]/70 hover:text-[#EB459A] transition-colors">
             {t('header.workout')}
-          </a>
+          </Link>
         </div>
 
         <div className="flex items-center gap-4">
@@ -187,13 +187,13 @@ export default function Header() {
           <Link to="/schedule" onClick={closeMenu} className="text-[#000000] hover:text-[#01C9CF] transition-colors py-4 border-b border-[#000000]/5 w-full block">
             {t('header.schedule')}
           </Link>
-          <a
-            href={isHome ? '#workouts' : '/#workouts'}
+          <Link
+            to="/workouts"
             onClick={closeMenu}
             className="text-[#000000] hover:text-[#EB459A] transition-colors py-4 border-b border-[#000000]/5 w-full block"
           >
             {t('header.workout')}
-          </a>
+          </Link>
 
           {renderLanguageSwitcher(true)}
 
