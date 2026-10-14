@@ -514,6 +514,116 @@ function FullRules({ id, data }) {
   );
 }
 
+function StandardGroup({ id, index, standard, color, labels }) {
+  const [open, setOpen] = useState(false);
+  const buttonId = `${id}-button`;
+  const points = asArray(standard.items);
+
+  return (
+    <li className="rounded-xl border border-[#000000]/10 bg-[#FDFAF5] overflow-hidden flex flex-col">
+      <h5 className="m-0">
+        <button
+          id={buttonId}
+          type="button"
+          aria-expanded={open}
+          aria-controls={id}
+          onClick={() => setOpen((prev) => !prev)}
+          className={
+            'w-full min-h-[64px] text-left px-5 py-4 flex items-center gap-4 transition-colors duration-300 motion-reduce:transition-none focus:outline-none focus-visible:ring-2 focus-visible:ring-[#000000] focus-visible:ring-inset ' +
+            (open ? 'bg-white border-b border-[#000000]/10' : 'bg-white hover:bg-[#000000]/[0.03]')
+          }
+        >
+          <span
+            className="shrink-0 w-11 h-11 rounded-lg flex items-center justify-center font-anton text-2xl leading-none"
+            style={{ backgroundColor: color, color: '#000000' }}
+          >
+            {String(index + 1).padStart(2, '0')}
+          </span>
+          <span className="min-w-0 flex-1">
+            <span className="font-anton uppercase tracking-tight leading-none text-xl md:text-2xl text-[#000000] break-words block">
+              {standard.title}
+            </span>
+            {standard.subtitle && (
+              <span className="font-bebas tracking-[0.25em] uppercase text-xs md:text-sm block mt-1.5" style={{ color }}>
+                {standard.subtitle}
+              </span>
+            )}
+          </span>
+          <span className="flex items-center gap-2 shrink-0 font-bebas tracking-[0.15em] uppercase text-sm" style={{ color }}>
+            <span className="hidden sm:inline">{open ? labels.hide : labels.show}</span>
+            <iconify-icon
+              icon="solar:alt-arrow-down-linear"
+              width="22"
+              height="22"
+              className="transition-transform duration-300 motion-reduce:transition-none"
+              style={{ transform: open ? 'rotate(180deg)' : 'rotate(0deg)' }}
+            ></iconify-icon>
+          </span>
+        </button>
+      </h5>
+
+      <div
+        id={id}
+        role="region"
+        aria-labelledby={buttonId}
+        className={
+          'grid transition-[grid-template-rows] duration-500 ease-out motion-reduce:transition-none ' +
+          (open ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]')
+        }
+      >
+        <div className="overflow-hidden min-h-0" aria-hidden={!open}>
+          <ul className="px-5 py-4 space-y-3">
+            {points.map((point, pointIndex) => (
+              <li key={`${id}-${pointIndex}`} className="flex items-start gap-3">
+                <iconify-icon icon="solar:check-circle-bold" width="22" height="22" className="shrink-0 mt-0.5" style={{ color }}></iconify-icon>
+                <p className="text-base md:text-lg font-medium leading-relaxed text-[#000000]/85">{point}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </li>
+  );
+}
+
+function MovementStandardsGroups({ id, data, accent }) {
+  const list = asArray(data.items);
+  if (list.length === 0) return null;
+  const palette = ['#EB7A4B', '#01C9CF', '#EB459A', '#EB7A4B', '#01C9CF', '#EB459A'];
+  const labels = { show: data.show, hide: data.hide };
+  return (
+    <div className="rounded-2xl border border-[#000000]/10 bg-white overflow-hidden shadow-[0_10px_40px_-20px_rgba(0,0,0,0.25)]">
+      <div className="bg-[#000000] text-[#FDFAF5] px-6 md:px-8 py-6 flex flex-wrap items-end justify-between gap-3">
+        <div className="min-w-0">
+          <span className="font-bebas tracking-[0.3em] uppercase text-xs md:text-sm block mb-1" style={{ color: accent }}>
+            {data.eyebrow}
+          </span>
+          <h4 className="font-anton uppercase tracking-tight leading-none text-2xl md:text-4xl flex items-center gap-3">
+            <iconify-icon icon="solar:clipboard-check-bold-duotone" width="30" height="30" style={{ color: accent }}></iconify-icon>
+            {data.title}
+          </h4>
+          <span className="text-sm md:text-base text-[#FDFAF5]/60 font-medium block mt-2">{data.subtitle}</span>
+        </div>
+        <span className="font-anton text-4xl md:text-5xl leading-none" style={{ color: accent }} aria-hidden="true">
+          {String(list.length).padStart(2, '0')}
+        </span>
+      </div>
+      <ol className="grid grid-cols-1 gap-3 p-4 sm:p-6">
+        {list.map((standard, index) => (
+          <StandardGroup
+            key={`${id}-${index}`}
+            id={`${id}-${index}`}
+            index={index}
+            standard={standard}
+            color={palette[index % palette.length]}
+            labels={labels}
+          />
+        ))}
+      </ol>
+    </div>
+  );
+}
+
 export default function Workouts() {
   const { t } = useTranslation();
 
@@ -643,6 +753,68 @@ export default function Workouts() {
     },
   };
 
+  const event3 = {
+    number: t('workouts.event3.number'),
+    eyebrow: t('workouts.event3.eyebrow'),
+    name: t('workouts.event3.name'),
+    badge: t('workouts.event3.badge'),
+    summary: t('workouts.event3.summary'),
+    stats: {
+      modality: {
+        label: t('workouts.event3.stats.modality.label'),
+        value: t('workouts.event3.stats.modality.value'),
+      },
+      format: {
+        label: t('workouts.event3.stats.format.label'),
+        value: t('workouts.event3.stats.format.value'),
+      },
+      scheme: {
+        label: t('workouts.event3.stats.scheme.label'),
+        value: t('workouts.event3.stats.scheme.value'),
+      },
+    },
+    page1: {
+      eyebrow: t('workouts.event3.page1.eyebrow'),
+      title: t('workouts.event3.page1.title'),
+      paragraphs: asArray(t('workouts.event3.page1.paragraphs', { returnObjects: true })),
+      flow: {
+        title: t('workouts.event3.page1.flow.title'),
+        steps: asArray(t('workouts.event3.page1.flow.steps', { returnObjects: true })),
+        beginnersNote: t('workouts.event3.page1.flow.beginnersNote'),
+      },
+      rules: {
+        title: t('workouts.event3.page1.rules.title'),
+        items: asArray(t('workouts.event3.page1.rules.items', { returnObjects: true })),
+      },
+      scoring: {
+        label: t('workouts.event3.page1.scoring.label'),
+        text: t('workouts.event3.page1.scoring.text'),
+      },
+      tieBreak: {
+        label: t('workouts.event3.page1.tieBreak.label'),
+        text: t('workouts.event3.page1.tieBreak.text'),
+      },
+    },
+    weights: {
+      title: t('workouts.event3.weights.title'),
+      division: t('workouts.event3.weights.division'),
+      weight: t('workouts.event3.weights.weight'),
+      gymnastics: t('workouts.event3.weights.gymnastics'),
+      rows: asArray(t('workouts.event3.weights.rows', { returnObjects: true })),
+      legend: t('workouts.event3.weights.legend'),
+      beginnersNoteLabel: t('workouts.event3.weights.beginnersNoteLabel'),
+      beginnersNote: t('workouts.event3.weights.beginnersNote'),
+    },
+    standards: {
+      eyebrow: t('workouts.event3.standards.eyebrow'),
+      title: t('workouts.event3.standards.title'),
+      subtitle: t('workouts.event3.standards.subtitle'),
+      show: t('workouts.event3.standards.show'),
+      hide: t('workouts.event3.standards.hide'),
+      items: asArray(t('workouts.event3.standards.items', { returnObjects: true })),
+    },
+  };
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -705,7 +877,7 @@ export default function Workouts() {
             <span className="font-bebas tracking-[0.25em] uppercase text-sm text-[#FDFAF5]/50">
               {t('workouts.quickLinks.label')}
             </span>
-            <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+            <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3 w-full sm:w-auto">
               <a
                 href="#event-01"
                 onClick={(event) => scrollToSection(event, 'event-01')}
@@ -727,6 +899,18 @@ export default function Workouts() {
                   {t('workouts.quickLinks.event2')}
                 </span>
                 <iconify-icon icon="solar:arrow-down-linear" width="22" height="22"></iconify-icon>
+              </a>
+              <a
+                href="#event-03"
+                onClick={(event) => scrollToSection(event, 'event-03')}
+                className="group inline-flex items-center justify-between sm:justify-start gap-4 min-h-[60px] rounded-xl border-2 border-[#EB7A4B] bg-[#EB7A4B]/10 px-6 py-3 font-bebas text-2xl tracking-wide uppercase text-[#FDFAF5] hover:bg-[#EB7A4B] hover:text-[#000000] transition-colors duration-300 motion-reduce:transition-none focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FDFAF5]"
+              >
+                <span className="flex items-center gap-3 min-w-0">
+                  <span className="font-anton text-3xl leading-none text-[#EB7A4B] group-hover:text-[#000000] shrink-0">03</span>
+                  <span className="hidden sm:inline text-[#EB7A4B] group-hover:text-[#000000]" aria-hidden="true">—</span>
+                  <span className="whitespace-normal break-words leading-tight">{t('workouts.quickLinks.event3')}</span>
+                </span>
+                <iconify-icon icon="solar:arrow-down-linear" width="22" height="22" className="shrink-0"></iconify-icon>
               </a>
             </div>
           </nav>
@@ -942,6 +1126,212 @@ export default function Workouts() {
                 <iconify-icon icon="solar:info-circle-bold" width="22" height="22" className="text-[#EB7A4B] shrink-0 mt-0.5"></iconify-icon>
                 <span>{labels.partialNote}</span>
               </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* EVENT 03 — LIGHT */}
+      <section id="event-03" className="scroll-mt-24 relative overflow-hidden bg-[#FDFAF5] text-[#000000] py-20 md:py-28 border-b border-[#000000]/10">
+        <div className="absolute -top-20 -left-20 w-[500px] h-[500px] bg-[#EB7A4B]/15 rounded-full blur-[120px] pointer-events-none"></div>
+        <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-[#01C9CF]/10 rounded-full blur-[100px] pointer-events-none"></div>
+
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
+            <header className="lg:col-span-5 lg:sticky lg:top-28 self-start fade-in-up">
+              <span className="inline-flex items-center gap-2 rounded-full bg-[#EB7A4B] text-[#000000] font-bebas tracking-[0.2em] uppercase text-base px-5 py-2 mb-6 shadow-[0_0_20px_rgba(235,122,75,0.4)]">
+                <iconify-icon icon="solar:verified-check-bold" width="20" height="20"></iconify-icon>
+                {event3.badge}
+              </span>
+              <div className="flex items-end gap-4 mb-4">
+                <span className="font-anton leading-[0.8] tracking-tighter text-[7rem] sm:text-[9rem] lg:text-[11rem] text-[#000000]" aria-hidden="true">
+                  {event3.number}
+                </span>
+                <span className="font-bebas tracking-[0.3em] uppercase text-[#EB7A4B] text-lg md:text-xl pb-3">
+                  {event3.eyebrow}
+                </span>
+              </div>
+              <h2 className="font-anton uppercase tracking-tight leading-[0.9] text-4xl sm:text-5xl lg:text-6xl mb-6">
+                {event3.name}
+              </h2>
+              <p className="text-lg md:text-xl text-[#000000]/70 font-medium leading-relaxed mb-8 max-w-xl">
+                {event3.summary}
+              </p>
+
+              <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 gap-3">
+                <MetaChip icon="solar:user-bold" label={event3.stats.modality.label} value={event3.stats.modality.value} accent="#EB7A4B" />
+                <MetaChip icon="solar:stopwatch-bold" label={event3.stats.format.label} value={event3.stats.format.value} accent="#01C9CF" />
+                <MetaChip icon="solar:list-check-bold" label={event3.stats.scheme.label} value={event3.stats.scheme.value} accent="#EB459A" />
+              </div>
+            </header>
+
+            <div className="lg:col-span-7 flex flex-col gap-6">
+              {/* OFFICIAL PAGE 1 — DESCRIPTION, FLOW, RULES, SCORING, TIE-BREAK */}
+              <article className="fade-in-up rounded-2xl border border-[#000000]/10 bg-white p-6 md:p-8 relative overflow-hidden shadow-[0_10px_40px_-20px_rgba(0,0,0,0.25)]">
+                <div className="absolute top-0 left-0 h-full w-1.5 bg-[#EB7A4B]"></div>
+
+                <div className="flex flex-wrap items-start justify-between gap-4 mb-5 pl-2">
+                  <div className="min-w-0">
+                    <span className="font-bebas tracking-[0.25em] uppercase text-sm md:text-base block mb-1 text-[#EB7A4B]">
+                      {event3.page1.eyebrow}
+                    </span>
+                    <h4 className="font-anton uppercase tracking-tight leading-none text-3xl md:text-5xl text-[#000000]">
+                      {event3.page1.title}
+                    </h4>
+                  </div>
+                  <span className="font-bebas text-xl md:text-2xl tracking-wide uppercase rounded-lg px-4 py-2 shrink-0 bg-[#EB7A4B]/[0.12] text-[#EB7A4B]">
+                    {event3.stats.scheme.value}
+                  </span>
+                </div>
+
+                <div className="pl-2 space-y-4 mb-6">
+                  {event3.page1.paragraphs.map((paragraph, index) => (
+                    <p key={`e3-paragraph-${index}`} className="text-lg md:text-xl font-medium leading-relaxed text-[#000000]/80">
+                      {paragraph}
+                    </p>
+                  ))}
+                </div>
+
+                {/* FLOW */}
+                <div className="ml-2 mb-6">
+                  <h5 className="font-bebas text-2xl md:text-3xl tracking-wide uppercase text-[#01C9CF] mb-4 flex items-center gap-3">
+                    <iconify-icon icon="solar:route-bold-duotone" width="28" height="28"></iconify-icon>
+                    {event3.page1.flow.title}
+                  </h5>
+                  <ol className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {event3.page1.flow.steps.map((step, index) => {
+                      const isLast = index === event3.page1.flow.steps.length - 1;
+                      return (
+                        <li
+                          key={`e3-flow-${index}`}
+                          className={
+                            'rounded-xl border px-5 py-4 flex items-start gap-3 ' +
+                            (isLast ? 'border-[#01C9CF]/40 bg-[#01C9CF]/10' : 'border-[#EB7A4B]/30 bg-[#EB7A4B]/10')
+                          }
+                        >
+                          <span className="font-anton text-2xl leading-none mt-0.5 shrink-0" style={{ color: isLast ? '#01C9CF' : '#EB7A4B' }}>
+                            {step.reps}
+                          </span>
+                          <span className="font-bebas text-lg md:text-xl tracking-wide uppercase text-[#000000] break-words min-w-0">
+                            {step.value}
+                          </span>
+                        </li>
+                      );
+                    })}
+                  </ol>
+                  <p className="mt-3 flex items-start gap-3 rounded-xl border border-dashed border-[#EB459A]/50 bg-[#EB459A]/5 px-5 py-4 text-base md:text-lg font-semibold text-[#000000] leading-snug">
+                    <iconify-icon icon="solar:refresh-circle-bold" width="22" height="22" className="text-[#EB459A] shrink-0 mt-0.5"></iconify-icon>
+                    <span>{event3.page1.flow.beginnersNote}</span>
+                  </p>
+                </div>
+
+                {/* COURSE RULES */}
+                <div className="ml-2 mb-6 rounded-xl border border-[#000000]/10 bg-[#000000]/[0.03] overflow-hidden">
+                  <h5 className="font-bebas text-2xl tracking-wide uppercase text-[#000000] px-5 pt-4 pb-2 flex items-center gap-3">
+                    <iconify-icon icon="solar:clipboard-list-bold-duotone" width="24" height="24" className="text-[#EB7A4B]"></iconify-icon>
+                    {event3.page1.rules.title}
+                  </h5>
+                  <ul className="px-5 pb-5 pt-1 space-y-3 text-base md:text-lg font-medium leading-relaxed text-[#000000]/80">
+                    {event3.page1.rules.items.map((item, index) => (
+                      <li key={`e3-rule-${index}`} className="flex items-start gap-3">
+                        <iconify-icon icon="solar:check-circle-bold" width="22" height="22" className="shrink-0 mt-0.5 text-[#EB7A4B]"></iconify-icon>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* SCORING + TIE-BREAK */}
+                <div className="ml-2 grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="rounded-xl px-5 py-4 flex items-start gap-3 bg-[#FDFAF5] border border-[#000000]/10">
+                    <iconify-icon icon="solar:cup-first-bold" width="24" height="24" className="shrink-0 mt-0.5 text-[#EB7A4B]"></iconify-icon>
+                    <div className="min-w-0">
+                      <span className="font-bebas tracking-[0.2em] uppercase text-xs block mb-1 text-[#000000]/50">
+                        {event3.page1.scoring.label}
+                      </span>
+                      <p className="text-base md:text-lg font-semibold leading-snug text-[#000000]">{event3.page1.scoring.text}</p>
+                    </div>
+                  </div>
+                  <div className="rounded-xl px-5 py-4 flex items-start gap-3 bg-[#FDFAF5] border border-[#000000]/10">
+                    <iconify-icon icon="solar:scale-bold-duotone" width="24" height="24" className="shrink-0 mt-0.5 text-[#EB459A]"></iconify-icon>
+                    <div className="min-w-0">
+                      <span className="font-bebas tracking-[0.2em] uppercase text-xs block mb-1 text-[#000000]/50">
+                        {event3.page1.tieBreak.label}
+                      </span>
+                      <p className="text-base md:text-lg font-semibold leading-snug text-[#000000]">{event3.page1.tieBreak.text}</p>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              {/* WEIGHTS & MOVEMENTS */}
+              <div className="fade-in-up stagger-1 rounded-2xl border border-[#000000]/10 bg-white overflow-hidden">
+                <div className="px-6 md:px-8 pt-6 md:pt-8 pb-4 flex flex-wrap items-end justify-between gap-3">
+                  <h4 className="font-bebas text-2xl md:text-3xl tracking-wide uppercase text-[#000000] flex items-center gap-3">
+                    <iconify-icon icon="solar:dumbbell-large-bold-duotone" width="28" height="28" className="text-[#EB7A4B]"></iconify-icon>
+                    {event3.weights.title}
+                  </h4>
+                  <span className="font-bebas tracking-[0.2em] uppercase text-sm text-[#000000]/50">{event3.weights.legend}</span>
+                </div>
+                <div className="w-full overflow-x-auto">
+                  <table className="w-full table-fixed border-collapse text-left">
+                    <thead>
+                      <tr className="bg-[#000000] text-[#FDFAF5]">
+                        <th scope="col" className="w-[38%] px-4 md:px-8 py-4 font-bebas tracking-[0.2em] uppercase text-sm md:text-base font-normal">
+                          {event3.weights.division}
+                        </th>
+                        <th scope="col" className="w-[24%] px-2 md:px-4 py-4 font-bebas tracking-[0.2em] uppercase text-sm md:text-base font-normal text-center text-[#01C9CF]">
+                          {event3.weights.weight}
+                        </th>
+                        <th scope="col" className="w-[38%] px-4 md:px-8 py-4 font-bebas tracking-[0.2em] uppercase text-sm md:text-base font-normal text-right text-[#EB459A]">
+                          {event3.weights.gymnastics}
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {event3.weights.rows.map((row, index) => {
+                        const isRx = row.division === 'RX';
+                        return (
+                          <tr
+                            key={`e3-weight-${index}`}
+                            className={
+                              'border-t border-[#000000]/10 ' +
+                              (isRx ? 'bg-[#EB7A4B]/10' : index % 2 === 1 ? 'bg-[#FDFAF5]' : 'bg-white')
+                            }
+                          >
+                            <th scope="row" className="px-4 md:px-8 py-4 font-bebas text-xl md:text-2xl tracking-wide uppercase text-[#000000] font-normal break-words leading-tight">
+                              <span className="flex items-center gap-2">
+                                {isRx && <span className="w-2 h-2 rounded-full bg-[#EB7A4B] shrink-0" aria-hidden="true"></span>}
+                                {row.division}
+                              </span>
+                            </th>
+                            <td className="px-2 md:px-4 py-4 text-center font-anton text-2xl md:text-3xl tracking-tight tabular-nums whitespace-nowrap" style={{ color: isRx ? '#EB7A4B' : '#000000' }}>
+                              {row.weight}
+                            </td>
+                            <td className="px-4 md:px-8 py-4 text-right font-bebas text-lg md:text-xl tracking-wide uppercase leading-tight break-words" style={{ color: isRx ? '#EB7A4B' : '#000000' }}>
+                              {row.gymnastics}
+                            </td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </div>
+                <div className="px-6 md:px-8 py-5 border-t border-[#000000]/10">
+                  <p className="flex items-start gap-3 text-base md:text-lg font-semibold text-[#000000] leading-relaxed">
+                    <iconify-icon icon="solar:danger-triangle-bold" width="22" height="22" className="text-[#EB459A] shrink-0 mt-0.5"></iconify-icon>
+                    <span>
+                      <span className="font-bebas tracking-[0.2em] uppercase text-sm text-[#EB459A] block mb-1">{event3.weights.beginnersNoteLabel}</span>
+                      {event3.weights.beginnersNote}
+                    </span>
+                  </p>
+                </div>
+              </div>
+
+              {/* OFFICIAL PAGE 2 — MOVEMENT STANDARDS */}
+              <div className="fade-in-up stagger-2">
+                <MovementStandardsGroups id="event-03-standards" data={event3.standards} accent="#EB7A4B" />
+              </div>
             </div>
           </div>
         </div>

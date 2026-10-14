@@ -214,6 +214,7 @@ const esCommon = {
       label: 'Ir a',
       event1: 'Evento 01',
       event2: 'Evento 02',
+      event3: 'Me, Echo and Fran',
     },
     labels: {
       event: 'Evento',
@@ -403,6 +404,140 @@ const esCommon = {
             text: 'Tiempo para completar 6 rondas; si no termina, total de repeticiones.',
           },
         },
+      },
+    },
+    event3: {
+      number: '03',
+      eyebrow: 'Workout 03',
+      name: 'ME, ECHO AND FRAN',
+      badge: 'Workout Oficial',
+      summary:
+        '15-12-9 de thrusters y el movimiento de gimnasia asignado a cada división, y luego la Echo Bike. Por tiempo.',
+      stats: {
+        modality: { label: 'Modalidad', value: 'Individual' },
+        format: { label: 'Formato', value: 'For Time' },
+        scheme: { label: 'Esquema', value: '15-12-9 + Echo Bike' },
+      },
+      page1: {
+        eyebrow: 'Documento oficial · Página 1',
+        title: 'Descripción del workout',
+        paragraphs: [
+          'A la señal de 3, 2, 1... GO, el atleta se moverá a la barra y completará 15 thrusters. Al terminar, deberá mover la barra del espacio marcado 15 al espacio marcado 12. Luego pasará al movimiento de gimnasia correspondiente a su división para completar 15 repeticiones.',
+          'El mismo procedimiento se repetirá en las rondas de 12 y 9 repeticiones: primero los thrusters, luego la gimnasia asignada. Después de completar todo el esquema 15-12-9, el atleta avanzará a la Echo Bike.',
+        ],
+        flow: {
+          title: 'Flujo',
+          steps: [
+            { reps: '15', value: '15 thrusters + gimnasia' },
+            { reps: '12', value: '12 thrusters + gimnasia' },
+            { reps: '9', value: '9 thrusters + gimnasia' },
+            { reps: 'Echo', value: '30 / 20 calorías Echo Bike (Masculino / Femenino)' },
+          ],
+          beginnersNote:
+            'Beginners: en lugar de las repeticiones de gimnasia, completan barbell rows siguiendo el esquema 30-24-18.',
+        },
+        rules: {
+          title: 'Reglas del recorrido',
+          items: [
+            'Cada bloque se completa en el orden indicado: thrusters primero y gimnasia después.',
+            'La barra deberá moverse al espacio correspondiente al terminar cada bloque de thrusters.',
+            'Tras completar 15-12-9, el atleta pasará inmediatamente a la Echo Bike.',
+            'Masculino: 30 calorías. Femenino: 20 calorías.',
+          ],
+        },
+        scoring: {
+          label: 'Puntuación',
+          text: 'El resultado será el tiempo total más rápido en completar el evento.',
+        },
+        tieBreak: {
+          label: 'Tie-Break',
+          text: 'Se registrará el tiempo al finalizar los thrusters y la gimnasia de la ronda de 15 repeticiones.',
+        },
+      },
+      weights: {
+        title: 'Pesos y movimientos',
+        division: 'División',
+        weight: 'Peso M/F',
+        gymnastics: 'Gimnasia',
+        rows: [
+          { division: 'RX', weight: '135/105', gymnastics: 'Muscle-up' },
+          { division: 'Intermedio / Master 38-44', weight: '115/90', gymnastics: 'M: Muscle-up; F: Chest-to-bar' },
+          { division: 'Scale / Master 45+', weight: '95/75', gymnastics: 'Pull-up' },
+          { division: 'Beginners', weight: '75/55', gymnastics: 'Barbell row 30-24-18' },
+        ],
+        legend: 'M/F = Masculino/Femenino',
+        beginnersNoteLabel: 'Nota Beginners',
+        beginnersNote:
+          'Las repeticiones de barbell row son (30-24-18). A la mitad de cada set, el atleta deberá detenerse y mover la barra al espacio correspondiente antes de continuar.',
+      },
+      standards: {
+        eyebrow: 'Documento oficial · Página 2',
+        title: 'Estándares de movimiento',
+        subtitle: 'Seis estándares oficiales para este workout',
+        show: 'Ver',
+        hide: 'Ocultar',
+        items: [
+          {
+            title: 'Thruster',
+            items: [
+              'Movimiento: El atleta realiza una front squat y, en un solo movimiento fluido, continúa empujando la barra por encima de la cabeza.',
+              'Inicio de la repetición: Parte de abajo de un squat, con la barra frente al torso y sostenida por las manos.',
+              'Final de la repetición: Codos, caderas y rodillas extendidas y barra por encima de la cabeza.',
+              'Requisitos: La barra se mueve en un solo movimiento fluido desde la parte de abajo del squat hasta la posición sobre la cabeza. Las rodillas y la cadera deben permanecer extendidas desde que la barra sale del front rack hasta quedar sostenida sobre la cabeza con los codos bloqueados.',
+              'Ciclo y después de la repetición: La barra puede regresar a la posición inicial de cualquier manera controlada.',
+              'NO se permitirá squat clean como inicio del movimiento.',
+            ],
+          },
+          {
+            title: 'Muscle-Up',
+            subtitle: 'RX',
+            items: [
+              'Movimiento: El atleta, colgado de una barra horizontal, se eleva por encima de ella y continúa empujando hasta terminar en una posición de apoyo sobre la barra.',
+              'Inicio de la repetición: Suspensión vertical desde la barra horizontal.',
+              'Final de la repetición: Apoyo vertical sobre la barra.',
+              'Requisitos: Ninguna parte del cuerpo por debajo de los muslos puede pasar por encima del plano horizontal más alto de la barra. El atleta debe pasar por una parte del movimiento de dip.',
+              'Ciclo y después de la repetición: El atleta solo puede descansar sobre la barra en apoyo vertical sin soltar las manos. Si descansa de otra manera, deberá bajar al suelo antes de iniciar una nueva repetición.',
+            ],
+          },
+          {
+            title: 'Chest-to-Bar',
+            items: [
+              'Movimiento: El atleta, colgado de una barra horizontal, se eleva hasta que el pecho entre en contacto con la barra.',
+              'Inicio de la repetición: Suspensión vertical desde la barra horizontal.',
+              'Final de la repetición: El pecho está en contacto con la barra horizontal.',
+              'Requisitos: Durante el movimiento, solo las manos y el pecho o las partes del cuerpo por encima del pecho pueden tocar la barra.',
+              'Ciclo y después de la repetición: El atleta puede regresar a la posición inicial de cualquier manera controlada.',
+            ],
+          },
+          {
+            title: 'Pull-Up',
+            items: [
+              'Movimiento: El atleta, colgado de una barra horizontal, se eleva hasta que la barbilla quede por encima de la barra.',
+              'Inicio de la repetición: Suspensión vertical desde la barra horizontal.',
+              'Final de la repetición: El plano inferior de la barbilla supera el plano horizontal más alto de la barra.',
+              'Requisitos: Durante el movimiento, solo las manos y el pecho o las partes del cuerpo por encima del pecho pueden tocar la barra.',
+              'Ciclo y después de la repetición: El atleta puede regresar a la posición inicial de cualquier manera controlada.',
+            ],
+          },
+          {
+            title: 'Echo Bike',
+            items: [
+              'El atleta podrá comenzar a pedalear únicamente después de completar el esquema 15-12-9 de thrusters y gimnasia.',
+              'El evento termina cuando el monitor marque 30 calorías para masculino o 20 calorías para femenino.',
+            ],
+          },
+          {
+            title: 'Barbell Row',
+            subtitle: 'Beginners',
+            items: [
+              'Inicio: La barra se levanta desde el suelo. El atleta realiza un hip hinge, inclina el torso hacia adelante, mantiene la espalda neutral y flexiona ligeramente las rodillas.',
+              'Posición inferior: Los brazos deberán estar completamente extendidos antes de comenzar cada repetición.',
+              'Contacto: En la parte más alta, la barra deberá tocar claramente el torso, a la altura del pecho inferior o el abdomen.',
+              'Final: La barra regresa abajo hasta extender completamente los brazos, manteniendo el mismo ángulo de la espalda.',
+              'Las repeticiones son: 30-24-18. A la mitad de cada set, el atleta deberá detenerse y mover la barra antes de continuar.',
+            ],
+          },
+        ],
       },
     },
     footer: {

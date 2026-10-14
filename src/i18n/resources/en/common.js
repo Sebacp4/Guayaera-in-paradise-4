@@ -214,6 +214,7 @@ const enCommon = {
       label: 'Jump to',
       event1: 'Event 01',
       event2: 'Event 02',
+      event3: 'Me, Echo and Fran',
     },
     labels: {
       event: 'Event',
@@ -404,6 +405,140 @@ const enCommon = {
             text: 'Time to complete all 6 rounds; if the team does not finish, score the total repetitions completed.',
           },
         },
+      },
+    },
+    event3: {
+      number: '03',
+      eyebrow: 'Workout 03',
+      name: 'ME, ECHO AND FRAN',
+      badge: 'Official Workout',
+      summary:
+        '15-12-9 thrusters and the gymnastics movement assigned to each division, then the Echo Bike. For time.',
+      stats: {
+        modality: { label: 'Modality', value: 'Individual' },
+        format: { label: 'Format', value: 'For Time' },
+        scheme: { label: 'Scheme', value: '15-12-9 + Echo Bike' },
+      },
+      page1: {
+        eyebrow: 'Official Document · Page 1',
+        title: 'Workout Description',
+        paragraphs: [
+          'On the signal of 3, 2, 1... GO, the athlete will move to the barbell and complete 15 thrusters. Upon finishing, the athlete must move the barbell from the space marked 15 to the space marked 12. The athlete will then move on to the gymnastics movement corresponding to their division to complete 15 repetitions.',
+          'The same procedure will be repeated in the rounds of 12 and 9 repetitions: first the thrusters, then the assigned gymnastics. After completing the entire 15-12-9 scheme, the athlete will advance to the Echo Bike.',
+        ],
+        flow: {
+          title: 'Flow',
+          steps: [
+            { reps: '15', value: '15 thrusters + gymnastics' },
+            { reps: '12', value: '12 thrusters + gymnastics' },
+            { reps: '9', value: '9 thrusters + gymnastics' },
+            { reps: 'Echo', value: '30 / 20 calories Echo Bike (Male / Female)' },
+          ],
+          beginnersNote:
+            'Beginners: in place of the gymnastics repetitions, complete barbell rows following a 30-24-18 scheme.',
+        },
+        rules: {
+          title: 'Course Rules',
+          items: [
+            'Each block is completed in the indicated order: thrusters first and gymnastics after.',
+            'The barbell must be moved to the corresponding space upon finishing each block of thrusters.',
+            'After completing 15-12-9, the athlete will move immediately to the Echo Bike.',
+            'Male: 30 calories. Female: 20 calories.',
+          ],
+        },
+        scoring: {
+          label: 'Scoring',
+          text: 'The result will be the fastest total time to complete the event.',
+        },
+        tieBreak: {
+          label: 'Tie-Break',
+          text: 'The time will be recorded upon finishing the thrusters and the gymnastics of the 15-repetition round.',
+        },
+      },
+      weights: {
+        title: 'Weights & Movements',
+        division: 'Division',
+        weight: 'Weight M/F',
+        gymnastics: 'Gymnastics',
+        rows: [
+          { division: 'RX', weight: '135/105', gymnastics: 'Muscle-up' },
+          { division: 'Intermedio / Master 38-44', weight: '115/90', gymnastics: 'M: Muscle-up; F: Chest-to-bar' },
+          { division: 'Scale / Master 45+', weight: '95/75', gymnastics: 'Pull-up' },
+          { division: 'Beginners', weight: '75/55', gymnastics: 'Barbell row 30-24-18' },
+        ],
+        legend: 'M/F = Male/Female',
+        beginnersNoteLabel: 'Beginners note',
+        beginnersNote:
+          'Barbell row repetitions are (30-24-18). Halfway through each set, the athlete must stop and move the barbell to the corresponding space before continuing.',
+      },
+      standards: {
+        eyebrow: 'Official Document · Page 2',
+        title: 'Movement Standards',
+        subtitle: 'Six official standards for this workout',
+        show: 'View',
+        hide: 'Hide',
+        items: [
+          {
+            title: 'Thruster',
+            items: [
+              'Movement: The athlete performs a front squat and, in one single fluid movement, continues pushing the barbell overhead.',
+              'Start of the repetition: Starts from the bottom of a squat, with the barbell in front of the torso and held by the hands.',
+              'End of the repetition: Elbows, hips and knees extended and barbell overhead.',
+              'Requirements: The barbell moves in one single fluid movement from the bottom of the squat to the overhead position. The knees and hips must remain extended from the moment the barbell leaves the front rack until it is held overhead with the elbows locked out.',
+              'Cycle and after the repetition: The barbell may return to the starting position in any controlled manner.',
+              'A squat clean will NOT be allowed as the start of the movement.',
+            ],
+          },
+          {
+            title: 'Muscle-Up',
+            subtitle: 'RX',
+            items: [
+              'Movement: The athlete, hanging from a horizontal bar, rises above it and continues pushing until finishing in a support position on the bar.',
+              'Start of the repetition: Vertical hang from the horizontal bar.',
+              'End of the repetition: Vertical support on the bar.',
+              'Requirements: No part of the body below the thighs may pass above the highest horizontal plane of the bar. The athlete must pass through part of the dip movement.',
+              'Cycle and after the repetition: The athlete may only rest on the bar in vertical support without releasing the hands. If resting in any other way, the athlete must come down to the floor before starting a new repetition.',
+            ],
+          },
+          {
+            title: 'Chest-to-Bar',
+            items: [
+              'Movement: The athlete, hanging from a horizontal bar, rises until the chest makes contact with the bar.',
+              'Start of the repetition: Vertical hang from the horizontal bar.',
+              'End of the repetition: The chest is in contact with the horizontal bar.',
+              'Requirements: During the movement, only the hands and the chest or the parts of the body above the chest may touch the bar.',
+              'Cycle and after the repetition: The athlete may return to the starting position in any controlled manner.',
+            ],
+          },
+          {
+            title: 'Pull-Up',
+            items: [
+              'Movement: The athlete, hanging from a horizontal bar, rises until the chin is above the bar.',
+              'Start of the repetition: Vertical hang from the horizontal bar.',
+              'End of the repetition: The lower plane of the chin passes the highest horizontal plane of the bar.',
+              'Requirements: During the movement, only the hands and the chest or the parts of the body above the chest may touch the bar.',
+              'Cycle and after the repetition: The athlete may return to the starting position in any controlled manner.',
+            ],
+          },
+          {
+            title: 'Echo Bike',
+            items: [
+              'The athlete may begin pedaling only after completing the 15-12-9 scheme of thrusters and gymnastics.',
+              'The event ends when the monitor reads 30 calories for male or 20 calories for female.',
+            ],
+          },
+          {
+            title: 'Barbell Row',
+            subtitle: 'Beginners',
+            items: [
+              'Start: The barbell is lifted from the floor. The athlete performs a hip hinge, leans the torso forward, keeps the back neutral and slightly bends the knees.',
+              'Bottom position: The arms must be fully extended before beginning each repetition.',
+              'Contact: At the top, the barbell must clearly touch the torso, at the height of the lower chest or the abdomen.',
+              'End: The barbell returns down until the arms are fully extended, maintaining the same back angle.',
+              'The repetitions are: 30-24-18. Halfway through each set, the athlete must stop and move the barbell before continuing.',
+            ],
+          },
+        ],
       },
     },
     footer: {
