@@ -696,6 +696,8 @@ src:'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/as
         </div>
       </section>
 
+      <EventDayPass />
+
       <section className="overflow-hidden bg-[#FDFAF5] border-[#000000]/5 border-b pt-12 pb-12 md:pt-24 md:pb-24" id="sponsors">
         <div className="max-w-7xl mx-auto px-6 fade-in-up mb-6 md:mb-16">
           <h2 className="text-center font-bebas text-4xl tracking-tight uppercase text-[#000000] mb-3">
@@ -806,5 +808,62 @@ src:'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/as
         </div>
       </section>
     </div>
+  );
+}
+
+// Dedicated namespace on the existing i18next instance; follows the EN/ES switch.
+import i18n from '../i18n/config';
+
+i18n.addResourceBundle('en', 'eventDayPass', {
+  eyebrow: 'Event Day Pass',
+  title: 'Experience Guayaera',
+  highlight: 'for the day.',
+  description: 'Coming to Guayaera in Paradise 4? Secure your Day Pass and enjoy the event experience at Hyatt Regency Grand Reserve Puerto Rico.',
+  cta: 'Get your Day Pass',
+  note: 'View availability and pass details on Hyatt Experiences.',
+  newTab: 'Opens in a new tab',
+  location: 'Río Grande, Puerto Rico'
+}, true, true);
+i18n.addResourceBundle('es', 'eventDayPass', {
+  eyebrow: 'Day Pass del evento',
+  title: 'Vive Guayaera',
+  highlight: 'por un día.',
+  description: '¿Vienes a Guayaera in Paradise 4? Reserva tu Day Pass y disfruta la experiencia del evento en Hyatt Regency Grand Reserve Puerto Rico.',
+  cta: 'Obtén tu Day Pass',
+  note: 'Consulta disponibilidad y detalles del pase en Hyatt Experiences.',
+  newTab: 'Abre en una pestaña nueva',
+  location: 'Río Grande, Puerto Rico'
+}, true, true);
+
+function EventDayPass() {
+  const { t } = useTranslation('eventDayPass');
+  return (
+    <section id="event-day-pass" aria-labelledby="event-day-pass-title" className="relative isolate overflow-hidden bg-[#000000] text-[#FDFAF5] py-16 md:py-24">
+      <div aria-hidden="true" className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-[#01C9CF] via-[#EB459A] to-[#EB7A4B]" />
+      <div aria-hidden="true" className="pointer-events-none absolute -right-32 -top-32 h-96 w-96 rounded-full bg-[#01C9CF]/10 blur-3xl" />
+      <div aria-hidden="true" className="pointer-events-none absolute -left-32 -bottom-40 h-96 w-96 rounded-full bg-[#EB459A]/10 blur-3xl" />
+      <div className="relative max-w-7xl mx-auto px-6 grid gap-10 lg:grid-cols-5 lg:gap-16 items-center">
+        <div className="lg:col-span-3 min-w-0">
+          <p className="font-bebas text-[#01C9CF] text-2xl tracking-widest uppercase mb-5">{t('eyebrow')}</p>
+          <h2 id="event-day-pass-title" className="font-anton text-4xl sm:text-5xl md:text-6xl uppercase tracking-tight leading-[1.1]">
+            {t('title')}<br /><span className="text-[#EB7A4B]">{t('highlight')}</span>
+          </h2>
+          <p className="mt-6 max-w-xl text-lg md:text-xl leading-relaxed text-[#FDFAF5]/75">{t('description')}</p>
+        </div>
+        <div className="lg:col-span-2 min-w-0 relative rounded-3xl border border-[#FDFAF5]/20 bg-[#FDFAF5]/5 p-6 sm:p-8 shadow-2xl">
+          <div className="flex items-center justify-between gap-4 mb-7">
+            <span className="font-bebas text-sm tracking-widest text-[#01C9CF] uppercase">Guayaera in Paradise 4</span>
+            <iconify-icon aria-hidden="true" icon="solar:ticket-bold-duotone" width="32" height="32" className="text-[#EB7A4B] shrink-0"></iconify-icon>
+          </div>
+          <p className="font-bebas text-3xl leading-tight tracking-wide">Hyatt Regency<br />Grand Reserve Puerto Rico</p>
+          <p className="mt-2 text-sm text-[#FDFAF5]/70">{t('location')}</p>
+          <div className="border-t border-dashed border-[#FDFAF5]/20 my-7" />
+          <a href="https://www.hyattexperiences.com/hyatt-regency/sjurc?eventId=01a0f3c4-4b73-7136-8b5d-732f23f55abe&icamp=property_page_menu_book_experiences" target="_blank" rel="noopener noreferrer" className="flex w-full items-center justify-center gap-3 rounded-xl bg-[#01C9CF] text-[#000000] px-5 py-4 text-center font-bebas text-2xl tracking-wide uppercase hover:bg-[#FDFAF5] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#01C9CF]">
+            <span>{t('cta')}</span><span aria-hidden="true">↗</span><span className="sr-only"> ({t('newTab')})</span>
+          </a>
+          <p className="mt-4 text-center text-sm leading-relaxed text-[#FDFAF5]/65">{t('note')}</p>
+        </div>
+      </div>
+    </section>
   );
 }
