@@ -118,3 +118,33 @@
         animation: none;
     }
 }
+/* Guayaera Weekend Itinerary */
+.itin-grid-pattern {
+    background-image:
+        linear-gradient(rgba(0,0,0,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,0.06) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+}
+@keyframes itin-panel-in {
+    0% { opacity: 0; transform: translateY(14px); filter: blur(4px); }
+    100% { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+@keyframes itin-row-in {
+    0% { opacity: 0; transform: translateX(-18px); }
+    100% { opacity: 1; transform: translateX(0); }
+}
+.itin-panel-in { animation: itin-panel-in 0.55s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.itin-row { animation: itin-row-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.itin-activity:hover {
+    transform: translateX(6px);
+    border-color: var(--itin-accent) !important;
+    box-shadow: 0 12px 30px -16px var(--itin-accent);
+    background-color: rgba(253, 250, 245, 0.07);
+}
+.itin-day-card:active { transform: scale(0.98); }
+@media (prefers-reduced-motion: reduce) {
+    .itin-panel-in, .itin-row { animation: none; }
+    .itin-activity:hover { transform: none; }
+}

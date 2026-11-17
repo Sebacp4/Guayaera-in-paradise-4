@@ -41,9 +41,9 @@ export default function Footer() {
             </h4>
             <ul className="space-y-4 text-xl text-[#FDFAF5]/70 font-medium">
               <li>
-                <a href={isHome ? '#divisions' : '/#divisions'} className="hover:text-[#01C9CF] transition-colors flex items-center gap-2">
+                <a href={isHome ? '#map' : '/#map'} className="hover:text-[#01C9CF] transition-colors flex items-center gap-2">
                   <iconify-icon icon="solar:alt-arrow-right-linear" width="20"></iconify-icon>
-                  {t('footer.divisions')}
+                  {t('weekend.nav')}
                 </a>
               </li>
               <li>

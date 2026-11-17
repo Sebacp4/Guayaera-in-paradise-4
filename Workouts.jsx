@@ -912,6 +912,10 @@ export default function Workouts() {
                 </span>
                 <iconify-icon icon="solar:arrow-down-linear" width="22" height="22" className="shrink-0"></iconify-icon>
               </a>
+              <a href="#event-04" onClick={(event) => scrollToSection(event, 'event-04')} className="group inline-flex items-center justify-between gap-4 min-h-[60px] rounded-xl border-2 border-[#01C9CF] bg-[#01C9CF]/10 px-6 py-3 font-bebas text-2xl tracking-wide uppercase text-[#FDFAF5] hover:bg-[#01C9CF] hover:text-[#000000] transition-colors duration-300 motion-reduce:transition-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#FDFAF5]">
+                <span className="flex items-center gap-3 min-w-0"><span className="font-anton text-3xl text-[#01C9CF] group-hover:text-[#000000] shrink-0">04</span><span className="whitespace-normal break-words leading-tight">PARADISE IN SYNC</span></span>
+                <iconify-icon icon="solar:arrow-down-linear" width="22" height="22" className="shrink-0"></iconify-icon>
+              </a>
             </div>
           </nav>
         </div>
@@ -1337,6 +1341,8 @@ export default function Workouts() {
         </div>
       </section>
 
+      <ParadiseInSync />
+
       {/* FINAL CTA */}
       <section className="relative overflow-hidden bg-[#01C9CF] py-20 md:py-24">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#FDFAF5]/20 rounded-full blur-[100px] -translate-y-1/3 translate-x-1/3 pointer-events-none"></div>
@@ -1365,5 +1371,163 @@ export default function Workouts() {
         </div>
       </section>
     </div>
+  );
+}
+
+// Official source: Paradise_in_Sync_Reglamento_Teams.pdf, pages 1–2.
+// Scoped to this workout; follows the site's existing i18next language selection.
+const paradiseCopy = {
+  es: {
+    badge: 'EVENTO DE TEAMS', modality: 'MODALIDAD', team: 'Teams · 4 atletas', format: 'Relay + sincronizado',
+    summary: 'M/M + F/F · Gimnasia y soga en relay, seguidas de 66 KB goblet squats y 44 box jumps sincronizados por los cuatro atletas.',
+    relay: 'GIMNASIA + SOGA', steps: [
+      'A la señal de 3, 2, 1... GO, una pareja M/M o F/F, según la estrategia del equipo, se moverá a la barra de gimnasia. La otra pareja esperará su turno.',
+      'Atleta 1: Completa 22 toes-to-bar (knee raises en Beginners). Al terminar, permanece en dead hang hold (suspensión en la barra) mientras el atleta 2 completa 4 rope climbs.',
+      'Cambio dentro de la pareja: El atleta 2 completa sus 22 repeticiones de gimnasia y permanece en dead hang mientras el atleta 1 realiza sus 4 rope climbs.',
+      'Segunda pareja: Al terminar la primera pareja, cambia con la pareja que espera, que repite el mismo proceso en modo relay. Una vez que los cuatro atletas completen su gimnasia y trabajo de soga, el equipo avanzará a los kettlebell goblet squats.'
+    ],
+    beginner: 'Beginners: El movimiento de gimnasia es knee raise y el trabajo de soga es 8 repeticiones desde el piso, según la tabla de la división.',
+    squat: 'Los cuatro integrantes completarán 66 kettlebell goblet squats sincronizados. Se observará la sincronización tanto en la bajada como en la subida, alcanzando juntos la profundidad requerida y la extensión final.',
+    box: 'El equipo completará 44 box jumps sincronizados. El despegue del salto deberá ser sincronizado y la repetición contará cuando todos estén al mismo tiempo en extensión completa sobre sus cajones. La bajada no necesita ser sincronizada. Todos deberán regresar al piso antes de iniciar la siguiente repetición.',
+    weights: 'PESOS Y MOVIMIENTOS POR DIVISIÓN', headers: ['DIVISIÓN', 'KB · F/M', 'GIMNASIA', 'SOGA', 'BOX · F/M'],
+    rows: [['Beginner', '24/35 lb', '22 knee raises', '8 desde el piso', '20/20 in'], ['Scale / Masters', '35/44 lb', '22 toes-to-bar', '12/15 ft', '20/24 in'], ['Intermedio', '44/53 lb', '22 toes-to-bar', '15 ft · todos', '24/24 in'], ['RX', '44/53 lb', '22 toes-to-bar', '12/15 ft · legless', '24/30 in']],
+    legend: 'F/M = femenino/masculino. Pesos en libras; altura de soga en pies; altura del cajón en pulgadas.',
+    standards: 'ESTÁNDARES DE MOVIMIENTO', source: 'REGLAMENTO OFICIAL · PÁGINA 2', reference: 'Referencia del estándar: iF3, Toes to Bar (7.01).',
+    groups: [
+      ['ROPE CLIMB', [
+        'Inicio: Cada repetición comienza con ambos pies en el suelo. Se permite saltar o alcanzar la soga para agarrarla.',
+        'Asistencia de piernas: Se permite usar piernas y pies para sujetar o bloquear la soga en los ascensos regulares. En RX, los ascensos son legless, sin asistencia de piernas.',
+        'Final: La repetición cuenta cuando una mano toca claramente la marca objetivo a la altura indicada para la división (12 o 15 pies), o el objeto fijo designado como objetivo.',
+        'Beginners: 8 repeticiones de soga desde el piso, según la tabla.'
+      ]],
+      ['TOES-TO-BAR', [
+        'Movimiento: El atleta, colgado de una barra horizontal, eleva ambos pies hasta tocar la barra con los dedos de los pies.',
+        'Inicio: Suspensión vertical con los codos y la cadera completamente extendidos y los pies sin tocar el suelo. Ambos talones deberán pasar detrás del plano vertical de la barra antes de cada repetición.',
+        'Final: Los dedos de ambos pies deberán tocar la barra simultáneamente, dentro del ancho de las manos.',
+        'Estilo: Se permite el movimiento estricto o con balanceo (kipping).',
+        'Ciclo: El atleta puede regresar a la posición inicial de cualquier manera controlada, cumpliendo nuevamente la extensión y el paso de los talones detrás de la barra.',
+        'No Rep: Contacto con un solo pie, contacto de los pies en momentos distintos, contacto fuera del ancho de las manos, o no cumplir la posición inicial.'
+      ]],
+      ['KNEE RAISE · BEGINNERS', [
+        'Inicio: Brazos y cadera completamente extendidos, pies sin tocar el suelo. Ambos talones deberán pasar detrás de la línea vertical de la barra.',
+        'Final: La parte superior de ambas rodillas deberá superar la altura de la cadera.',
+        'Estilo: Se permite cualquier agarre, movimiento estricto o con balanceo (kipping).'
+      ]],
+      ['KB GOBLET SQUAT', [
+        'Equipo: La kettlebell deberá sujetarse correctamente por el asa durante todo el movimiento, cerca del torso en posición goblet.',
+        'Postura: Pies separados al ancho de caderas u hombros, talones apoyados y puntas ligeramente hacia afuera.',
+        'Profundidad: El pliegue de la cadera debe pasar claramente por debajo de la parte superior de la rodilla.',
+        'Torso: Abdomen firme, espalda neutral y pecho erguido; codos libres de las rodillas o colocados por dentro de ellas.',
+        'Final: Extensión completa de cadera y rodillas en la posición de pie.',
+        'Sincronización: Los cuatro atletas deberán bajar juntos por debajo del paralelo y alcanzar juntos la extensión completa de cadera y rodillas en la parte superior.'
+      ]],
+      ['BOX JUMP', [
+        'Inicio: El atleta debe estar de frente al cajón, con ambos pies en el suelo antes de saltar.',
+        'Salto: Despegue con los dos pies. No se permite subir caminando, despegar con un solo pie ni realizar un rebote sin establecer la posición inicial.',
+        'Sobre el cajón: Aterrizar con ambos pies y alcanzar extensión completa de caderas y rodillas, con hombros sobre las caderas y control en la posición final.',
+        'Sincronización: El despegue deberá ser simultáneo. La repetición cuenta cuando los cuatro atletas estén al mismo tiempo en extensión completa sobre sus cajones.',
+        'Bajada: Se permite saltar o bajar caminando. La bajada no necesita ser sincronizada; la siguiente repetición comienza cuando todos estén de nuevo en el suelo.'
+      ]]
+    ]
+  },
+  en: {
+    badge: 'TEAM EVENT', modality: 'MODALITY', team: 'Teams · 4 athletes', format: 'Relay + synchronized',
+    summary: 'M/M + F/F · Gymnastics and rope work in relay, followed by 66 KB goblet squats and 44 box jumps synchronized by all four athletes.',
+    relay: 'GYMNASTICS + ROPE', steps: [
+      'At the signal of 3, 2, 1... GO, one M/M or F/F pair, according to the team’s strategy, moves to the gymnastics bar. The other pair waits for its turn.',
+      'Athlete 1: Completes 22 toes-to-bar (knee raises for Beginners). After finishing, remains in a dead hang hold on the bar while athlete 2 completes 4 rope climbs.',
+      'Switch within the pair: Athlete 2 completes their 22 gymnastics repetitions and remains in a dead hang while athlete 1 performs their 4 rope climbs.',
+      'Second pair: Once the first pair finishes, the waiting pair takes over and repeats the same relay process. After all four athletes have completed their gymnastics and rope work, the team advances to the kettlebell goblet squats.'
+    ],
+    beginner: 'Beginners: The gymnastics movement is the knee raise, and rope work is 8 repetitions from the floor, as specified in the division table.',
+    squat: 'All four team members complete 66 synchronized kettlebell goblet squats. Synchronization is required on both the descent and ascent, reaching the required depth and final extension together.',
+    box: 'The team completes 44 synchronized box jumps. Takeoff must be synchronized, and the repetition counts when all athletes are at full extension on their boxes at the same time. The descent does not need to be synchronized. Everyone must return to the floor before starting the next repetition.',
+    weights: 'WEIGHTS & MOVEMENTS BY DIVISION', headers: ['DIVISION', 'KB · F/M', 'GYMNASTICS', 'ROPE', 'BOX · F/M'],
+    rows: [['Beginner', '24/35 lb', '22 knee raises', '8 from the floor', '20/20 in'], ['Scale / Masters', '35/44 lb', '22 toes-to-bar', '12/15 ft', '20/24 in'], ['Intermediate', '44/53 lb', '22 toes-to-bar', '15 ft · all', '24/24 in'], ['RX', '44/53 lb', '22 toes-to-bar', '12/15 ft · legless', '24/30 in']],
+    legend: 'F/M = female/male. Weights in pounds; rope height in feet; box height in inches.',
+    standards: 'MOVEMENT STANDARDS', source: 'OFFICIAL RULES · PAGE 2', reference: 'Standard reference: iF3, Toes to Bar (7.01).',
+    groups: [
+      ['ROPE CLIMB', [
+        'Start: Each repetition begins with both feet on the floor. Jumping or reaching to grab the rope is allowed.',
+        'Leg assistance: Legs and feet may be used to grip or lock the rope on regular climbs. RX climbs are legless, with no leg assistance.',
+        'Finish: The repetition counts when one hand clearly touches the target mark at the height specified for the division (12 or 15 feet), or the fixed object designated as the target.',
+        'Beginners: 8 rope repetitions from the floor, as specified in the table.'
+      ]],
+      ['TOES-TO-BAR', [
+        'Movement: Hanging from a horizontal bar, the athlete raises both feet until the toes touch the bar.',
+        'Start: A vertical hang with elbows and hips fully extended and feet off the floor. Both heels must pass behind the vertical plane of the bar before each repetition.',
+        'Finish: The toes of both feet must touch the bar simultaneously, within the width of the hands.',
+        'Style: Strict or kipping movement is allowed.',
+        'Cycle: The athlete may return to the starting position in any controlled manner, again meeting the extension requirement and bringing the heels behind the bar.',
+        'No Rep: Contact with only one foot, feet touching at different times, contact outside the width of the hands, or failing to meet the starting position.'
+      ]],
+      ['KNEE RAISE · BEGINNERS', [
+        'Start: Arms and hips fully extended, feet off the floor. Both heels must pass behind the vertical line of the bar.',
+        'Finish: The top of both knees must rise above hip height.',
+        'Style: Any grip, strict movement or kipping is allowed.'
+      ]],
+      ['KB GOBLET SQUAT', [
+        'Equipment: The kettlebell must be held correctly by its handle throughout the movement, close to the torso in the goblet position.',
+        'Stance: Feet hip- or shoulder-width apart, heels planted and toes slightly turned out.',
+        'Depth: The hip crease must clearly pass below the top of the knee.',
+        'Torso: Core braced, back neutral and chest upright; elbows clear of the knees or positioned inside them.',
+        'Finish: Full hip and knee extension in the standing position.',
+        'Synchronization: All four athletes must descend below parallel together and reach full hip and knee extension together at the top.'
+      ]],
+      ['BOX JUMP', [
+        'Start: The athlete must face the box with both feet on the floor before jumping.',
+        'Jump: Take off with both feet. Step-ups, single-foot takeoffs and rebounding without establishing the starting position are not allowed.',
+        'On the box: Land with both feet and reach full hip and knee extension, shoulders over hips and control in the final position.',
+        'Synchronization: Takeoff must be simultaneous. The repetition counts when all four athletes are at full extension on their boxes at the same time.',
+        'Descent: Jumping or stepping down is allowed. The descent does not need to be synchronized; the next repetition begins when everyone is back on the floor.'
+      ]]
+    ]
+  }
+};
+
+function ParadiseInSync() {
+  const { t, i18n } = useTranslation();
+  const copy = paradiseCopy[(i18n.resolvedLanguage || i18n.language || 'en').startsWith('es') ? 'es' : 'en'];
+  return (
+    <section id="event-04" aria-labelledby="paradise-title" className="scroll-mt-24 relative overflow-hidden bg-[#000000] text-[#FDFAF5] py-20 md:py-28">
+      <div className="absolute top-0 right-0 w-80 h-80 bg-[#01C9CF]/10 rounded-full blur-[100px] pointer-events-none" aria-hidden="true" />
+      <div className="max-w-7xl mx-auto px-6 relative">
+        <div className="fade-in-up mb-10 md:mb-14">
+          <span className="font-bebas text-[#01C9CF] tracking-[0.25em] text-xl block mb-3">{copy.badge} · WORKOUT 04</span>
+          <h2 id="paradise-title" className="font-anton uppercase tracking-tighter leading-[0.95] text-5xl sm:text-6xl md:text-8xl mb-6">PARADISE<br /><span className="text-[#01C9CF]">IN SYNC</span></h2>
+          <p className="text-lg md:text-xl leading-relaxed text-[#FDFAF5]/80 max-w-3xl">{copy.summary}</p>
+        </div>
+        <div className="grid sm:grid-cols-3 gap-4 mb-10 fade-in-up">
+          <MetaChip icon="solar:users-group-rounded-bold" label={copy.modality} value={copy.team} dark accent="#01C9CF" />
+          <MetaChip icon="solar:stopwatch-bold" label={t('workouts.labels.timeCap')} value="15 MIN" dark accent="#EB459A" />
+          <MetaChip icon="solar:refresh-circle-bold" label={t('workouts.labels.format')} value={copy.format} dark accent="#EB7A4B" />
+        </div>
+        <div className="space-y-6 mb-12">
+          <article className="rounded-2xl border border-[#FDFAF5]/15 bg-[#FDFAF5]/5 p-6 md:p-8 fade-in-up">
+            <div className="flex flex-wrap justify-between gap-3 mb-6"><h3 className="font-bebas text-3xl md:text-4xl"><span className="text-[#01C9CF]">A · </span>{copy.relay}</h3><span className="font-bebas text-xl text-[#01C9CF]">RELAY</span></div>
+            <ol className="space-y-5 text-base md:text-lg leading-relaxed text-[#FDFAF5]/85">{copy.steps.map((step, index) => <li key={index} className="flex gap-4"><span className="font-anton text-[#01C9CF] shrink-0">0{index + 1}</span><span>{step}</span></li>)}</ol>
+            <p className="mt-6 border-l-4 border-[#EB459A] bg-[#EB459A]/10 p-4 text-base md:text-lg leading-relaxed">{copy.beginner}</p>
+          </article>
+          <div className="grid md:grid-cols-2 gap-6">
+            {[['B', 'KB GOBLET SQUAT', '66', copy.squat], ['C', 'BOX JUMP', '44', copy.box]].map(([letter, title, reps, description]) => <article key={letter} className="rounded-2xl border border-[#FDFAF5]/15 bg-[#FDFAF5]/5 p-6 md:p-8 fade-in-up"><span className="font-bebas text-[#EB7A4B] text-xl tracking-wider">{reps} REPS · SYNC</span><h3 className="font-bebas text-3xl md:text-4xl my-3"><span className="text-[#EB7A4B]">{letter} · </span>{title}</h3><p className="text-base md:text-lg leading-relaxed text-[#FDFAF5]/85">{description}</p></article>)}
+          </div>
+        </div>
+        <div className="rounded-2xl overflow-hidden border border-[#FDFAF5]/15 mb-12 fade-in-up">
+          <h3 id="paradise-weights" className="font-bebas text-2xl md:text-3xl p-6 bg-[#EB459A]">{copy.weights}</h3>
+          <div className="overflow-x-auto focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#01C9CF]" tabIndex={0} role="region" aria-labelledby="paradise-weights">
+            <table className="w-full min-w-[640px] text-left border-collapse">
+              <thead className="bg-[#FDFAF5]/10"><tr>{copy.headers.map(header => <th key={header} scope="col" className="px-5 py-4 font-bebas text-lg tracking-wide font-normal">{header}</th>)}</tr></thead>
+              <tbody>{copy.rows.map((row, index) => <tr key={row[0]} className={index % 2 ? 'bg-[#FDFAF5]/5 border-t border-[#FDFAF5]/10' : 'border-t border-[#FDFAF5]/10'}><th scope="row" className="px-5 py-5 font-bebas text-xl text-[#01C9CF] font-normal">{row[0]}</th>{row.slice(1).map((cell, col) => <td key={col} className="px-5 py-5 text-base whitespace-nowrap">{cell}</td>)}</tr>)}</tbody>
+            </table>
+          </div>
+          <p className="px-6 py-5 text-sm md:text-base leading-relaxed text-[#FDFAF5]/70 border-t border-[#FDFAF5]/15">{copy.legend}</p>
+        </div>
+        <div className="fade-in-up">
+          <span className="font-bebas tracking-wider text-[#01C9CF]">{copy.source}</span>
+          <h3 className="font-bebas text-3xl md:text-4xl mt-2 mb-6">{copy.standards}</h3>
+          <div className="space-y-3">{copy.groups.map(([title, items], index) => <details key={title} className="group rounded-xl border border-[#FDFAF5]/15 bg-[#FDFAF5]/5"><summary className="cursor-pointer min-h-[64px] px-5 py-5 font-bebas text-xl md:text-2xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#01C9CF]"><span className="text-[#01C9CF] mr-3">0{index + 1}</span>{title}</summary><div className="px-6 pb-6"><ul className="list-disc pl-5 space-y-3 text-base md:text-lg leading-relaxed text-[#FDFAF5]/85">{items.map(item => <li key={item}>{item}</li>)}</ul>{index === 1 && <p className="mt-5 text-sm text-[#FDFAF5]/60">{copy.reference}</p>}</div></details>)}</div>
+        </div>
+      </div>
+    </section>
   );
 }
