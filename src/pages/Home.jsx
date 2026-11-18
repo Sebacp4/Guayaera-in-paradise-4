@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
+import { createPortal } from 'react-dom';
+import WeekendItinerary from '../components/WeekendItinerary';
 
 export default function Home() {
   const { t } = useTranslation();
@@ -12,8 +14,8 @@ export default function Home() {
     d: '00', h: '00', m: '00', s: '00'
   });
 
-  const divisionsRef = useRef(null);
-  const [activeDivision, setActiveDivision] = useState(0);
+  const [mapOpen, setMapOpen] = useState(false);
+  const mapCloseRef = useRef(null);
 
   const carouselImages = [
     'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/3bb92b79-9adc-4d0e-9ab7-c099358e4cbc_1600w.jpg',
@@ -53,25 +55,11 @@ src:'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/as
 },
   ];
 
-  const divisionMeta = [
-    { key: 'rx', color: '#EB459A', stagger: 'stagger-1' },
-    { key: 'intermediate', color: '#EB7A4B', stagger: 'stagger-2', isSoldOut: true },
-    { key: 'beginners', color: '#01C9CF', stagger: 'stagger-3', isSoldOut: true },
-    { key: 'scale', color: '#FDFAF5', stagger: 'stagger-1', btnHoverText: 'text-[#000000]', isSoldOut: true },
-    { key: 'masters3944', color: '#EB459A', stagger: 'stagger-2' },
-    { key: 'masters45plus', color: '#EB7A4B', stagger: 'stagger-3' }
-  ];
-
   const asArray = (value) => (Array.isArray(value) ? value : []);
 
-  const divisionsList = divisionMeta.map((div) => ({
-    ...div,
-    title: t(`home.divisions.cards.${div.key}.title`),
-    desc: t(`home.divisions.cards.${div.key}.description`),
-    features: asArray(
-      t(`home.divisions.cards.${div.key}.features`, { returnObjects: true })
-    ),
-  }));
+  const eventMapHighlights = asArray(
+    t('home.eventMap.highlights', { returnObjects: true })
+  );
 
   const aboutExperienceItems = asArray(
     t('home.about.experienceItems', { returnObjects: true })
@@ -81,21 +69,6 @@ src:'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/as
   );
   const aboutSchedule = asArray(
     t('home.about.schedule.items', { returnObjects: true })
-  );
-  const registerIndividualDivisions = asArray(
-    t('home.register.individual.divisions', { returnObjects: true })
-  );
-  const registerIndividualPackageItems = asArray(
-    t('home.register.individual.packageItems', { returnObjects: true })
-  );
-  const registerIndividualNotes = asArray(
-    t('home.register.individual.notes', { returnObjects: true })
-  );
-  const registerTeamDivisions = asArray(
-    t('home.register.team.divisions', { returnObjects: true })
-  );
-  const registerTeamFormatItems = asArray(
-    t('home.register.team.formatItems', { returnObjects: true })
   );
 
   // Scroll and Intersection Observer effect
@@ -158,26 +131,21 @@ src:'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/as
     return () => clearInterval(timer);
   }, [carouselImages.length]);
 
-  // Mobile divisions carousel handler
-  const handleDivisionScroll = () => {
-    if (!divisionsRef.current) return;
-    const container = divisionsRef.current;
-    const scrollLeft = container.scrollLeft;
-    const clientWidth = container.clientWidth;
-    let minDistance = Infinity;
-    let activeIndex = 0;
-
-    Array.from(container.children).forEach((child, index) => {
-      const childCenter = child.offsetLeft + child.offsetWidth / 2;
-      const containerCenter = scrollLeft + clientWidth / 2;
-      const distance = Math.abs(childCenter - containerCenter);
-      if (distance < minDistance) {
-        minDistance = distance;
-        activeIndex = index;
-      }
-    });
-    setActiveDivision(activeIndex);
-  };
+  // Event map lightbox: close on Escape and lock page scroll while open
+  useEffect(() => {
+    if (!mapOpen) return undefined;
+    const onKey = (e) => {
+      if (e.key === 'Escape') setMapOpen(false);
+    };
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    window.addEventListener('keydown', onKey);
+    if (mapCloseRef.current) mapCloseRef.current.focus();
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      window.removeEventListener('keydown', onKey);
+    };
+  }, [mapOpen]);
 
   return (
     <div className="flex flex-col w-full animate-page-enter">
@@ -410,106 +378,117 @@ src:'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/as
         </div>
       </section>
 
-      <section id="divisions" className="py-24 md:py-32 bg-[#000000] text-[#FDFAF5] overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16 md:mb-20 fade-in-up">
-            <h2 className="font-bebas text-[#EB7A4B] text-3xl tracking-tight uppercase mb-2">
-              {t('home.divisions.eyebrow')}
-            </h2>
-            <h3 className="font-anton text-6xl md:text-8xl tracking-tighter uppercase leading-[0.9]">
-              {t('home.divisions.titlePrefix')} <span className="text-[#01C9CF]">{t('home.divisions.titleHighlight')}</span>
-            </h3>
-          </div>
+      <section id="event-map" aria-labelledby="event-map-title" className="py-24 md:py-32 bg-[#000000] text-[#FDFAF5] overflow-hidden relative">
+        <div className="absolute -top-32 -left-32 w-96 h-96 bg-[#01C9CF]/15 rounded-full blur-[120px] pointer-events-none"></div>
+        <div className="absolute -bottom-32 -right-32 w-96 h-96 bg-[#EB459A]/15 rounded-full blur-[120px] pointer-events-none"></div>
 
-          <div
-            ref={divisionsRef}
-            onScroll={handleDivisionScroll}
-            className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 overflow-x-auto md:overflow-visible snap-x snap-mandatory md:snap-none pb-4 md:pb-0 scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden -mx-6 px-6 md:mx-0 md:px-0"
-          >
-            {divisionsList.map((div, i) => (
-              <div key={i} className={`group bg-[#FDFAF5]/5 border border-[#FDFAF5]/10 p-6 md:p-8 flex flex-col dark-card-hover relative overflow-hidden rounded-2xl ${div.stagger} fade-in-up h-full shrink-0 w-[85vw] md:w-auto snap-center md:snap-align-none`}>
-                <div className="absolute top-0 left-0 w-full h-1 transition-all duration-300 group-hover:h-2" style={{ backgroundColor: div.color }}></div>
-                <div className="absolute -bottom-24 -right-24 w-48 h-48 rounded-full blur-3xl transition-all duration-500 pointer-events-none" style={{ backgroundColor: `${div.color}1A` }}></div>
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
+          <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+            <div className="lg:col-span-5 fade-in-up text-center lg:text-left">
+              <h2 className="font-bebas text-[#EB7A4B] text-3xl tracking-tight uppercase mb-2">
+                {t('home.eventMap.eyebrow')}
+              </h2>
+              <h3 id="event-map-title" className="font-anton text-6xl md:text-8xl tracking-tighter uppercase leading-[0.9] mb-6">
+                {t('home.eventMap.titlePrefix')} <span className="text-[#01C9CF]">{t('home.eventMap.titleHighlight')}</span>
+              </h3>
+              <p className="text-lg md:text-xl text-[#FDFAF5]/70 leading-relaxed mb-8 max-w-xl mx-auto lg:mx-0">
+                {t('home.eventMap.description')}
+              </p>
 
-                <h4 className="font-bebas text-4xl md:text-5xl lg:text-5xl tracking-tight uppercase mb-3 md:mb-4 group-hover:scale-105 transition-transform origin-left" style={{ color: div.color }}>
-                  {div.title}
-                </h4>
+              <ul className="grid grid-cols-2 gap-3 mb-10 max-w-xl mx-auto lg:mx-0 text-left">
+                {eventMapHighlights.map((item, i) => (
+                  <li key={i} className="flex items-center gap-3 bg-[#FDFAF5]/5 border border-[#FDFAF5]/10 rounded-xl px-4 py-3 text-sm md:text-base font-medium text-[#FDFAF5]/90">
+                    <iconify-icon icon="solar:map-point-bold" width="22" height="22" style={{ color: ['#01C9CF', '#EB459A', '#EB7A4B', '#FDFAF5'][i % 4] }} className="shrink-0"></iconify-icon>
+                    {item}
+                  </li>
+                ))}
+              </ul>
 
-                <div className="flex flex-col mb-4 md:mb-6 bg-[#000000]/40 p-4 md:p-5 rounded-xl border" style={{ borderColor: `${div.color}33` }}>
-                  {div.isSoldOut && (
-                    <span className="text-xs md:text-sm font-bebas tracking-widest uppercase mb-1 md:mb-2 text-[#EB459A] bg-[#EB459A]/10 px-2 py-0.5 rounded inline-block w-max">
-                      SOLD OUT
+              <button
+                type="button"
+                onClick={() => setMapOpen(true)}
+                className="inline-flex items-center justify-center gap-3 font-bebas text-2xl tracking-wide uppercase bg-[#01C9CF] text-[#000000] rounded-lg px-8 py-4 transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_0_30px_rgba(1,201,207,0.5)] focus:outline-none focus-visible:ring-4 focus-visible:ring-[#01C9CF]/50 w-full sm:w-auto"
+              >
+                <iconify-icon icon="solar:maximize-square-bold" width="26" height="26"></iconify-icon>
+                {t('home.eventMap.openMap')}
+              </button>
+            </div>
+
+            <div className="lg:col-span-7 fade-in-up stagger-2">
+              <button
+                type="button"
+                onClick={() => setMapOpen(true)}
+                aria-label={t('home.eventMap.openMap')}
+                className="group relative block w-full rounded-3xl overflow-hidden border border-[#FDFAF5]/15 bg-[#FDFAF5]/5 p-2 md:p-3 shadow-[0_30px_80px_rgba(1,201,207,0.15)] cursor-zoom-in focus:outline-none focus-visible:ring-4 focus-visible:ring-[#01C9CF]/50"
+              >
+                <div className="relative rounded-2xl overflow-hidden aspect-[3/4] max-h-[720px] mx-auto bg-[#111]">
+                  <img
+                    src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/8c1a5243-7654-4b80-9e11-ae37e85657f9_1600w.png"
+                    srcSet="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/8c1a5243-7654-4b80-9e11-ae37e85657f9_800w.png 800w, https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/8c1a5243-7654-4b80-9e11-ae37e85657f9_1600w.png 1600w"
+                    sizes="(min-width: 1024px) 55vw, 100vw"
+                    alt={t('home.eventMap.imageAlt')}
+                    loading="lazy"
+                    className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#000000]/80 via-transparent to-transparent"></div>
+                  <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between gap-3">
+                    <span className="font-bebas text-lg md:text-xl tracking-widest uppercase text-[#FDFAF5]">
+                      {t('home.eventMap.hint')}
                     </span>
-                  )}
-                  <div className="flex items-end gap-2 md:gap-3">
-                    <span className="font-anton text-4xl md:text-5xl text-[#FDFAF5] leading-none">$225</span>
-                    <span className="text-xs md:text-sm text-[#FDFAF5]/60 pb-0.5 md:pb-1 ml-auto font-bebas tracking-widest uppercase">{t('home.common.currency')}</span>
+                    <span className="flex items-center justify-center w-12 h-12 rounded-full bg-[#FDFAF5] text-[#000000] transition-transform duration-300 group-hover:scale-110 shrink-0">
+                      <iconify-icon icon="solar:magnifer-zoom-in-bold" width="24" height="24"></iconify-icon>
+                    </span>
                   </div>
                 </div>
-
-                <p className="text-base md:text-lg text-[#FDFAF5]/60 mb-4 md:mb-6 leading-snug">{div.desc}</p>
-
-                <ul className="space-y-3 md:space-y-4 text-sm md:text-base text-[#FDFAF5]/80 font-medium relative z-10 mb-6 md:mb-8 flex-grow">
-                  {div.features.map((feat, j) => (
-                    <li key={j} className="flex items-center gap-3 md:gap-4">
-                      <iconify-icon icon="solar:check-circle-bold" width="24" height="24" style={{ color: div.color }} className="shrink-0 w-5 h-5 md:w-6 md:h-6"></iconify-icon>
-                      {feat}
-                    </li>
-                  ))}
-                </ul>
-
-                <button
-                  disabled={div.isSoldOut}
-                  className={`z-10 uppercase transition-all duration-300 ${div.isSoldOut ? 'opacity-50 cursor-not-allowed' : (div.btnHoverText || 'hover:text-[#FDFAF5]') + ' hover:scale-[1.02] cursor-pointer'} text-lg md:text-xl tracking-wide font-bebas w-full border rounded-lg mt-auto pt-3 md:pt-3.5 pr-4 md:pr-6 pb-3 md:pb-3.5 pl-4 md:pl-6 relative`}
-                  style={{
-                    backgroundColor: `${div.color}1A`,
-                    color: div.color,
-                    borderColor: `${div.color}4D`,
-                  }}
-                  onMouseEnter={(e) => {
-                    if (div.isSoldOut) return;
-                    e.currentTarget.style.backgroundColor = div.color;
-                    e.currentTarget.style.color = div.key === 'scale' || div.key === 'beginners' ? '#000000' : '#FDFAF5';
-                    e.currentTarget.style.boxShadow = `0 0 20px ${div.color}66`;
-                  }}
-                  onMouseLeave={(e) => {
-                    if (div.isSoldOut) return;
-                    e.currentTarget.style.backgroundColor = `${div.color}1A`;
-                    e.currentTarget.style.color = div.color;
-                    e.currentTarget.style.boxShadow = 'none';
-                  }}
-                  onClick={() => {
-                    if (!div.isSoldOut) {
-                      window.location.href='https://circle21.events/guayaera-in-paradise?tab=divisions';
-                    }
-                  }}
-                >
-                  {div.isSoldOut ? 'SOLD OUT' : t('home.divisions.moreInfo')}
-                </button>
-              </div>
-            ))}
-          </div>
-
-          <div className="flex md:hidden justify-center items-center gap-2 mt-4">
-            {divisionsList.map((_, idx) => (
-              <button
-                key={idx}
-                className={`h-1.5 rounded-full transition-all duration-300 ${activeDivision === idx ? 'w-6 bg-[#01C9CF] shadow-[0_0_8px_rgba(1,201,207,0.5)]' : 'w-1.5 bg-[#FDFAF5]/20'}`}
-                onClick={() => {
-                  if (divisionsRef.current) {
-                    const container = divisionsRef.current;
-                    const child = container.children[idx];
-                    if (child) {
-                      const scrollPosition = child.offsetLeft - container.offsetLeft - (container.clientWidth / 2) + (child.offsetWidth / 2);
-                      container.scrollTo({ left: scrollPosition, behavior: 'smooth' });
-                    }
-                  }
-                }}
-                aria-label={t('home.divisions.dotLabel', { number: idx + 1 })}
-              />
-            ))}
+              </button>
+            </div>
           </div>
         </div>
+
+        {mapOpen && createPortal(
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-label={t('home.eventMap.imageAlt')}
+            className="fixed inset-0 z-[100] bg-[#000000]/95 backdrop-blur-sm flex flex-col"
+            onClick={() => setMapOpen(false)}
+          >
+            <div className="flex items-center justify-between gap-3 px-4 md:px-8 py-4 border-b border-[#FDFAF5]/10" onClick={(e) => e.stopPropagation()}>
+              <span className="font-anton text-2xl md:text-3xl uppercase tracking-tight text-[#FDFAF5]">
+                {t('home.eventMap.titlePrefix')} <span className="text-[#01C9CF]">{t('home.eventMap.titleHighlight')}</span>
+              </span>
+              <div className="flex items-center gap-2 md:gap-3">
+                <a
+                  href="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/8c1a5243-7654-4b80-9e11-ae37e85657f9_3840w.png"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hidden sm:inline-flex items-center gap-2 font-bebas text-lg tracking-wide uppercase text-[#FDFAF5] border border-[#FDFAF5]/30 rounded-lg px-4 py-2 hover:bg-[#FDFAF5] hover:text-[#000000] transition-colors"
+                >
+                  <iconify-icon icon="solar:square-arrow-right-up-bold" width="20" height="20"></iconify-icon>
+                  {t('home.eventMap.openInNewTab')}
+                </a>
+                <button
+                  ref={mapCloseRef}
+                  type="button"
+                  onClick={() => setMapOpen(false)}
+                  aria-label={t('home.eventMap.closeMap')}
+                  className="flex items-center justify-center w-11 h-11 rounded-full bg-[#FDFAF5] text-[#000000] hover:bg-[#EB459A] hover:text-[#FDFAF5] transition-colors focus:outline-none focus-visible:ring-4 focus-visible:ring-[#01C9CF]/60"
+                >
+                  <iconify-icon icon="solar:close-circle-bold" width="26" height="26"></iconify-icon>
+                </button>
+              </div>
+            </div>
+            <div className="flex-1 overflow-auto p-4 md:p-8 flex items-start justify-center">
+              <img
+                src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/8c1a5243-7654-4b80-9e11-ae37e85657f9_3840w.png"
+                alt={t('home.eventMap.imageAlt')}
+                onClick={(e) => e.stopPropagation()}
+                className="w-full max-w-5xl h-auto rounded-xl shadow-2xl"
+              />
+            </div>
+          </div>,
+          document.body
+        )}
       </section>
 
       <section id="workouts" className="py-24 md:py-32 bg-[#FDFAF5] relative overflow-hidden">
@@ -546,155 +525,7 @@ src:'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/as
         </div>
       </section>
 
-      <section id="register" className="md:py-32 overflow-hidden bg-[#01C9CF] pt-24 pb-24 relative">
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#FDFAF5]/20 rounded-full blur-[100px] -translate-y-1/3 translate-x-1/3 pointer-events-none"></div>
-        <div className="absolute bottom-0 left-0 w-[800px] h-[800px] bg-[#EB459A]/30 rounded-full blur-[100px] translate-y-1/3 -translate-x-1/3 pointer-events-none"></div>
-
-        <div className="relative z-10 max-w-7xl mx-auto px-6">
-          <div className="text-center mb-20 fade-in-up">
-            <h2 className="font-bebas text-[#000000] text-4xl tracking-tight uppercase mb-2">
-              {t('home.register.eyebrow')}
-            </h2>
-            <h3 className="font-anton text-6xl md:text-8xl tracking-tighter uppercase leading-[0.9] text-[#FDFAF5] drop-shadow-md">
-              {t('home.register.title')}
-            </h3>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 max-w-5xl mx-auto">
-            <div className="bg-[#FDFAF5] p-8 md:p-12 shadow-2xl flex flex-col rounded-3xl card-hover relative overflow-hidden stagger-1 fade-in-up group hover:shadow-[0_0_40px_rgba(253,250,245,0.4)] transition-all duration-500 border border-[#000000]/5">
-              <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-bl from-[#000000]/5 to-transparent rounded-bl-full group-hover:scale-110 transition-transform duration-500"></div>
-              <div className="mb-6 relative z-10">
-                <div className="flex flex-col gap-2 mb-2">
-                  <h4 className="font-bebas text-5xl tracking-tight uppercase text-[#000000]">
-                    {t('home.register.individual.title')}
-                  </h4>
-                </div>
-                <p className="text-lg text-[#000000]/60 font-medium">
-                  {t('home.register.individual.subtitle')}
-                </p>
-                <div className="flex flex-wrap gap-x-3 gap-y-1 mt-3 font-bebas text-sm text-[#000000]/50 tracking-wider uppercase">
-                  {registerIndividualDivisions.map((label, index) => {
-                    const isSoldOut = index === 1 || index === 2 || index === 3;
-                    return (
-                      <span key={`${label}-${index}`}>
-                        {index > 0 ? `• ` : ''}
-                        <span className={isSoldOut ? 'line-through opacity-60' : ''}>{label}</span>
-                        {isSoldOut && <span className="ml-1 text-[#EB459A] text-xs">SOLD OUT</span>}
-                      </span>
-                    );
-                  })}
-                </div>
-              </div>
-
-              <div className="mb-8 flex flex-col gap-1 relative z-10 border-t border-b border-[#000000]/5 py-6 bg-[#000000]/[0.02] -mx-8 md:-mx-12 px-8 md:px-12">
-                <div className="flex items-end gap-3">
-                  <span className="font-anton text-7xl tracking-tighter text-[#000000] leading-none">$225</span>
-                  <span className="text-xl text-[#000000]/60 pb-1 font-bebas uppercase tracking-widest">{t('home.common.currency')}</span>
-                </div>
-              </div>
-
-              <div className="mb-10 flex-grow relative z-10 flex flex-col">
-                <h5 className="font-bebas text-2xl tracking-wide uppercase text-[#EB459A] mb-4 flex items-center gap-2">
-                  <iconify-icon icon="solar:bag-heart-bold-duotone" width="24" height="24"></iconify-icon>
-                  {t('home.register.individual.packageTitle')}
-                </h5>
-                <ul className="space-y-3 text-lg font-medium text-[#000000]/80 mb-6">
-                  {registerIndividualPackageItems.map((item, index) => (
-                    <li key={`${item}-${index}`} className="flex items-start gap-3">
-                      <iconify-icon icon="solar:check-circle-bold" width="24" height="24" className="text-[#EB459A] mt-0.5 shrink-0 drop-shadow-sm"></iconify-icon>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-                <div className="mt-auto flex flex-col gap-2 text-sm leading-snug font-medium text-[#000000]/50 border-t border-[#000000]/10 pt-4">
-                  {registerIndividualNotes.map((note, index) => (
-                    <p key={`${note}-${index}`} className="flex items-start gap-2 italic">
-                      <span className="text-[#EB459A] mt-0.5 font-bold">*</span>
-                      <span>{note}</span>
-                    </p>
-                  ))}
-                </div>
-              </div>
-
-              <button className="uppercase hover:bg-[#EB459A] hover:scale-[1.02] transition-all duration-300 hover:shadow-[#EB459A]/40 z-10 text-3xl text-[#FDFAF5] tracking-wide font-bebas bg-[#000000] w-full rounded-xl pt-5 pb-5 relative shadow-xl cursor-pointer" onClick={() => window.location.href='https://circle21.events/guayaera-in-paradise?tab=info'}>
-                {t('home.register.individual.cta')}
-              </button>
-            </div>
-
-            <div className="bg-[#000000] p-8 md:p-12 shadow-2xl flex flex-col text-[#FDFAF5] rounded-3xl card-hover relative overflow-hidden border-2 border-[#EB7A4B]/30 stagger-2 fade-in-up group hover:shadow-[0_0_40px_rgba(235,122,75,0.4)] transition-all duration-500 hover:border-[#EB7A4B]">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-[#EB7A4B]/20 rounded-bl-full blur-3xl group-hover:bg-[#EB7A4B]/30 transition-colors duration-500 pointer-events-none"></div>
-              <div className="absolute top-6 right-6 bg-[#EB7A4B] text-[#FDFAF5] font-bebas text-lg px-5 py-2 uppercase tracking-wider rounded-full shadow-[0_0_15px_rgba(235,122,75,0.5)] z-20">
-                {t('home.register.team.popularBadge')}
-              </div>
-
-              <div className="mb-6 mt-12 md:mt-0 relative z-10">
-                <h4 className="uppercase text-5xl text-[#FDFAF5] tracking-tight font-bebas mb-2 drop-shadow-md">
-                  {t('home.register.team.title')}
-                </h4>
-                <p className="text-lg font-medium text-[#FDFAF5]/60">
-                  {t('home.register.team.subtitle')}
-                </p>
-                <div className="flex flex-wrap gap-x-3 gap-y-1 mt-3 font-bebas text-sm text-[#FDFAF5]/50 tracking-wider uppercase">
-                  {registerTeamDivisions.map((label, index) => {
-                    const isSoldOut = index === 1 || index === 2;
-                    return (
-                      <span key={`${label}-${index}`}>
-                        {index > 0 ? `• ` : ''}
-                        <span className={isSoldOut ? 'line-through opacity-60' : ''}>{label}</span>
-                        {isSoldOut && <span className="ml-1 text-[#EB7A4B] text-xs">SOLD OUT</span>}
-                      </span>
-                    );
-                  })}
-                </div>
-              </div>
-
-              <div className="mb-8 flex flex-col items-center text-center relative z-10 border-t border-b border-[#EB7A4B]/20 py-10 -mx-8 md:-mx-12 px-8 md:px-12 bg-gradient-to-b from-[#FDFAF5]/[0.02] to-[#EB7A4B]/10 shadow-[inset_0_0_30px_rgba(235,122,75,0.1)]">
-                <span className="text-[#FDFAF5] font-bebas text-2xl tracking-wider uppercase mb-2">
-                  {t('home.register.team.paymentLabel')}
-                </span>
-                <div className="flex items-end justify-center gap-3">
-                  <span className="font-anton text-7xl tracking-tighter leading-none text-[#EB7A4B] drop-shadow-[0_0_20px_rgba(235,122,75,0.4)]">$600</span>
-                  <span className="text-xl text-[#FDFAF5]/60 pb-1.5 font-bebas uppercase tracking-widest">{t('home.common.currency')}</span>
-                </div>
-              </div>
-
-              <div className="mb-10 flex-grow relative z-10 flex flex-col">
-                <h5 className="font-bebas text-2xl tracking-wide uppercase text-[#EB7A4B] mb-4 flex items-center gap-2">
-                  <iconify-icon icon="solar:users-group-two-rounded-bold-duotone" width="24" height="24"></iconify-icon>
-                  {t('home.register.team.formatTitle')}
-                </h5>
-                <ul className="space-y-3 text-lg font-medium text-[#FDFAF5]/70">
-                  {registerTeamFormatItems.map((item, index) => (
-                    <li key={`${item}-${index}`} className="flex items-start gap-3">
-                      <iconify-icon icon="solar:check-circle-bold" width="20" height="20" className="text-[#EB7A4B] mt-1 shrink-0 opacity-80"></iconify-icon>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <button className="uppercase hover:bg-[#FDFAF5] hover:text-[#000000] hover:scale-[1.02] transition-all duration-300 hover:shadow-[0_0_30px_rgba(253,250,245,0.5)] z-10 text-3xl text-[#FDFAF5] tracking-wide font-bebas bg-[#EB7A4B] w-full rounded-xl pt-5 pb-5 relative shadow-[0_10px_20px_rgba(235,122,75,0.3)] cursor-pointer" onClick={() => window.location.href='https://circle21.events/guayaera-in-paradise?tab=info'}>
-                {t('home.register.team.cta')}
-              </button>
-            </div>
-          </div>
-
-          <div className="mt-16 md:mt-24 text-center relative z-20 fade-in-up stagger-3 flex flex-col items-center">
-            <h4 className="font-bebas text-[#000000] text-3xl tracking-tight uppercase mb-6 drop-shadow-sm">
-              {t('home.register.raffleEyebrow')}
-            </h4>
-            <Link
-              to="/raffle"
-              className="group relative overflow-hidden bg-[#EB459A] text-[#FDFAF5] font-bebas text-2xl md:text-3xl tracking-wide uppercase px-12 py-5 rounded-xl hover:scale-105 transition-all duration-300 shadow-[0_10px_30px_rgba(235,69,154,0.3)] hover:shadow-[0_0_40px_rgba(235,69,154,0.6)] flex items-center justify-center gap-3 w-full sm:w-auto border border-[#000000]/5"
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-[#01C9CF] to-[#EB7A4B] opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0"></div>
-              <iconify-icon icon="solar:ticket-bold-duotone" width="28" height="28" className="relative z-10"></iconify-icon>
-              <span className="relative z-10">{t('home.register.raffleCta')}</span>
-            </Link>
-          </div>
-
-        </div>
-      </section>
+      <WeekendItinerary />
 
       <EventDayPass />
 

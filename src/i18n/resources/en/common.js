@@ -1,4 +1,222 @@
 const enCommon = {
+  weekend: {
+  "nav": "Map",
+  "view": "View itinerary",
+  "mapLabel": "Event map",
+  "mapTitle": "Explore Guayaera",
+  "mapBody": "Discover the full Guayaera in Paradise experience at Hyatt Regency Grand Reserve Puerto Rico. Find event stages, vendors, food & beverage locations, activities, and more.",
+  "open": "View event map",
+  "close": "Close map",
+  "label": "Official weekend itinerary",
+  "date": "December 3–6, 2026",
+  "days": [
+    {
+      "title": "Thursday 3",
+      "events": [
+        [
+          "8:00 AM – 6:00 PM",
+          "Event Setup",
+          "Everywhere"
+        ],
+        [
+          "7:00 PM – 9:00 PM",
+          "Neon Season by Harpelini",
+          "Local G"
+        ],
+        [
+          "8:00 PM – 11:00 PM",
+          "Guayaera Happy Hour",
+          "Local 4"
+        ]
+      ]
+    },
+    {
+      "title": "Friday 4",
+      "events": [
+        [
+          "9:00 AM – 10:00 AM",
+          "Purpose Beach WOD",
+          "Local C"
+        ],
+        [
+          "10:00 AM – 6:00 PM",
+          "Athlete Check-in",
+          "Local D"
+        ],
+        [
+          "12:00 PM – 1:00 PM",
+          "B-One Seminar: Cuando tu cuerpo llama",
+          "Local I"
+        ],
+        [
+          "1:00 PM – 1:45 PM",
+          "LogiqFit Seminar",
+          "Local I"
+        ],
+        [
+          "2:00 PM – 2:45 PM",
+          "Zummer Seminar",
+          "Local I"
+        ],
+        [
+          "3:00 PM – 3:45 PM",
+          "Entrenar, adaptar y Empoderar by Yaliz",
+          "Local I"
+        ],
+        [
+          "3:00 PM – 10:00 PM",
+          "Vendors Village Opens",
+          "Local B"
+        ],
+        [
+          "3:00 PM – 6:00 PM",
+          "Floater Opens",
+          "Local B"
+        ],
+        [
+          "3:00 PM – 6:00 PM",
+          "Corona Cervezero Row",
+          "Local A"
+        ],
+        [
+          "6:30 PM – 7:15 PM",
+          "3K Fun Race",
+          "Local H"
+        ],
+        [
+          "7:15 PM – 11:00 PM",
+          "Welcome Guayaera Party",
+          "Local A"
+        ]
+      ]
+    },
+    {
+      "title": "Saturday 5",
+      "events": [
+        [
+          "6:30 AM – 5:30 PM",
+          "Guayaera Individual CrossFit Event",
+          "Local A, C & D"
+        ],
+        [
+          "7:00 AM – 7:00 PM",
+          "Vendors Village Opens",
+          "Local B"
+        ],
+        [
+          "8:30 AM – 9:15 AM",
+          "Move in Yoga by Resilient",
+          "Local I"
+        ],
+        [
+          "9:00 AM – 1:00 PM",
+          "Floater Opens",
+          "Local B"
+        ],
+        [
+          "9:45 AM – 10:30 AM",
+          "Move in PILATES by Resilient",
+          "Local I"
+        ],
+        [
+          "11:00 AM – 11:45 AM",
+          "Move in Resilient Boot Camp",
+          "Local I"
+        ],
+        [
+          "1:00 PM – 1:45 PM",
+          "The Goat Gymnastics Workshop",
+          "Local I"
+        ],
+        [
+          "2:00 PM – 2:45 PM",
+          "LogiqFit by Karla Hoffer",
+          "Local I"
+        ],
+        [
+          "1:00 PM – 4:00 PM",
+          "Corona Cervezero Row",
+          "Local K"
+        ],
+        [
+          "5:30 PM – 6:00 PM",
+          "Individual Event Closing – Podcast Merienda Digital",
+          "Local A"
+        ],
+        [
+          "7:00 PM – 9:00 PM",
+          "CrossFit Affiliates Happy Hour",
+          "Local L"
+        ],
+        [
+          "7:45 PM – 10:00 PM",
+          "Illusion and Comedy Show",
+          "Local I"
+        ],
+        [
+          "9:00 PM",
+          "Guayaera Verbena & Plena",
+          "Local K"
+        ]
+      ]
+    },
+    {
+      "title": "Sunday 6",
+      "events": [
+        [
+          "6:30 AM – 10:00 AM",
+          "Xtreme Warrior Race",
+          "Local C"
+        ],
+        [
+          "7:00 AM – 9:00 AM",
+          "Only Girls Fit Camp",
+          "Local I"
+        ],
+        [
+          "7:00 AM – 4:00 PM",
+          "Vendors Village Opens",
+          "Local B"
+        ],
+        [
+          "8:00 AM – 4:00 PM",
+          "Guayaera CrossFit Teams Event",
+          "Local A, C & D"
+        ],
+        [
+          "10:00 AM – 10:45 AM",
+          "Linda Zumbas Party",
+          "Local I"
+        ],
+        [
+          "11:00 AM – 11:45 AM",
+          "Edgar Motion Class",
+          "Local I"
+        ],
+        [
+          "1:00 PM – 2:00 PM",
+          "The Goat Gymnastics Workshop",
+          "Local I"
+        ],
+        [
+          "1:00 PM – 3:00 PM",
+          "Last Chance Corona Cervezero Row",
+          "Local K"
+        ],
+        [
+          "4:30 PM",
+          "Teams Event Closing",
+          ""
+        ],
+        [
+          "5:00 PM",
+          "Closing Party by Corona – Live Music by Via Urbana",
+          "Local J"
+        ]
+      ]
+    }
+  ]
+},
   languageSwitcher: {
     en: 'EN',
     es: 'ES',
@@ -97,51 +315,18 @@ const enCommon = {
       carouselSlideLabel: 'Slide {{number}}',
       yearBadge: 'YEAR 4',
     },
-    divisions: {
-      eyebrow: 'Categories',
-      titlePrefix: 'Choose Your',
-      titleHighlight: 'Division',
-      earlyBirdBadge: 'Early Bird 16% Off',
-      moreInfo: 'More Info',
-      dotLabel: 'Go to division {{number}}',
-      cards: {
-        rx: {
-          title: 'RX',
-          description:
-            'For elite competitors who can handle any movement and heavy loads as prescribed.',
-          features: ['Muscle Ups (Ring/Bar)', 'Handstand Walks', 'Heavy Olympic Lifts'],
-        },
-        intermediate: {
-          title: 'Intermediate',
-          description:
-            'Proficient in most movements but may struggle with high volume high-skill gymnastics.',
-          features: ['Pull-ups / T2B', 'HSPU (Kipping)', 'Moderate Loads'],
-        },
-        beginners: {
-          title: 'Beginners',
-          description:
-            'First time competing? This is for you. Focus on fun, effort, and simple mechanics.',
-          features: ['Ring Rows', 'Single Unders', 'Lighter Loads'],
-        },
-        scale: {
-          title: 'Scale',
-          description:
-            'Intermediate level modified for accessibility. Less complex movements, challenging weights.',
-          features: ['Modified Gymnastics', 'Light Olympic Lifts', 'Scaled Volume'],
-        },
-        masters3944: {
-          title: 'Masters 39-44',
-          description:
-            'For experienced competitors aged 39-44 ready to bring the heat with heavy loads.',
-          features: ['Age Verified (39-44)', 'Prescribed Weights', 'Advanced Gymnastics'],
-        },
-        masters45plus: {
-          title: 'Masters 45+',
-          description:
-            'For veteran athletes 45 and over. Scaling options available for complex movements.',
-          features: ['Age Verified (45+)', 'Modified Weights', 'Adjusted Volume'],
-        },
-      },
+    eventMap: {
+      eyebrow: 'Event Venue',
+      titlePrefix: 'Event',
+      titleHighlight: 'Map',
+      description:
+        'Find your way around the Hyatt Regency Grand Reserve Puerto Rico. Check the competition areas, pools, beach, restaurants and the main resort buildings before you arrive.',
+      imageAlt: 'Guayaera in Paradise event map and resort overview',
+      openMap: 'Open Full Map',
+      closeMap: 'Close map',
+      openInNewTab: 'Open in new tab',
+      hint: 'Tap the map to view it full size',
+      highlights: ['Competition floor', 'Pools & beach', 'Restaurants & lounges', 'Hotel buildings'],
     },
     workouts: {
       eyebrow: 'The Tests',
@@ -151,43 +336,25 @@ const enCommon = {
         'Official events, scoring and standards are now published. Study the workouts and prepare.',
       cta: 'View Official Workouts',
     },
-    register: {
-      eyebrow: 'Registration Open',
-      title: 'Secure Your Spot',
-      individual: {
-        badge: 'Early Bird 16% Off',
-        title: 'Individual',
-        subtitle: 'All individual divisions included',
-        divisions: ['RX', 'Intermediate', 'Beginners', 'Scale', 'Masters'],
-        packageTitle: 'TYR package includes:',
-        packageItems: [
-          'TYR T-shirt of the event',
-          'TYR shoes',
-          'TYR sweat bands',
-          'Short pants (first 200 athletes that register)',
-        ],
-        notes: [
-          'Only for individual event',
-          'Sizes cannot be changed after purchase. If registration is transferred, the package remains assigned to the original registrant.',
-          'All sales are final. No refunds.',
-        ],
-        cta: 'Register Individual',
-      },
-      team: {
-        popularBadge: 'Most Popular',
-        title: 'Teams',
-        subtitle: 'Mixed Sex (MM/FF) (Sunday Event)',
-        divisions: ['RX', 'Intermediate', 'Beginners', 'Teens', 'Masters'],
-        badge: 'Early Bird 37% Off',
-        paymentLabel: 'Full Payment',
-        formatTitle: 'Team Competition Format',
-        formatItems: [
-          'Mixed Sex Teams (MM/FF)',
-          'Multiple divisions available',
-          'High-level competitive environment',
-          'Official judging and structured format',
-        ],
-        cta: 'Register Team',
+    itinerary: {
+      eyebrow: 'Official Schedule',
+      description:
+        'Four days of competition, seminars, wellness and parties. Pick a day to see its official activities, times and locations.',
+      statDays: 'Days',
+      activity: 'activity',
+      activities: 'activities',
+      dateRange: 'Dec 3 – 6, 2026',
+      selectDay: 'Select a day of the itinerary',
+      month: 'Dec 2026',
+      from: 'From',
+      dayLabel: 'Day',
+      locationLabel: 'Location',
+      notSpecified: 'Not specified',
+      days: {
+        thursday: { weekday: 'Thursday', full: 'Thursday, December 3, 2026' },
+        friday: { weekday: 'Friday', full: 'Friday, December 4, 2026' },
+        saturday: { weekday: 'Saturday', full: 'Saturday, December 5, 2026' },
+        sunday: { weekday: 'Sunday', full: 'Sunday, December 6, 2026' },
       },
       raffleEyebrow: 'Also Happening',
       raffleCta: 'Enter the Raffle',

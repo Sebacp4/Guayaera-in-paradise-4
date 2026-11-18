@@ -97,51 +97,18 @@ const esCommon = {
       carouselSlideLabel: 'Diapositiva {{number}}',
       yearBadge: 'AÑO 4',
     },
-    divisions: {
-      eyebrow: 'Categorías',
-      titlePrefix: 'Elige tu',
-      titleHighlight: 'división',
-      earlyBirdBadge: '16% de descuento por pronto registro',
-      moreInfo: 'Más info',
-      dotLabel: 'Ir a la división {{number}}',
-      cards: {
-        rx: {
-          title: 'RX',
-          description:
-            'Para competidores elite que pueden manejar cualquier movimiento y cargas pesadas según lo prescrito.',
-          features: ['Muscle Ups (anillas/barra)', 'Caminatas de manos', 'Levantamientos olímpicos pesados'],
-        },
-        intermediate: {
-          title: 'Intermedio',
-          description:
-            'Dominas la mayoría de los movimientos, pero podrías tener dificultad con alto volumen de gimnasia de mayor nivel.',
-          features: ['Pull-ups / T2B', 'HSPU (kipping)', 'Cargas moderadas'],
-        },
-        beginners: {
-          title: 'Principiantes',
-          description:
-            '¿Compites por primera vez? Esta división es para ti. Enfócate en divertirte, esforzarte y dominar mecánicas simples.',
-          features: ['Ring rows', 'Single unders', 'Cargas livianas'],
-        },
-        scale: {
-          title: 'Escalado',
-          description:
-            'Nivel intermedio adaptado para accesibilidad. Movimientos menos complejos con pesos retadores.',
-          features: ['Gimnasia modificada', 'Levantamientos olímpicos livianos', 'Volumen escalado'],
-        },
-        masters3944: {
-          title: 'Masters 39-44',
-          description:
-            'Para competidores experimentados de 39 a 44 años listos para subir la intensidad con cargas pesadas.',
-          features: ['Edad verificada (39-44)', 'Pesos prescritos', 'Gimnasia avanzada'],
-        },
-        masters45plus: {
-          title: 'Masters 45+',
-          description:
-            'Para atletas veteranos de 45 años o más. Hay opciones escaladas para movimientos complejos.',
-          features: ['Edad verificada (45+)', 'Pesos modificados', 'Volumen ajustado'],
-        },
-      },
+    eventMap: {
+      eyebrow: 'Sede del evento',
+      titlePrefix: 'Mapa del',
+      titleHighlight: 'evento',
+      description:
+        'Ubícate dentro del Hyatt Regency Grand Reserve Puerto Rico. Revisa las áreas de competencia, piscinas, playa, restaurantes y los edificios principales del resort antes de llegar.',
+      imageAlt: 'Mapa del evento y vista general del resort de Guayaera in Paradise',
+      openMap: 'Ver mapa en grande',
+      closeMap: 'Cerrar mapa',
+      openInNewTab: 'Abrir en otra pestaña',
+      hint: 'Toca el mapa para verlo en grande',
+      highlights: ['Área de competencia', 'Piscinas y playa', 'Restaurantes y lounges', 'Edificios del hotel'],
     },
     workouts: {
       eyebrow: 'Las pruebas',
@@ -151,43 +118,25 @@ const esCommon = {
         'Los eventos oficiales, la puntuación y los estándares ya están publicados. Estudia los workouts y prepárate.',
       cta: 'Ver workouts oficiales',
     },
-    register: {
-      eyebrow: 'Inscripciones abiertas',
-      title: 'Asegura tu lugar',
-      individual: {
-        badge: '16% de descuento por pronto registro',
-        title: 'Individual',
-        subtitle: 'Incluye todas las divisiones individuales',
-        divisions: ['RX', 'Intermedio', 'Principiantes', 'Escalado', 'Masters'],
-        packageTitle: 'El paquete TYR incluye:',
-        packageItems: [
-          'Camiseta TYR del evento',
-          'Tenis TYR',
-          'Muñequeras TYR',
-          'Pantalones cortos (primeros 200 atletas que se registren)',
-        ],
-        notes: [
-          'Solo para el evento individual',
-          'Las tallas no se pueden cambiar después de la compra. Si la inscripción se transfiere, el paquete permanece asignado al participante original.',
-          'Todas las ventas son finales. No hay reembolsos.',
-        ],
-        cta: 'Registrar individual',
-      },
-      team: {
-        popularBadge: 'Más popular',
-        title: 'Equipos',
-        subtitle: 'Sexo mixto (MM/FF) (evento del domingo)',
-        divisions: ['RX', 'Intermedio', 'Principiantes', 'Teens', 'Masters'],
-        badge: '37% de descuento por pronto registro',
-        paymentLabel: 'Pago completo',
-        formatTitle: 'Formato de competencia por equipos',
-        formatItems: [
-          'Equipos mixtos (MM/FF)',
-          'Múltiples divisiones disponibles',
-          'Ambiente competitivo de alto nivel',
-          'Juzgamiento oficial y formato estructurado',
-        ],
-        cta: 'Registrar equipo',
+    itinerary: {
+      eyebrow: 'Itinerario oficial',
+      description:
+        'Cuatro días de competencia, seminarios, bienestar y fiestas. Selecciona un día para ver sus actividades oficiales, horarios y lugares.',
+      statDays: 'Días',
+      activity: 'actividad',
+      activities: 'actividades',
+      dateRange: '3 – 6 dic 2026',
+      selectDay: 'Selecciona un día del itinerario',
+      month: 'Dic 2026',
+      from: 'Desde',
+      dayLabel: 'Día',
+      locationLabel: 'Lugar',
+      notSpecified: 'No especificado',
+      days: {
+        thursday: { weekday: 'Jueves', full: 'Jueves 3 de diciembre de 2026' },
+        friday: { weekday: 'Viernes', full: 'Viernes 4 de diciembre de 2026' },
+        saturday: { weekday: 'Sábado', full: 'Sábado 5 de diciembre de 2026' },
+        sunday: { weekday: 'Domingo', full: 'Domingo 6 de diciembre de 2026' },
       },
       raffleEyebrow: 'También sucede',
       raffleCta: 'Entrar a la rifa',

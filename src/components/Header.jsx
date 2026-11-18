@@ -100,8 +100,8 @@ export default function Header() {
         </Link>
 
         <div className="hidden lg:flex items-center gap-8 font-bebas text-2xl tracking-tight uppercase">
-          <a href={isHome ? '#divisions' : '/#divisions'} className="hover:text-[#EB7A4B] transition-colors text-[#000000]/70">
-            {t('header.divisions')}
+          <a href={isHome ? '#map' : '/#map'} className="hover:text-[#EB7A4B] transition-colors text-[#000000]/70">
+            {t('weekend.nav')}
           </a>
           <a href={isHome ? '#sponsors' : '/#sponsors'} className="text-[#000000]/70 hover:text-[#01C9CF] transition-colors">
             {t('header.sponsors')}
@@ -168,11 +168,11 @@ export default function Header() {
             {t('header.raffle')}
           </Link>
           <a
-            href={isHome ? '#divisions' : '/#divisions'}
+            href={isHome ? '#map' : '/#map'}
             onClick={closeMenu}
             className="hover:text-[#EB7A4B] transition-colors block text-[#000000] w-full border-[#000000]/5 border-b pt-4 pb-4"
           >
-            {t('header.divisions')}
+            {t('weekend.nav')}
           </a>
           <a
             href={isHome ? '#sponsors' : '/#sponsors'}
